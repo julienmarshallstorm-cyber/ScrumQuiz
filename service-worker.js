@@ -1,4 +1,4 @@
-const CACHE_NAME = 'scrum-quiz-v3';
+const CACHE_NAME = 'scrum-quiz-v4';
 const urlsToCache = [
   './',
   './index.html',
