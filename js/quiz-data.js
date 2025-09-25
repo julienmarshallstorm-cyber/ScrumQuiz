@@ -1,77 +1,49 @@
 class QuizData {
     constructor() {
-        this.questions = [
-            {
-                question: "What is Scrum?",
-                answers: [
-                    "A framework for project management",
-                    "A methodology for software development",
-                    "A framework for developing, delivering, and sustaining complex products",
-                    "A set of engineering practices"
-                ],
-                correctIndex: 2,
-                quote: "Scrum is a framework for developing, delivering, and sustaining complex products."
-            },
-            {
-                question: "Who is responsible for maximizing the value of the product?",
-                answers: [
-                    "The Development Team",
-                    "The Scrum Master",
-                    "The Product Owner",
-                    "The stakeholders"
-                ],
-                correctIndex: 2,
-                quote: "The Product Owner is responsible for maximizing the value of the product resulting from work of the Development Team."
-            },
-            {
-                question: "How many members should the Development Team have?",
-                answers: [
-                    "3-5 members",
-                    "3-9 members",
-                    "5-10 members",
-                    "As many as needed"
-                ],
-                correctIndex: 1,
-                quote: "The Development Team consists of professionals who do the work of delivering a potentially releasable Increment of 'Done' product at the end of each Sprint. The Development Team has 3-9 members."
-            },
-            {
-                question: "What is the time-box for the Daily Scrum?",
-                answers: [
-                    "10 minutes",
-                    "15 minutes",
-                    "30 minutes",
-                    "60 minutes"
-                ],
-                correctIndex: 1,
-                quote: "The Daily Scrum is a 15-minute time-boxed event for the Development Team."
-            },
-            {
-                question: "Who can cancel a Sprint?",
-                answers: [
-                    "The Development Team",
-                    "The Scrum Master",
-                    "The Product Owner",
-                    "The CEO"
-                ],
-                correctIndex: 2,
-                quote: "The Product Owner has the authority to cancel the Sprint."
-            }
-        ];
+        this.questions = [];
     }
 
+    // JSON-Datei laden
+    async loadQuestions() {
+        try {
+            console.log('📥 Lade Fragen...');
+            const response = await fetch('quiz-data/scrum-quiz.json');
+            const data = await response.json();
+            //console.log('✅ JSON geladen:', data);
+           // console.log('📊 Datentyp:', typeof data);
+            console.log('📄 Rohdaten:', data);
+            console.log('🔢 Ist Array?', Array.isArray(data));
+
+            this.questions = Array.isArray(data) ? data : data.questions;
+            console.log('Fragen geladen:', this.questions.length);
+            this.shuffleQuestions();
+        } catch (error) {
+            console.error("❌ Fehler:", error);
+        }
+    }
+
+    // Fragen randomisieren
+    shuffleQuestions() {
+        for (let i = this.questions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this.questions[i], this.questions[j]] = [this.questions[j], this.questions[i]];
+        }
+    }
+
+    // Frage nach Index zurückgeben
     getQuestion(index) {
         return this.questions[index];
     }
 
+    // Anzahl der Fragen
     getTotalQuestions() {
         return this.questions.length;
     }
+     isCorrectAnswer(questionIndex, selectedIndex) {
+            return this.questions[questionIndex].correctIndex === selectedIndex;
+        }
 
-    isCorrectAnswer(questionIndex, selectedIndex) {
-        return this.questions[questionIndex].correctIndex === selectedIndex;
-    }
-
-    getQuote(questionIndex) {
-        return this.questions[questionIndex].quote;
-    }
+        getQuote(questionIndex) {
+            return this.questions[questionIndex].quote;
+        }
 }

@@ -18,7 +18,7 @@
 </head>
 <body>
 <div id="quiz-container">
-  <h1>Scrum Guide 2020 Quiz</h1>
+  <h1>Scrum Quiz</h1>
   <div id="question-container">
     <p id="question-text">Frage wird hier angezeigt</p>
   </div>
@@ -48,18 +48,28 @@
   </div>
 </div>
 
-<!-- Scripts mit RELATIVEN Pfaden -->
-<link rel="stylesheet" href="/css/style.css">
 <script src="/js/quiz-data.js"></script>
 <script src="/js/quiz-ui.js"></script>
 <script src="/js/quiz-controller.js"></script>
 
+<script>
+  console.log("✅ DOM ist geladen");
+  console.log("QuizData verfügbar:", typeof QuizData);
+  console.log("QuizUI verfügbar:", typeof QuizUI);
+  console.log("QuizController verfügbar:", typeof QuizController);
+
+  // Starte das Quiz manuell
+  setTimeout(() => {
+      console.log("Starte QuizController...");
+      new QuizController();
+  }, 1000);
+</script>
 <!-- Service Worker mit RELATIVEM Pfad -->
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
       // WICHTIG: Relativer Pfad ohne Slash!
-      navigator.serviceWorker.register('/service-worker.js')
+      navigator.serviceWorker.register('service-worker.js')
         .then(registration => {
           console.log('✅ ServiceWorker registration successful');
         })
