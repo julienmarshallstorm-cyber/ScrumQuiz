@@ -1,0 +1,380 @@
+[
+  {
+    "question": "According to the text, what is the highest-level purpose of the five Scrum events?",
+    "answers": [
+      "To create detailed documentation and reports for management.",
+      "To enact the Scrum pillars of Inspection, Adaptation, and Transparency.",
+      "To replace all other forms of team communication.",
+      "To strictly monitor the working hours of the Developers."
+    ],
+    "correctIndex": 1,
+    "quote": "They provide regular opportunities for enacting the Scrum pillars of Inspection, Adaptation and Transparency."
+  },
+  {
+    "question": "The Sprint is best described as:",
+    "answers": [
+      "A long-term project phase that can last up to six months.",
+      "A container event for all other Scrum events, enabling rapid feedback loops.",
+      "An optional event that only occurs when a product release is needed.",
+      "A meeting held daily to inspect progress."
+    ],
+    "correctIndex": 1,
+    "quote": "The Sprint isn't a meeting. Instead, it's the container for all of the work..."
+  },
+  {
+    "question": "If a Sprint is two weeks long, what is the maximum timebox for its Sprint Planning event?",
+    "answers": [
+      "8 hours",
+      "4 hours",
+      "15 minutes",
+      "Less than 8 hours (the team generally sets a shorter duration)"
+    ],
+    "correctIndex": 3,
+    "quote": "The Sprint Planning... is timeboxed to 8 hours for a one month Sprint. The team generally sets the maximum duration shorter if the Sprint is shorter."
+  },
+  {
+    "question": "Which statement best describes the relationship between the Sprint and other Scrum events?",
+    "answers": [
+      "The Sprint contains all other events and ensures frequent opportunities to adapt and inspect.",
+      "The Sprint is optional; only other Scrum events are mandatory.",
+      "The Sprint only occurs if the Product Owner decides it is necessary.",
+      "The Sprint is only used in software development projects."
+    ],
+    "correctIndex": 0,
+    "quote": "The Sprint is the container for all of the other events."
+  },
+  {
+    "question": "What is the timebox for a Daily Scrum event?",
+    "answers": [
+      "30 minutes",
+      "15 minutes",
+      "60 minutes",
+      "As long as the team feels is necessary"
+    ],
+    "correctIndex": 1,
+    "quote": "Daily Scrum is a timeboxed event, usually not longer than 15 minutes."
+  },
+  {
+    "question": "How does the Daily Scrum support the Scrum pillars?",
+    "answers": [
+      "By updating stakeholders daily",
+      "By inspecting progress and adapting the plan",
+      "By creating detailed documentation",
+      "By holding meetings as long as necessary"
+    ],
+    "correctIndex": 1,
+    "quote": "Developers meet daily to inspect progress toward the Sprint Goal and adapt the plan for the next day."
+  },
+  {
+    "question": "What is the Sprint, according to the text?",
+    "answers": [
+      "A meeting to plan the work.",
+      "The container for all of the work done by a Scrum Team to achieve a Sprint Goal.",
+      "A period of time that only includes development work.",
+      "An event that happens after the Sprint Review."
+    ],
+    "correctIndex": 1,
+    "quote": "the Sprint isn't a meeting. Instead, it's the container for all of the work that's done by a Scrum Team to achieve a Sprint Goal."
+  },
+  {
+    "question": "Which events fall within the Sprint? (Choose three)",
+    "answers": [
+      "Project Kick-off",
+      "Sprint Planning",
+      "Sprint Review",
+      "Sprint Retrospective",
+      "Product Backlog Refinement",
+      "Stakeholder Meeting"
+    ],
+    "correctIndex": [1, 2, 3],
+    "quote": "The Daily Scrum, Sprint Planning, Sprint Review and Sprint Retrospective all fall within the Sprint as well as Product Backlog Refinement."
+  },
+  {
+    "question": "What is the maximum recommended duration for a Sprint?",
+    "answers": [
+      "Two weeks",
+      "One month",
+      "Three months",
+      "There is no maximum."
+    ],
+    "correctIndex": 1,
+    "quote": "Sprints should be no longer than one month in duration to support the Scrum tenet of rapid feedback loops."
+  },
+  {
+    "question": "What happens when one Sprint ends?",
+    "answers": [
+      "There is a break before the next one begins.",
+      "The team holds a project post-mortem.",
+      "The next one immediately begins.",
+      "The Product Owner sets a new goal."
+    ],
+    "correctIndex": 2,
+    "quote": "there are no gaps between Sprints. When one ends, the next one immediately begins."
+  },
+  {
+    "question": "Which event is described as a daily meeting for the Developers to review their progress?",
+    "answers": [
+      "Sprint Planning",
+      "Sprint Review",
+      "Sprint Retrospective",
+      "Daily Scrum"
+    ],
+    "correctIndex": 3,
+    "quote": "During the Sprint, the Developers meet daily (Daily Scrum) to review their progress toward their Sprint Goal."
+  },
+  {
+    "question": "According to the text, what is the Sprint Goal?",
+    "answers": [
+      "A detailed plan for the Developers' daily tasks.",
+      "A commitment for the Sprint Backlog meant to provide focus and a target for measuring progress.",
+      "A summary of the work completed in the previous Sprint.",
+      "A goal set solely by the Product Owner for the stakeholders."
+    ],
+    "correctIndex": 1,
+    "quote": "The Sprint Goal is a 'commitment' for the Sprint Backlog meaning that it is meant to provide focus for the Scrum Team and a target against which progress can be measured."
+  },
+  {
+    "question": "What does the Sprint Goal provide for the Sprint, according to the text?",
+    "answers": [
+      "A detailed schedule for all events.",
+      "The objective for the Sprint.",
+      "A list of specific tasks for the Developers.",
+      "The final approval from stakeholders."
+    ],
+    "correctIndex": 1,
+    "quote": "The Sprint Goal provides the objective for the Sprint and frames many of the events during the Sprint."
+  },
+  {
+    "question": "According to the text, the Sprint Goal should indicate why the Sprint will bring value to the stakeholders, including customers and users.",
+    "answers": ["True", "False"],
+    "correctIndex": 0,
+    "quote": "Objective: The Sprint Goal should indicate why this Sprint will bring value to the stakeholders, including customers and users."
+  },
+  {
+    "question": "During which event is the Sprint Goal created, according to the text?",
+    "answers": [
+      "Daily Scrum",
+      "Sprint Review",
+      "Sprint Planning",
+      "Sprint Retrospective"
+    ],
+    "correctIndex": 2,
+    "quote": "The Sprint Goal is created by the entire Scrum Team during Sprint Planning."
+  },
+  {
+    "question": "Who creates the Sprint Goal, according to the text?",
+    "answers": [
+      "The Product Owner alone.",
+      "The Developers during the Daily Scrum.",
+      "The entire Scrum Team during Sprint Planning.",
+      "The stakeholders during the Sprint Review."
+    ],
+    "correctIndex": 2,
+    "quote": "The Sprint Goal is created by the entire Scrum Team during Sprint Planning."
+  },
+  {
+    "question": "According to the text, the Product Backlog Items (PBIs) selected for the Sprint are intended to help the team reach the Sprint Goal.",
+    "answers": ["True", "False"],
+    "correctIndex": 0,
+    "quote": "The PBIs selected for the Sprint during Sprint Planning are intended to help the team reach the Sprint Goal."
+  },
+  {
+    "question": "During the Daily Scrum, what do the Developers assess regarding the Sprint Goal?",
+    "answers": [
+      "Whether the Sprint Goal should be changed.",
+      "Whether they are making progress toward the Sprint Goal.",
+      "If the Sprint Goal is still valuable to the stakeholders.",
+      "Who is responsible for achieving the Sprint Goal."
+    ],
+    "correctIndex": 1,
+    "quote": "During the Daily Scrum, the Developers assess whether they are making progress toward the Sprint Goal and adapt their plans accordingly."
+  },
+  {
+    "question": "According to the text, during the Daily Scrum, the Developers may adjust the scope of their work and are also allowed to make changes to the Sprint Goal.",
+    "answers": ["True", "False"],
+    "correctIndex": 1,
+    "quote": "They may adjust the scope of the work they intend to do, but they must not make changes to the Sprint Goal."
+  },
+  {
+    "question": "According to the text, what is discussed during the Sprint Review regarding goals?",
+    "answers": [
+      "The progress made toward the Sprint Goal.",
+      "The progress made toward the Product Goal.",
+      "The creation of the goal for the next Sprint.",
+      "The commitment to the Sprint Backlog."
+    ],
+    "correctIndex": 1,
+    "quote": "Sprint Review: The Scrum Team and stakeholders discuss the progress made toward the Product Goal."
+  },
+  {
+    "question": "The text states that the Sprint Goal is a commitment for the Product Backlog.",
+    "answers": ["True", "False"],
+    "correctIndex": 1,
+    "quote": "The Sprint Goal is a 'commitment' for the Sprint Backlog..."
+  },
+
+  {
+    "question": "Who creates the Sprint Backlog, according to the text?",
+    "answers": [
+      "The Product Owner.",
+      "The Scrum Master.",
+      "The Developers.",
+      "The entire Scrum Team."
+    ],
+    "correctIndex": 2,
+    "quote": "The Sprint Backlog is created by the Developers during the Sprint Planning Event."
+  },
+  {
+    "question": "According to the text, the Sprint Backlog represents what the stakeholders expect to be accomplished during the Sprint.",
+    "answers": ["True", "False"],
+    "correctIndex": 1,
+    "quote": "The Sprint Backlog represents what the Developers plan to accomplish during the Sprint."
+  },
+  {
+    "question": "During which event is the Sprint Backlog created?",
+    "answers": [
+      "The Daily Scrum",
+      "The Sprint Review",
+      "The Sprint Planning Event",
+      "The Sprint Retrospective"
+    ],
+    "correctIndex": 2,
+    "quote": "The Sprint Backlog is created by the Developers during the Sprint Planning Event."
+  },
+  {
+    "question": "What are the three components the Sprint Backlog consists of, according to the text?",
+    "answers": [
+      "The Product Goal, a set of tasks, and a budget.",
+      "The Sprint Goal, a set of Product Backlog Items (PBIs), and an actionable plan.",
+      "A list of bugs, a risk assessment, and a stakeholder report.",
+      "The Definition of Done, a burn-down chart, and the Daily Scrum minutes."
+    ],
+    "correctIndex": 1,
+    "quote": "It consists of: The Sprint Goal which describes the objective for the Sprint. ... A set of Product Backlog items (PBIs) selected for the Sprint. ... An actionable plan for how the team will deliver the work and achieve the Sprint Goal."
+  },
+  {
+    "question": "The text states that the Sprint Backlog answers the question 'Why are we doing this Sprint?' through the Sprint Goal.",
+    "answers": ["True", "False"],
+    "correctIndex": 0,
+    "quote": "It describes the why, what and how of the Sprint. It consists of: The Sprint Goal which describes the objective for the Sprint. Why are we doing this Sprint?"
+  },
+  {
+    "question": "According to the text, where should the Sprint Backlog be located?",
+    "answers": [
+      "In a secure database only accessible to management.",
+      "In a private location for the Developers only.",
+      "Where anyone on the Scrum Team can see it.",
+      "With the Product Owner's documentation."
+    ],
+    "correctIndex": 2,
+    "quote": "Sprint Backlogs are highly-visible and located where anyone on the Scrum Team can see them."
+  },
+  {
+    "question": "The text states that the Sprint Backlog is updated only once, at the end of the Sprint, to reflect the final outcome.",
+    "answers": ["True", "False"],
+    "correctIndex": 1,
+    "quote": "They are also continually updated throughout the Sprint to provide a real-time picture of the work the Developers plan to accomplish."
+  },
+  {
+    "question": "According to the text, when does the plan for delivering the work (the 'how') often evolve?",
+    "answers": [
+      "During the Sprint Retrospective.",
+      "During the Sprint Review.",
+      "During the Daily Scrum.",
+      "Only during Sprint Planning."
+    ],
+    "correctIndex": 2,
+    "quote": "The selected set of PBIs and the plan to achieve them evolve over the course of the Sprint, often during the Daily Scrum."
+  },
+  {
+    "question": "The text states that, in contrast to the plan and the selected PBIs, the Sprint Goal remains the same for the entire Sprint.",
+    "answers": ["True", "False"],
+    "correctIndex": 0,
+    "quote": "In contrast, the Sprint Goal remains the same for the entire Sprint."
+  },
+  {
+    "question": "According to the text, what may the Product Owner decide to do in the rare circumstance that the Sprint Goal becomes obsolete?",
+    "answers": [
+      "Extend the Sprint duration.",
+      "Change the Sprint Goal immediately.",
+      "Cancel the Sprint.",
+      "Let the Developers choose a new goal."
+    ],
+    "correctIndex": 2,
+    "quote": "In rare circumstances, information is uncovered that makes the Sprint Goal obsolete. In this case, the Product Owner may decide to cancel the Sprint."
+  },
+
+  {
+    "question": "According to the text, when does Sprint Planning occur?",
+    "answers": [
+      "In the middle of the Sprint.",
+      "At the end of the Sprint.",
+      "At the start of every Sprint.",
+      "Only before the first Sprint of a project."
+    ],
+    "correctIndex": 2,
+    "quote": "Every Sprint starts with Sprint Planning..."
+  },
+  {
+    "question": "According to the text, the purpose of Sprint Planning is for the Scrum Team to determine what they plan to accomplish during the Sprint.",
+    "answers": ["True", "False"],
+    "correctIndex": 0,
+    "quote": "...where the Scrum Team determines what they plan to accomplish during the course of the Sprint."
+  },
+  {
+    "question": "Which of the following does the Scrum Team focus on during Sprint Planning, according to the text? (Choose two)",
+    "answers": [
+      "The budget for the Sprint.",
+      "The value that can be created during the Sprint.",
+      "Choosing which Product Backlog Items will be addressed.",
+      "Hiring new team members."
+    ],
+    "correctIndex": [1, 2],
+    "quote": "During the meeting, the Scrum Team focuses on: The value that can be created during the Sprint | Choosing which Product Backlog Items will be addressed during the Sprint | Planning the work required to accomplish their goal | Planning to create an Increment that meets the Definition of Done."
+  },
+  {
+    "question": "According to the text, one of the focuses during Sprint Planning is planning the work required to accomplish the team's goal.",
+    "answers": ["True", "False"],
+    "correctIndex": 0,
+    "quote": "During the meeting, the Scrum Team focuses on: ... Planning the work required to accomplish their goal ..."
+  },
+  {
+    "question": "What does the text state is inspected during the Sprint Planning event?",
+    "answers": [
+      "The team's velocity from the last Sprint.",
+      "The Product Backlog, Product Goal, and Definition of Done.",
+      "The stakeholder feedback from the previous Sprint Review.",
+      "The Sprint Backlog from the previous Sprint."
+    ],
+    "correctIndex": 1,
+    "quote": "Inspection: Product Backlog, Product Goal, Definition of Done"
+  },
+  {
+    "question": "According to the table in the text, what is the maximum timebox for a one-month Sprint Planning event?",
+    "answers": [
+      "4 hours",
+      "2 hours",
+      "8 hours",
+      "There is no timebox."
+    ],
+    "correctIndex": 2,
+    "quote": "Timebox: 8 hours for a 1 month Sprint"
+  },
+  {
+    "question": "According to the text, the Scrum Team makes their plan transparent by creating a Sprint Backlog.",
+    "answers": ["True", "False"],
+    "correctIndex": 0,
+    "quote": "The Scrum Team makes this transparent by creating a Sprint Backlog which includes the Sprint Goal, the selected Product Backlog Items and the Developers' plan for delivering the work."
+  },
+  {
+    "question": "According to the table, who are the participants in the Sprint Planning event?",
+    "answers": [
+      "The Developers and the Product Owner only.",
+      "The Developers and the Scrum Master only.",
+      "The Scrum Team.",
+      "The entire organization."
+    ],
+    "correctIndex": 2,
+    "quote": "Participants: Scrum Team"
+  }
+]

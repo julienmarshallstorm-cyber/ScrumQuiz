@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+#quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+h1 {
+    color: #333;
+    text-align: center;
+}
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.btn:hover {
+    background-color: #45a049;
+}
+.answer-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin: 5px 0;
+    padding: 10px;
+}
+#feedback-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #007bff;
+    border-radius: 4px;
+}
+#score-container {
+    text-align: center;
+    margin-top: 20px;
+}
+.hidden {
+    display: none;
+}
+/* NEU: Klassen für richtige/falsche Antworten */
+.correct {
+    background-color: #d4edda;
+    border: 2px solid #28a745;
+}
+.incorrect {
+    background-color: #f8d7da;
+    border: 2px solid #dc3545;
+}
+.disabled-btn {
+    background-color: #e9ecef !important;
+    color: #6c757d !important;
+    cursor: not-allowed !important;
+}

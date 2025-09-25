@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrum Guide 2020 Quiz</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#4CAF50">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="ScrumQuiz">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- CSS mit RELATIVEM Pfad -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="quiz-container">
+  <h1>Scrum Guide 2020 Quiz</h1>
+  <div id="question-container">
+    <p id="question-text">Frage wird hier angezeigt</p>
+  </div>
+  <div id="answer-buttons" class="btn-grid"></div>
+  <div id="feedback-container" class="hidden">
+    <p id="scrum-guide-quote"></p>
+  </div>
+  <div id="controls">
+    <button id="next-btn" class="btn hidden">Weiter</button>
+  </div>
+
+  <div id="score-container" class="hidden">
+    <h2>Quiz abgeschlossen!</h2>
+    <p>Dein Ergebnis: <span id="score">0</span> von <span id="total-questions">0</span> richtig</p>
+
+    <div id="results-summary">
+      <h3>Ergebnis-Übersicht</h3>
+      <p>Richtig: <span id="correct-count">0</span> | Falsch: <span id="wrong-count">0</span></p>
+
+      <div id="wrong-questions-list" style="margin-top: 20px; display: none;">
+        <h4>Falsch beantwortete Fragen:</h4>
+        <ul id="wrong-questions"></ul>
+      </div>
+    </div>
+
+    <button id="restart-btn" class="btn">Quiz neu starten</button>
+  </div>
+</div>
+
+<!-- Scripts mit RELATIVEN Pfaden -->
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/quiz-data.js"></script>
+<script src="/js/quiz-ui.js"></script>
+<script src="/js/quiz-controller.js"></script>
+
+<!-- Service Worker mit RELATIVEM Pfad -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      // WICHTIG: Relativer Pfad ohne Slash!
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('✅ ServiceWorker registration successful');
+        })
+        .catch(error => {
+          console.log('❌ ServiceWorker registration failed: ', error);
+        });
+    });
+  }
+</script>
+</body>
+</html>
