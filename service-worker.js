@@ -8,7 +8,8 @@ const urlsToCache = [
   './js/quiz-controller.js',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './manifest.json'
+  './manifest.json',
+  './quiz-data/scrum-quiz.json'
 ];
 
 // Install Event

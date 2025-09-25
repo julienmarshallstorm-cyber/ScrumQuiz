@@ -7,7 +7,7 @@ class QuizData {
     async loadQuestions() {
         try {
             console.log('📥 Lade Fragen...');
-            const response = await fetch('/quiz-data/scrum-quiz.json');
+            const response = await fetch('./quiz-data/scrum-quiz.json');
             const data = await response.json();
             //console.log('✅ JSON geladen:', data);
            // console.log('📊 Datentyp:', typeof data);
