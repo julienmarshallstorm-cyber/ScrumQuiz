@@ -1,4 +1,4 @@
-const CACHE_NAME = 'scrum-quiz-v4';
+const CACHE_NAME = 'scrum-quiz-v4'; // Version erhöhen
 const urlsToCache = [
   './',
   './index.html',
@@ -12,29 +12,43 @@ const urlsToCache = [
   './quiz-data/scrum-quiz.json'
 ];
 
-// Install Event
-console.log('Service Worker geladen');
 self.addEventListener('install', event => {
-  console.log('Service Worker installing...');
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Caching app resources');
-        return cache.addAll(urlsToCache);
+      .then(cache => cache.addAll(urlsToCache))
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        // IMMER vom Netzwerk fetchen und Cache updaten
+        const fetchRequest = fetch(event.request).then(networkResponse => {
+          // Cache mit neuer Response updaten
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+          });
+          return networkResponse;
+        });
+
+        // Fallback: Cache wenn Netzwerk fehlschlägt
+        return response || fetchRequest;
       })
   );
 });
 
-// Fetch Event - HIER WAR DER FEHLER!
-self.addEventListener('fetch', event => {
-  console.log('Fetching: ', event.request.url);
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      })
+// Cache bei Aktivierung löschen
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
 });
