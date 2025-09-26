@@ -38,16 +38,10 @@ class QuizUI {
         }
     }
 
-    showFeedback(quote, correctIndex, selectedIndex, isCorrect) {
+    showFeedback(quote, correctIndex, selectedIndex) {
         const resultMessage = isCorrect
-            ? '<span style="color: green; font-weight: bold;">✓ Richtig!</span>'
-            : '<span style="color: red; font-weight: bold;">✗ Falsch!</span>';
-
-        this.scrumGuideQuoteElement.innerHTML = `
-            ${resultMessage}<br><br>
-            <strong>Aus dem Scrum Guide:</strong><br>
-            "${quote}"
-        `;
+            ? '✓ Richtig!': '✗ Falsch!';
+        this.scrumGuideQuoteElement.innerHTML = resultMessage;
 
         this.feedbackContainer.classList.remove('hidden');
 
@@ -74,60 +68,57 @@ class QuizUI {
     }
 
     showScore(score, totalQuestions, wrongAnswers) {
-        this.resetState();
+         this.resetState();
 
-        const percentage = Math.round((score / totalQuestions) * 100);
-        const wrongCount = totalQuestions - score;
+            const percentage = Math.round((score / totalQuestions) * 100);
+            const wrongCount = totalQuestions - score;
 
-        let message = '';
-        if (percentage >= 80) {
-            message = 'Herzlichen Glückwunsch! Exzellentes Scrum-Wissen! 🎉';
-        } else if (percentage >= 60) {
-            message = 'Gut gemacht! Solide Scrum-Kenntnisse! 👍';
-        } else {
-            message = 'Weiter üben! Du schaffst das beim nächsten Mal! 💪';
-        }
+            let message = '';
+            if (percentage >= 80) {
+                message = 'Herzlichen Glückwunsch! Exzellentes Scrum-Wissen! 🎉';
+            } else if (percentage >= 60) {
+                message = 'Gut gemacht! Solide Scrum-Kenntnisse! 👍';
+            } else {
+                message = 'Weiter üben! Du schaffst das beim nächsten Mal! 💪';
+            }
 
-        // NEU: Erweiterte Ergebnis-Anzeige
-        this.questionTextElement.innerHTML = `
-            <h2>Quiz abgeschlossen!</h2>
-            <p>${message}</p>
-        `;
+            this.questionTextElement.innerHTML = `
+                <h2>Quiz abgeschlossen!</h2>
+                <p>${message}</p>
+            `;
 
-        this.scoreElement.innerText = score;
-        this.totalQuestionsElement.innerText = totalQuestions;
+            this.scoreElement.innerText = score;
+            this.totalQuestionsElement.innerText = totalQuestions;
 
-        // NEU: Richtig/Falsch Zähler
-        document.getElementById('correct-count').textContent = score;
-        document.getElementById('wrong-count').textContent = wrongCount;
+            document.getElementById('correct-count').textContent = score;
+            document.getElementById('wrong-count').textContent = wrongCount;
 
-        // NEU: Falsche Fragen anzeigen
-        const wrongQuestionsList = document.getElementById('wrong-questions-list');
-        const wrongQuestionsContainer = document.getElementById('wrong-questions');
+            const wrongQuestionsList = document.getElementById('wrong-questions-list');
+            const wrongQuestionsContainer = document.getElementById('wrong-questions');
 
-        if (wrongAnswers.length > 0) {
-            wrongQuestionsList.style.display = 'block';
-            wrongQuestionsContainer.innerHTML = '';
+            if (wrongAnswers.length > 0) {
+                wrongQuestionsList.style.display = 'block';
+                wrongQuestionsContainer.innerHTML = '';
 
-            wrongAnswers.forEach((wrong, index) => {
-                const listItem = document.createElement('li');
-                listItem.style.marginBottom = '15px';
-                listItem.style.padding = '10px';
-                listItem.style.backgroundColor = '#f8f9fa';
-                listItem.style.borderRadius = '5px';
-                listItem.innerHTML = `
-                    <strong>Frage ${index + 1}:</strong> ${wrong.question}<br>
-                    <span style="color: red;">✗ Deine Antwort: ${wrong.selectedAnswer}</span><br>
-                    <span style="color: green;">✓ Richtige Antwort: ${wrong.correctAnswer}</span><br>
-                    <em style="color: #666;">Scrum Guide: "${wrong.quote}"</em>
-                `;
-                wrongQuestionsContainer.appendChild(listItem);
-            });
-        } else {
-            wrongQuestionsList.style.display = 'none';
-        }
+                wrongAnswers.forEach((wrong, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.style.marginBottom = '15px';
+                    listItem.style.padding = '10px';
+                    listItem.style.backgroundColor = '#f8f9fa';
+                    listItem.style.borderRadius = '5px';
+                    listItem.innerHTML = `
+                        <strong>Frage ${index + 1}:</strong> ${wrong.question}<br>
+                        <span style="color: red;">✗ Deine Antwort: ${wrong.selectedAnswer}</span><br>
+                        <span style="color: green;">✓ Richtige Antwort: ${wrong.correctAnswer}</span><br>
+                        <em style="color: #666;">Scrum Guide: "${wrong.quote}"</em>
+                    `;
+                    wrongQuestionsContainer.appendChild(listItem);
+                });
+            } else {
+                wrongQuestionsList.style.display = 'none';
+            }
 
-        this.scoreContainer.classList.remove('hidden');
+            this.scoreContainer.classList.remove('hidden');
     }
 
     bindAnswerClick(callback) {

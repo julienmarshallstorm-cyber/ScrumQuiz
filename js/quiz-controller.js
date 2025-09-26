@@ -36,13 +36,15 @@ class QuizController {
     }
 
     handleAnswerClick(selectedIndex) {
+try {
         const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndex);
-        const quote = this.quizData.getQuote(this.currentQuestionIndex);
         const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
         if (isCorrect) {
             this.score++;
         } else {
+            // Zitat NUR für falsche Antworten speichern
+            const quote = this.quizData.getQuote(this.currentQuestionIndex);
             this.wrongAnswers.push({
                 question: this.quizData.getQuestion(this.currentQuestionIndex).question,
                 selectedAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[selectedIndex],
@@ -51,7 +53,11 @@ class QuizController {
             });
         }
 
-        this.quizUI.showFeedback(quote, correctIndex, selectedIndex, isCorrect);
+        // NUR isCorrect übergeben, kein quote mehr!
+        this.quizUI.showFeedback(isCorrect, correctIndex, selectedIndex);
+        } catch (error) {
+            console.error('Fehler bei der Antwortverarbeitung:', error);
+        }
     }
 
     handleNextButtonClick() {
