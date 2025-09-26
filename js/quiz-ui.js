@@ -95,10 +95,12 @@ class QuizUI {
           button.style.color = '#6c757d';
       });
   setTimeout(() => {
-        if (this.nextButtonCallback) {
-            this.nextButtonCallback();
-        }
-    }, 1500); // 1.5 Sekunden Verzögerung
+          if (this.nextButtonCallback) {
+              console.log('Auto-Weiter zur nächsten Frage');
+              this.nextButtonCallback();
+          }
+      }, 1500);
+  }
 }
       //this.nextButton.classList.remove('hidden');
   }
