@@ -597,7 +597,234 @@
     ],
     "correctIndex": [1, 4],
     "quote": "Security should be built-in through the Definition of Done and explicit backlog items, not treated as an afterthought."
+  },
+  {
+    "question": "When must a Product Owner release each Increment?",
+    "answers": [
+      "When it makes sense.",
+      "When the Scrum Team finishes their work.",
+      "Whenever the product is free of defects.",
+      "After every Sprint, without exception."
+    ],
+    "correctIndex": 0,
+    "quote": "The Product Owner decides when to release based on business value, not on a fixed schedule or perfection."
+  },
+  {
+    "question": "What is the accountability of the Product Owner during Sprint 0?",
+    "answers": [
+      "There is no such thing as Sprint 0.",
+      "Gathering, eliciting, and analyzing the requirements that will be inserted into the Product Backlog.",
+      "Make the complete project plan to commit date, budget, and scope to the stakeholders.",
+      "Determine the composition of the Development Teams so they have the capacity to deliver the completed forecast.",
+      "Make sure enough Product Backlog items are refined to fill the first 3 Sprints."
+    ],
+    "correctIndex": 0,
+    "quote": "Sprint 0 is not part of Scrum - all Sprints should produce a potentially releasable increment."
+  },
+  {
+    "question": "As the Development Team starts work during the Sprint, it realizes it has selected too much work to finish in the Sprint. What should it do?",
+    "answers": [
+      "Inform the Product Owner at the Sprint Review, but prior to the demonstration.",
+      "Find another Scrum Team to give the excess work to.",
+      "As soon as possible in the Sprint, work with the Product Owner to remove some work or Product Backlog items.",
+      "Reduce the definition of 'Done' and get all of the Product Backlog items 'Done' by the new definition."
+    ],
+    "correctIndex": 2,
+    "quote": "The Development Team collaborates with the Product Owner to adjust scope while maintaining the Sprint Goal."
+  },
+  {
+    "question": "What is a Development Team responsible for? (Choose two.)",
+    "answers": [
+      "Resolving internal team conflicts.",
+      "Reporting productivity.",
+      "Selecting the Product Owner.",
+      "Organizing the work required to meet the Sprint Goal."
+    ],
+    "correctIndex": [0, 3],
+    "quote": "The Development Team self-organizes and manages its own work and internal dynamics."
+  },
+  {
+    "question": "At the seventh Sprint Review, the stakeholders are disappointed and angry. They have determined that the product or system being built will not meet their needs and will cost more than they are willing to spend. What factors likely led to this? (Choose two.)",
+    "answers": [
+      "The Project Management Office (PMO) has not been engaged adequately.",
+      "The Product Owner has not been keeping the stakeholders aware of the progress of the project.",
+      "The stakeholders haven't been using the Sprint Reviews to inspect and evaluate progress.",
+      "The stakeholders were not allowed to enter the development area."
+    ],
+    "correctIndex": [1, 2],
+    "quote": "Regular Sprint Reviews allow stakeholders to provide feedback and adjust direction before significant investment is wasted."
+  },
+  {
+    "question": "Every Development Team should have:",
+    "answers": [
+      "At least one representative from each major software engineering discipline (like QA, Dev, UX).",
+      "The competencies and skills needed to deliver a Done Increment in a Sprint.",
+      "One Lead Developer and no more than 8 other members."
+    ],
+    "correctIndex": 1,
+    "quote": "Cross-functionality means the team collectively has all needed skills, not specific role representation."
+  },
+  {
+    "question": "Which two ways of creating Development Teams are consistent with Scrum's values? (Choose two.)",
+    "answers": [
+      "Existing teams propose how they would like to go about organizing into the new structure.",
+      "Managers personally re-assign current subordinates to new teams.",
+      "Managers collaborate to assign individuals to specific teams.",
+      "Bring all the developers together and let them self-organize into Development Teams.",
+      "The Chief Product Owner determines the new team structures and assignments."
+    ],
+    "correctIndex": [0, 3],
+    "quote": "Self-organization is key - teams should have input into their own formation whenever possible."
+  },
+  {
+    "question": "How much time is required after a Sprint to prepare for the next Sprint?",
+    "answers": [
+      "The break between Sprints is time-boxed to 1 week for 30 day Sprints, and usually less for shorter sprints.",
+      "Enough time for the requirements for the next Sprint to be determined and documented.",
+      "Enough time for the Development team to finish the testing from the last Sprint.",
+      "None. A new Sprint starts immediately following the end of the previous Sprint.",
+      "All of the above are allowed depending on the situation."
+    ],
+    "correctIndex": 3,
+    "quote": "Sprints follow immediately without gaps to maintain rhythm and momentum."
+  },
+  {
+    "question": "Which three questions might be answered by Development Team members at the Daily Scrum? (Choose three.)",
+    "answers": [
+      "How is the Sprint proceeding?",
+      "What did I do yesterday that helped the Development Team meet the Sprint Goal?",
+      "Why were you late?",
+      "What will I do today to help the Development Team meet the Sprint Goal?",
+      "How many hours did I spend on the project yesterday?",
+      "What will I be working on tomorrow?",
+      "Do I see any impediment that prevents me or the Development Team from meeting the Sprint Goal?"
+    ],
+    "correctIndex": [1, 3, 6],
+    "quote": "The three core questions focus on progress toward the Sprint Goal and impediments, not status reporting."
+  },
+  {
+    "question": "What is the purpose of a Sprint Review?",
+    "answers": [
+      "To take time to judge the validity of the project.",
+      "To inspect the product increment with the stakeholders and collect feedback on next steps.",
+      "To review the Scrum Team's activities and processes during the Sprint.",
+      "To build team spirit."
+    ],
+    "correctIndex": 1,
+    "quote": "The Sprint Review is for inspecting the increment and adapting the Product Backlog based on feedback."
+  },
+  {
+    "question": "Who creates a Product Backlog Item's estimate?",
+    "answers": [
+      "The Development Team after clarifying requirements with the Product Owner.",
+      "The Product Owner with input from the Development Team.",
+      "The most senior people in the organization, including architects and subject matter experts.",
+      "The Scrum Master.",
+      "The Development Team, alone."
+    ],
+    "correctIndex": 0,
+    "quote": "The Development Team does the work, so they provide the estimates after understanding the requirements."
+  },
+  {
+    "question": "Which of the following are true about the Product Owner role? (Choose two.)",
+    "answers": [
+      "The Product Owner is one person.",
+      "The Product Owner is accountable for ordering the Product Backlog.",
+      "Multiple people can share the Product Owner role on a Scrum Team.",
+      "The Product Owner role can be played by a committee or a team of people."
+    ],
+    "correctIndex": [0, 1],
+    "quote": "The Product Owner is a single individual accountable for maximizing value through Product Backlog management."
+  },
+  {
+    "question": "What are two good ways for the Development Team to make non-functional requirements visible? (Choose two.)",
+    "answers": [
+      "Put them on a separate list on the Scrum board, available for all to see.",
+      "Add them to the Product Backlog and keep the Product Owner posted on the expected effort.",
+      "Run the integration and regression tests before the end of the Sprint, and capture the open work for the Sprint Backlog of the next Sprint.",
+      "Add them to the definition of 'Done' so the work is taken care of every Sprint."
+    ],
+    "correctIndex": [1, 3],
+    "quote": "Non-functional requirements should be transparent in the backlog or built into the Definition of Done."
+  },
+  {
+    "question": "How is management external to the Scrum Team involved in the Daily Scrum?",
+    "answers": [
+      "The Scrum Master speaks on their behalf.",
+      "The Development Team self-manages and is the only management required at the Daily Scrum.",
+      "Management gives an update at the start of each Daily Scrum.",
+      "The Product Owner represents their opinions."
+    ],
+    "correctIndex": 1,
+    "quote": "The Daily Scrum is for the Development Team to synchronize - external management does not participate."
+  },
+  {
+    "question": "Which best describes the Product Backlog?",
+    "answers": [
+      "It is allowed to grow and change as more is learned about the product and its customers.",
+      "It provides just enough information to enable a Scrum team to start the design phase of a product.",
+      "It contains all foreseeable tasks and requirements from which the Scrum team can develop and maintain a complete project plan.",
+      "It is baselined to follow change management processes."
+    ],
+    "correctIndex": 0,
+    "quote": "The Product Backlog is dynamic and evolves as the product and environment change."
+  },
+  {
+    "question": "Which are properties of the Daily Scrum? (Choose two.)",
+    "answers": [
+      "It is facilitated by the team lead.",
+      "It is held first thing in the morning.",
+      "It is fifteen minutes or less in duration.",
+      "It is free from and designed to promote conversation.",
+      "It consists of the Scrum Master asking the Team members the three questions.",
+      "Its location and time remain constant."
+    ],
+    "correctIndex": [2, 5],
+    "quote": "The Daily Scrum is time-boxed to 15 minutes and should be consistent in timing/location for predictability."
+  },
+  {
+    "question": "A Scrum Master is introducing Scrum to a new Development Team. The Development Team has decided that a Sprint Retrospective is unnecessary. What action should the Scrum Master take?",
+    "answers": [
+      "Call a meeting between the Development Team and senior management.",
+      "Comply with the decision of the self-organizing team.",
+      "Consult with the Product Owner to see how he/she feels about the situation.",
+      "Begin facilitating productive and useful Sprint Retrospectives."
+    ],
+    "correctIndex": 3,
+    "quote": "The Scrum Master educates the team on the importance of retrospectives for continuous improvement."
+  },
+  {
+    "question": "What techniques could the Scrum Master use when the Scrum Team gets caught in an internal disagreement about which agile practices to apply? (Choose the best two answers.)",
+    "answers": [
+      "Involve the complete Scrum Team in making a decision.",
+      "Use coaching techniques; such as open questions and active listening.",
+      "Ask an external agile coach what they recommend.",
+      "Ask team members to take the issue up with to the company's Human Resources department."
+    ],
+    "correctIndex": [0, 1],
+    "quote": "The Scrum Master facilitates team decision-making through coaching and collaboration techniques."
+  },
+  {
+    "question": "A properly functioning Scrum Team will have at least one Release Sprint and may well have several.",
+    "answers": [
+      "True",
+      "False"
+    ],
+    "correctIndex": 1,
+    "quote": "Every Sprint should produce a potentially releasable increment - no special 'release sprints' are needed."
+  },
+  {
+    "question": "Which of the following services are appropriate for a Scrum Master in regard to the Daily Scrum?",
+    "answers": [
+      "Lead the discussions of the Development Team.",
+      "Make sure that all 3 questions have been answered by each member of the team.",
+      "Keep track of whether each team member has a chance to speak.",
+      "Teach the Development Team to keep the Daily Scrum within the 15 minute time-box.",
+      "All of the above."
+    ],
+    "correctIndex": 3,
+    "quote": "The Scrum Master coaches the team on time-boxing but does not lead or manage the meeting content."
   }
-
   
+
 ]
