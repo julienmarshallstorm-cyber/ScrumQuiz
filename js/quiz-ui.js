@@ -13,40 +13,41 @@ class QuizUI {
         this.questionCountSelect = document.getElementById('question-count');
         this.startQuizButton = document.getElementById('start-quiz-btn');
         this.quizContainer = document.getElementById('quiz-container');
-        this.nextButtonCallback = null; // ✅ NEU: Callback speichern
+        this.nextButtonCallback = null;
 
-             if (!this.quizSetupElement) console.error('quiz-setup nicht gefunden');
-             if (!this.questionCountSelect) console.error('question-count nicht gefunden');
-             if (!this.startQuizButton) console.error('start-quiz-btn nicht gefunden');
+        if (!this.quizSetupElement) console.error('quiz-setup nicht gefunden');
+        if (!this.questionCountSelect) console.error('question-count nicht gefunden');
+        if (!this.startQuizButton) console.error('start-quiz-btn nicht gefunden');
     }
+
     showSetup() {
-            if (this.quizSetupElement) {
-                this.quizSetupElement.classList.remove('hidden');
-                this.quizContainer.classList.add('hidden');
-                this.scoreContainer.classList.add('hidden');
-            }
+        if (this.quizSetupElement) {
+            this.quizSetupElement.classList.remove('hidden');
+            this.quizContainer.classList.add('hidden');
+            this.scoreContainer.classList.add('hidden');
         }
+    }
 
     hideSetup() {
-            if (this.quizSetupElement && this.quizContainer) {
-                this.quizSetupElement.classList.add('hidden');
-                this.quizContainer.classList.remove('hidden');
-            }
+        if (this.quizSetupElement && this.quizContainer) {
+            this.quizSetupElement.classList.add('hidden');
+            this.quizContainer.classList.remove('hidden');
         }
+    }
 
     bindStartQuizClick(callback) {
-             if (this.startQuizButton) {
-                 this.startQuizButton.addEventListener('click', () => {
-                     const questionCount = parseInt(this.questionCountSelect.value);
-                     callback(questionCount);
-                 });
-             }
-         }
-    bindNextButtonClick(callback) {
-             this.nextButtonCallback = callback; // ✅ Callback speichern für Auto-Weiter
-             this.nextButton.addEventListener('click', callback); // ✅ Trotzdem für manuellen Fall
-         }
+        if (this.startQuizButton) {
+            this.startQuizButton.addEventListener('click', () => {
+                const questionCount = parseInt(this.questionCountSelect.value);
+                callback(questionCount);
+            });
+        }
+    }
 
+    bindNextButtonClick(callback) {
+        this.nextButtonCallback = callback;
+        this.nextButton.addEventListener('click', callback);
+    }
 
     showQuestion(question, currentIndex, totalQuestions) {
         this.resetState();
@@ -66,7 +67,6 @@ class QuizUI {
             this.answerButtonsElement.appendChild(button);
         });
 
-        // Skip Button hinzufügen
         const skipButton = document.createElement('button');
         skipButton.innerText = '⏭️ Frage überspringen';
         skipButton.classList.add('btn', 'skip-btn');
@@ -83,96 +83,88 @@ class QuizUI {
         }
     }
 
-  showFeedback(selectedIndex) {
-      // KEIN Text-Feedback, nur Buttons deaktivieren
-      this.feedbackContainer.classList.add('hidden'); // Immer verstecken
+    showFeedback(selectedIndex) {
+        this.feedbackContainer.classList.add('hidden');
 
-      const allButtons = this.answerButtonsElement.querySelectorAll('button');
-      allButtons.forEach(button => {
-          button.disabled = true;
-          // KEINE Farben, KEINE Icons, nur deaktivieren
-          button.style.backgroundColor = '#e9ecef';
-          button.style.color = '#6c757d';
-      });
-  setTimeout(() => {
-          if (this.nextButtonCallback) {
-              console.log('Auto-Weiter zur nächsten Frage');
-              this.nextButtonCallback();
-          }
-      }, 1500);
-  }
-}
-      //this.nextButton.classList.remove('hidden');
-  }
+        const allButtons = this.answerButtonsElement.querySelectorAll('button');
+        allButtons.forEach(button => {
+            button.disabled = true;
+            button.style.backgroundColor = '#e9ecef';
+            button.style.color = '#6c757d';
+        });
+
+        setTimeout(() => {
+            if (this.nextButtonCallback) {
+                console.log('Auto-Weiter zur nächsten Frage');
+                this.nextButtonCallback();
+            }
+        }, 1500);
+    }
 
     showScore(score, totalQuestions, wrongAnswers) {
-         this.resetState();
+        this.resetState();
 
-            const percentage = Math.round((score / totalQuestions) * 100);
-            const wrongCount = totalQuestions - score;
+        const percentage = Math.round((score / totalQuestions) * 100);
+        const wrongCount = totalQuestions - score;
 
-            let message = '';
-            if (percentage >= 80) {
-                message = 'Herzlichen Glückwunsch! Exzellentes Scrum-Wissen! 🎉';
-            } else if (percentage >= 60) {
-                message = 'Gut gemacht! Solide Scrum-Kenntnisse! 👍';
-            } else {
-                message = 'Weiter üben! Du schaffst das beim nächsten Mal! 💪';
-            }
+        let message = '';
+        if (percentage >= 80) {
+            message = 'Herzlichen Glückwunsch! Exzellentes Scrum-Wissen! 🎉';
+        } else if (percentage >= 60) {
+            message = 'Gut gemacht! Solide Scrum-Kenntnisse! 👍';
+        } else {
+            message = 'Weiter üben! Du schaffst das beim nächsten Mal! 💪';
+        }
 
-            this.questionTextElement.innerHTML = `
-                <h2>Quiz abgeschlossen!</h2>
-                <p>${message}</p>
-            `;
+        this.questionTextElement.innerHTML = `
+            <h2>Quiz abgeschlossen!</h2>
+            <p>${message}</p>
+        `;
 
-            this.scoreElement.innerText = score;
-            this.totalQuestionsElement.innerText = totalQuestions;
+        this.scoreElement.innerText = score;
+        this.totalQuestionsElement.innerText = totalQuestions;
 
-            document.getElementById('correct-count').textContent = score;
-            document.getElementById('wrong-count').textContent = wrongCount;
+        document.getElementById('correct-count').textContent = score;
+        document.getElementById('wrong-count').textContent = wrongCount;
 
-            const wrongQuestionsList = document.getElementById('wrong-questions-list');
-            const wrongQuestionsContainer = document.getElementById('wrong-questions');
+        const wrongQuestionsList = document.getElementById('wrong-questions-list');
+        const wrongQuestionsContainer = document.getElementById('wrong-questions');
 
-            if (wrongAnswers.length > 0) {
-                wrongQuestionsList.style.display = 'block';
-                wrongQuestionsContainer.innerHTML = '';
+        if (wrongAnswers.length > 0) {
+            wrongQuestionsList.style.display = 'block';
+            wrongQuestionsContainer.innerHTML = '';
 
-                wrongAnswers.forEach((wrong, index) => {
-                    const listItem = document.createElement('li');
-                    listItem.style.marginBottom = '15px';
-                    listItem.style.padding = '10px';
-                    listItem.style.backgroundColor = '#f8f9fa';
-                    listItem.style.borderRadius = '5px';
-                    listItem.innerHTML = `
-                        <strong>Frage ${index + 1}:</strong> ${wrong.question}<br>
-                        <span style="color: red;">✗ Deine Antwort: ${wrong.selectedAnswer}</span><br>
-                        <span style="color: green;">✓ Richtige Antwort: ${wrong.correctAnswer}</span><br>
-                        <em style="color: #666;">Scrum Guide: "${wrong.quote}"</em>
-                    `;
-                    wrongQuestionsContainer.appendChild(listItem);
-                });
-            } else {
-                wrongQuestionsList.style.display = 'none';
-            }
+            wrongAnswers.forEach((wrong, index) => {
+                const listItem = document.createElement('li');
+                listItem.style.marginBottom = '15px';
+                listItem.style.padding = '10px';
+                listItem.style.backgroundColor = '#f8f9fa';
+                listItem.style.borderRadius = '5px';
+                listItem.innerHTML = `
+                    <strong>Frage ${index + 1}:</strong> ${wrong.question}<br>
+                    <span style="color: red;">✗ Deine Antwort: ${wrong.selectedAnswer}</span><br>
+                    <span style="color: green;">✓ Richtige Antwort: ${wrong.correctAnswer}</span><br>
+                    <em style="color: #666;">Scrum Guide: "${wrong.quote}"</em>
+                `;
+                wrongQuestionsContainer.appendChild(listItem);
+            });
+        } else {
+            wrongQuestionsList.style.display = 'none';
+        }
 
-            this.scoreContainer.classList.remove('hidden');
+        this.scoreContainer.classList.remove('hidden');
     }
 
     bindAnswerClick(callback) {
         this.answerButtonsElement.addEventListener('click', (event) => {
             if (event.target.classList.contains('answer-btn')) {
                 const selectedIndex = parseInt(event.target.dataset.index);
-                callback(selectedIndex, false); // false = keine Skip
+                callback(selectedIndex, false);
             }
             if (event.target.classList.contains('skip-btn')) {
-                callback(-1, true); // -1 = keine Antwort, true = skip
+                callback(-1, true);
             }
         });
-    }
-
-    bindNextButtonClick(callback) {
-        this.nextButton.addEventListener('click', callback);
     }
 
     bindRestartButtonClick(callback) {
