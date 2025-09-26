@@ -38,27 +38,20 @@ class QuizUI {
         }
     }
 
-   showFeedback(correctIndex, selectedIndex) {
-       this.feedbackContainer.classList.add('hidden'); // Feedback ausblenden
+  showFeedback(selectedIndex) {
+      // KEIN Text-Feedback, nur Buttons deaktivieren
+      this.feedbackContainer.classList.add('hidden'); // Immer verstecken
 
-       const allButtons = this.answerButtonsElement.querySelectorAll('button');
-       allButtons.forEach(button => {
-           button.disabled = true;
-           const buttonIndex = parseInt(button.dataset.index);
+      const allButtons = this.answerButtonsElement.querySelectorAll('button');
+      allButtons.forEach(button => {
+          button.disabled = true;
+          // KEINE Farben, KEINE Icons, nur deaktivieren
+          button.style.backgroundColor = '#e9ecef';
+          button.style.color = '#6c757d';
+      });
 
-           // Nur visuelles Feedback (ohne Text)
-           if (buttonIndex === correctIndex) {
-               button.classList.add('correct');
-           } else if (buttonIndex === selectedIndex) {
-               button.classList.add('incorrect');
-           } else {
-               button.style.backgroundColor = '#e9ecef';
-               button.style.color = '#6c757d';
-           }
-       });
-
-       this.nextButton.classList.remove('hidden');
-   }
+      this.nextButton.classList.remove('hidden');
+  }
 
     showScore(score, totalQuestions, wrongAnswers) {
          this.resetState();

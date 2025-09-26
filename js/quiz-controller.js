@@ -51,9 +51,9 @@ class QuizController {
                     quote: quote
                 });
             }
-    
-            // Nur visuelles Feedback, keine Text-Rückmeldung
-            this.quizUI.showFeedback(correctIndex, selectedIndex);
+
+            // Nur Buttons deaktivieren, kein Feedback
+            this.quizUI.showFeedback(selectedIndex);
         } catch (error) {
             console.error('Fehler bei der Antwortverarbeitung:', error);
         }
