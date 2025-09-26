@@ -6,7 +6,7 @@ class QuizController {
         this.score = 0;
         this.wrongAnswers = [];
         this.totalQuestions = 0;
-        this.selectedQuestionCount = 0; // Neu
+        this.selectedQuestionCount = 0;
 
         this.init();
     }
@@ -14,22 +14,20 @@ class QuizController {
     async init() {
         await this.quizData.loadQuestions();
         this.initializeEventListeners();
-        this.showSetup(); // Setup anzeigen statt Quiz starten
+        this.showSetup();
     }
 
     initializeEventListeners() {
         this.quizUI.bindAnswerClick(this.handleAnswerClick.bind(this));
         this.quizUI.bindNextButtonClick(this.handleNextButtonClick.bind(this));
         this.quizUI.bindRestartButtonClick(this.handleRestartButtonClick.bind(this));
-        this.quizUI.bindStartQuizClick(this.handleStartQuizClick.bind(this)); // Neu
+        this.quizUI.bindStartQuizClick(this.handleStartQuizClick.bind(this));
     }
 
-    // NEU: Setup anzeigen
     showSetup() {
         this.quizUI.showSetup();
     }
 
-    // NEU: Quiz starten mit ausgewählter Fragen-Anzahl
     handleStartQuizClick(questionCount) {
         this.selectedQuestionCount = Math.min(questionCount, this.quizData.getTotalQuestions());
         this.quizData.shuffleQuestions();
@@ -41,7 +39,7 @@ class QuizController {
         this.currentQuestionIndex = 0;
         this.score = 0;
         this.wrongAnswers = [];
-        this.totalQuestions = this.selectedQuestionCount; // Ausgewählte Anzahl verwenden
+        this.totalQuestions = this.selectedQuestionCount;
         this.showCurrentQuestion();
     }
 
@@ -55,7 +53,6 @@ class QuizController {
             if (isSkip) {
                 const quote = this.quizData.getQuote(this.currentQuestionIndex);
                 const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
-
                 this.wrongAnswers.push({
                     question: this.quizData.getQuestion(this.currentQuestionIndex).question,
                     selectedAnswer: 'Übersprungen',
@@ -65,7 +62,6 @@ class QuizController {
             } else {
                 const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndex);
                 const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
-
                 if (isCorrect) {
                     this.score++;
                 } else {
@@ -78,7 +74,6 @@ class QuizController {
                     });
                 }
             }
-
             this.quizUI.showFeedback(selectedIndex);
         } catch (error) {
             console.error('Fehler bei der Antwortverarbeitung:', error);
@@ -95,12 +90,11 @@ class QuizController {
     }
 
     handleRestartButtonClick() {
-        this.showSetup(); // Zurück zur Setup-Auswahl
+        this.showSetup();
     }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM ist bereit, starte Quiz...');
     new QuizController();
-});```
-
+});
