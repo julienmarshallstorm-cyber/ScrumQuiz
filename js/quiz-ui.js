@@ -9,25 +9,40 @@ class QuizUI {
         this.scoreElement = document.getElementById('score');
         this.totalQuestionsElement = document.getElementById('total-questions');
         this.restartButton = document.getElementById('restart-btn');
-         this.quizSetupElement = document.getElementById('quiz-setup');
-         this.questionCountSelect = document.getElementById('question-count');
-          this.startQuizButton = document.getElementById('start-quiz-btn');
+        this.quizSetupElement = document.getElementById('quiz-setup');
+        this.questionCountSelect = document.getElementById('question-count');
+        this.startQuizButton = document.getElementById('start-quiz-btn');
+        this.quizContainer = document.getElementById('quiz-container');
+
 
              if (!this.quizSetupElement) console.error('quiz-setup nicht gefunden');
              if (!this.questionCountSelect) console.error('question-count nicht gefunden');
              if (!this.startQuizButton) console.error('start-quiz-btn nicht gefunden');
     }
-      bindStartQuizClick(callback) {
-            if (!this.startQuizButton) {
-                console.error('start-quiz-btn Element nicht gefunden');
-                return;
+    showSetup() {
+            if (this.quizSetupElement) {
+                this.quizSetupElement.classList.remove('hidden');
+                this.quizContainer.classList.add('hidden');
+                this.scoreContainer.classList.add('hidden');
             }
-            this.startQuizButton.addEventListener('click', () => {
-                const questionCount = parseInt(this.questionCountSelect.value);
-                console.log('Quiz starten mit', questionCount, 'Fragen');
-                callback(questionCount);
-            });
         }
+
+        hideSetup() {
+            if (this.quizSetupElement && this.quizContainer) {
+                this.quizSetupElement.classList.add('hidden');
+                this.quizContainer.classList.remove('hidden');
+            }
+        }
+
+      bindStartQuizClick(callback) {
+             if (this.startQuizButton) {
+                 this.startQuizButton.addEventListener('click', () => {
+                     const questionCount = parseInt(this.questionCountSelect.value);
+                     callback(questionCount);
+                 });
+             }
+         }
+
 
     showQuestion(question, currentIndex, totalQuestions) {
         this.resetState();
