@@ -9,7 +9,25 @@ class QuizUI {
         this.scoreElement = document.getElementById('score');
         this.totalQuestionsElement = document.getElementById('total-questions');
         this.restartButton = document.getElementById('restart-btn');
+         this.quizSetupElement = document.getElementById('quiz-setup');
+         this.questionCountSelect = document.getElementById('question-count');
+          this.startQuizButton = document.getElementById('start-quiz-btn');
+
+             if (!this.quizSetupElement) console.error('quiz-setup nicht gefunden');
+             if (!this.questionCountSelect) console.error('question-count nicht gefunden');
+             if (!this.startQuizButton) console.error('start-quiz-btn nicht gefunden');
     }
+      bindStartQuizClick(callback) {
+            if (!this.startQuizButton) {
+                console.error('start-quiz-btn Element nicht gefunden');
+                return;
+            }
+            this.startQuizButton.addEventListener('click', () => {
+                const questionCount = parseInt(this.questionCountSelect.value);
+                console.log('Quiz starten mit', questionCount, 'Fragen');
+                callback(questionCount);
+            });
+        }
 
     showQuestion(question, currentIndex, totalQuestions) {
         this.resetState();
