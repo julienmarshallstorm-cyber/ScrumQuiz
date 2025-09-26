@@ -1,5 +1,6 @@
 class QuizUI {
     constructor() {
+
         this.questionTextElement = document.getElementById('question-text');
         this.answerButtonsElement = document.getElementById('answer-buttons');
         this.nextButton = document.getElementById('next-btn');
@@ -32,6 +33,13 @@ class QuizUI {
         if (this.quizSetupElement && this.quizContainer) {
             this.quizSetupElement.classList.add('hidden');
             this.quizContainer.classList.remove('hidden');
+        }
+    }
+    resetState() {
+        this.nextButton.classList.add('hidden');
+        this.feedbackContainer.classList.add('hidden');
+        while (this.answerButtonsElement.firstChild) {
+            this.answerButtonsElement.removeChild(this.answerButtonsElement.firstChild);
         }
     }
 
@@ -208,4 +216,5 @@ class QuizUI {
     bindRestartButtonClick(callback) {
         this.restartButton.addEventListener('click', callback);
     }
+
 }
