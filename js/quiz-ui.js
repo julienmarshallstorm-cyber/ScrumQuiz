@@ -83,7 +83,7 @@ class QuizUI {
     }
 
     showFeedback(selectedIndex) {
-       // this.feedbackContainer.classList.add('hidden');
+        this.feedbackContainer.classList.add('hidden');
 
         const allButtons = this.answerButtonsElement.querySelectorAll('button');
         allButtons.forEach(button => {
