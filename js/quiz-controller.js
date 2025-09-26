@@ -35,24 +35,37 @@ class QuizController {
         this.quizUI.showQuestion(question, this.currentQuestionIndex, this.totalQuestions);
     }
 
-    handleAnswerClick(selectedIndex) {
+    handleAnswerClick(selectedIndex, isSkip) {
         try {
-            const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndex);
-            const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
-
-            if (isCorrect) {
-                this.score++;
-            } else {
+            if (isSkip) {
+                // Frage überspringen - als falsch zählen
                 const quote = this.quizData.getQuote(this.currentQuestionIndex);
+                const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
+
                 this.wrongAnswers.push({
                     question: this.quizData.getQuestion(this.currentQuestionIndex).question,
-                    selectedAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[selectedIndex],
+                    selectedAnswer: 'Übersprungen',
                     correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
                     quote: quote
                 });
+            } else {
+                // Normale Antwortverarbeitung
+                const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndex);
+                const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
+
+                if (isCorrect) {
+                    this.score++;
+                } else {
+                    const quote = this.quizData.getQuote(this.currentQuestionIndex);
+                    this.wrongAnswers.push({
+                        question: this.quizData.getQuestion(this.currentQuestionIndex).question,
+                        selectedAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[selectedIndex],
+                        correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
+                        quote: quote
+                    });
+                }
             }
 
-            // Nur Buttons deaktivieren, kein Feedback
             this.quizUI.showFeedback(selectedIndex);
         } catch (error) {
             console.error('Fehler bei der Antwortverarbeitung:', error);

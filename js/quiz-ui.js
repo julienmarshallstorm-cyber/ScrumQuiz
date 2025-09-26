@@ -28,6 +28,14 @@ class QuizUI {
             button.dataset.index = index;
             this.answerButtonsElement.appendChild(button);
         });
+
+        // Skip Button hinzufügen
+        const skipButton = document.createElement('button');
+        skipButton.innerText = '⏭️ Frage überspringen';
+        skipButton.classList.add('btn', 'skip-btn');
+        skipButton.style.marginTop = '10px';
+        skipButton.style.backgroundColor = '#6c757d';
+        this.answerButtonsElement.appendChild(skipButton);
     }
 
     resetState() {
@@ -111,7 +119,10 @@ class QuizUI {
         this.answerButtonsElement.addEventListener('click', (event) => {
             if (event.target.classList.contains('answer-btn')) {
                 const selectedIndex = parseInt(event.target.dataset.index);
-                callback(selectedIndex);
+                callback(selectedIndex, false); // false = keine Skip
+            }
+            if (event.target.classList.contains('skip-btn')) {
+                callback(-1, true); // -1 = keine Antwort, true = skip
             }
         });
     }
