@@ -50,18 +50,25 @@ class QuizController {
 
     handleAnswerClick(selectedIndex, isSkip) {
         try {
+            // ✅ CORRECTINDEX IMMER HOLEN (auch für Skip)
+            const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
+            let isCorrect = false;
+
             if (isSkip) {
+                // Frage überspringen - als falsch zählen
                 const quote = this.quizData.getQuote(this.currentQuestionIndex);
-                const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
+
                 this.wrongAnswers.push({
                     question: this.quizData.getQuestion(this.currentQuestionIndex).question,
                     selectedAnswer: 'Übersprungen',
                     correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
                     quote: quote
                 });
+                isCorrect = false; // Skip ist immer falsch
             } else {
-                const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndex);
-                const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
+                // Normale Antwortverarbeitung
+                isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndex);
+
                 if (isCorrect) {
                     this.score++;
                 } else {
@@ -74,8 +81,9 @@ class QuizController {
                     });
                 }
             }
-            this.quizUI.showFeedback(selectedIndex);
 
+            // ✅ MIT CORRECTINDEX UND ISCORRECT
+            this.quizUI.showFeedback(selectedIndex, correctIndex, isCorrect);
 
         } catch (error) {
             console.error('Fehler bei der Antwortverarbeitung:', error);

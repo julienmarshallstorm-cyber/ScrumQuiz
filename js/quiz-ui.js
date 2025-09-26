@@ -82,18 +82,35 @@ class QuizUI {
         }
     }
 
-    showFeedback(selectedIndex) {
+    showFeedback(selectedIndex, correctIndex, isCorrect) {
+        // KEIN Text-Feedback, nur Buttons deaktivieren
         this.feedbackContainer.classList.add('hidden');
 
         const allButtons = this.answerButtonsElement.querySelectorAll('button');
         allButtons.forEach(button => {
             button.disabled = true;
+            const buttonIndex = parseInt(button.dataset.index);
 
+            // ✅ FARBLICHE MARKIERUNG:
+            if (buttonIndex === correctIndex) {
+                // Richtige Antwort GRÜN markieren
+                button.style.backgroundColor = '#d4edda';
+                button.style.border = '2px solid #28a745';
+                button.style.color = '#155724';
+            } else if (buttonIndex === selectedIndex && !isCorrect) {
+                // Falsche Auswahl ROT markieren
+                button.style.backgroundColor = '#f8d7da';
+                button.style.border = '2px solid #dc3545';
+                button.style.color = '#721c24';
+            } else {
+                // Andere Buttons grau
+                button.style.backgroundColor = '#e9ecef';
+                button.style.color = '#6c757d';
+            }
         });
-            this.nextButton.classList.remove('hidden');
 
-
-
+        // Weiter Button anzeigen
+        this.nextButton.classList.remove('hidden');
     }
 
     showScore(score, totalQuestions, wrongAnswers) {
