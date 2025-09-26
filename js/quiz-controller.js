@@ -48,14 +48,14 @@ class QuizController {
         this.quizUI.showQuestion(question, this.currentQuestionIndex, this.totalQuestions);
     }
 
-  handleAnswerClick(selectedIndex, isSkip) {
+  handleAnswerClick(selectedIndices, isSkip) {
+  handleAnswerClick(selectedIndices, isSkip) {
       try {
-      const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
+          const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
           if (isSkip) {
               // Frage überspringen - als falsch zählen
               const quote = this.quizData.getQuote(this.currentQuestionIndex);
-              const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
               this.wrongAnswers.push({
                   question: this.quizData.getQuestion(this.currentQuestionIndex).question,
@@ -66,35 +66,34 @@ class QuizController {
           } else {
               // Normale Antwortverarbeitung
               const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndices);
-              const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
               if (isCorrect) {
-                               this.score++;
-                           } else {
-                               const quote = this.quizData.getQuote(this.currentQuestionIndex);
-                               this.wrongAnswers.push({
-                                   question: this.quizData.getQuestion(this.currentQuestionIndex).question,
-                                   selectedAnswer: selectedIndices.map(idx =>
-                                       this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
-                                   ).join(', '),
-                                   correctAnswer: Array.isArray(correctIndex)
-                                       ? correctIndex.map(idx =>
-                                           this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
-                                         ).join(', ')
-                                       : this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
-                                   quote: quote
-                               });
-                           }
-                       }
+                  this.score++;
+              } else {
+                  const quote = this.quizData.getQuote(this.currentQuestionIndex);
+                  this.wrongAnswers.push({
+                      question: this.quizData.getQuestion(this.currentQuestionIndex).question,
+                      selectedAnswer: selectedIndices.map(idx =>
+                          this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
+                      ).join(', '),
+                      correctAnswer: Array.isArray(correctIndex)
+                          ? correctIndex.map(idx =>
+                              this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
+                            ).join(', ')
+                          : this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
+                      quote: quote
+                  });
+              }
+          }
 
-                       // ✅ ERSTEN INDEX FÜR VISUELLES FEEDBACK (falls Multiple Choice)
-                       const firstSelectedIndex = selectedIndices.length > 0 ? selectedIndices[0] : -1;
-                       this.quizUI.showFeedback(firstSelectedIndex);
+          // ✅ ERSTEN INDEX FÜR VISUELLES FEEDBACK
+          const firstSelectedIndex = selectedIndices.length > 0 ? selectedIndices[0] : -1;
+          this.quizUI.showFeedback(firstSelectedIndex);
 
-                   } catch (error) {
-                       console.error('Fehler bei der Antwortverarbeitung:', error);
-                   }
-               }
+      } catch (error) {
+          console.error('Fehler bei der Antwortverarbeitung:', error);
+      }
+  }
     handleNextButtonClick() {
         this.currentQuestionIndex++;
         if (this.currentQuestionIndex < this.totalQuestions) {
