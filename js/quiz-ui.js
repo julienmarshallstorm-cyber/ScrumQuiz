@@ -13,7 +13,7 @@ class QuizUI {
         this.questionCountSelect = document.getElementById('question-count');
         this.startQuizButton = document.getElementById('start-quiz-btn');
         this.quizContainer = document.getElementById('quiz-container');
-        this.nextButtonCallback = null;
+
 
         if (!this.quizSetupElement) console.error('quiz-setup nicht gefunden');
         if (!this.questionCountSelect) console.error('question-count nicht gefunden');
@@ -45,7 +45,6 @@ class QuizUI {
     }
 
     bindNextButtonClick(callback) {
-        this.nextButtonCallback = callback;
         this.nextButton.addEventListener('click', callback);
     }
 
@@ -84,21 +83,17 @@ class QuizUI {
     }
 
     showFeedback(selectedIndex) {
-        this.feedbackContainer.classList.add('hidden');
+       // this.feedbackContainer.classList.add('hidden');
 
         const allButtons = this.answerButtonsElement.querySelectorAll('button');
         allButtons.forEach(button => {
             button.disabled = true;
-            button.style.backgroundColor = '#e9ecef';
-            button.style.color = '#6c757d';
-        });
 
-        setTimeout(() => {
-            if (this.nextButtonCallback) {
-                console.log('Auto-Weiter zur nächsten Frage');
-                this.nextButtonCallback();
-            }
         });
+            this.nextButton.classList.remove('hidden');
+
+
+
     }
 
     showScore(score, totalQuestions, wrongAnswers) {
