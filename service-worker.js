@@ -20,20 +20,20 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // IMMER vom Netzwerk fetchen und Cache updaten
+  event.respondWith(caches.match(event.request)
+      .then(cachedResponse => {
         const fetchRequest = fetch(event.request).then(networkResponse => {
-          // Cache mit neuer Response updaten
           caches.open(CACHE_NAME).then(cache => {
             cache.put(event.request, networkResponse.clone());
           });
           return networkResponse;
+        })
+        .cache(error => {
+        console.log('Netzwerk fehlgeschlagen, bleibe bei cache:', error);
         });
 
         // Fallback: Cache wenn Netzwerk fehlschlägt
-        return response || fetchRequest;
+        return cachedResponse || fetchPromise;
       })
   );
 });
