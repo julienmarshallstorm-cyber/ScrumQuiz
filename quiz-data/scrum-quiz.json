@@ -1,6 +1,6 @@
 [
   {
-    "question": "According to the text, what is the highest-level purpose of the five Scrum events?",
+    "question": "What is the highest-level purpose of the five Scrum events?",
     "answers": [
       "To create detailed documentation and reports for management.",
       "To enact the Scrum pillars of Inspection, Adaptation, and Transparency.",
@@ -66,7 +66,7 @@
     "quote": "Developers meet daily to inspect progress toward the Sprint Goal and adapt the plan for the next day."
   },
   {
-    "question": "What is the Sprint, according to the text?",
+    "question": "What is the Sprint?",
     "answers": [
       "A meeting to plan the work.",
       "The container for all of the work done by a Scrum Team to achieve a Sprint Goal.",
@@ -123,7 +123,7 @@
     "quote": "During the Sprint, the Developers meet daily (Daily Scrum) to review their progress toward their Sprint Goal."
   },
   {
-    "question": "According to the text, what is the Sprint Goal?",
+    "question": "What is the Sprint Goal?",
     "answers": [
       "A detailed plan for the Developers' daily tasks.",
       "A commitment for the Sprint Backlog meant to provide focus and a target for measuring progress.",
@@ -134,7 +134,7 @@
     "quote": "The Sprint Goal is a 'commitment' for the Sprint Backlog meaning that it is meant to provide focus for the Scrum Team and a target against which progress can be measured."
   },
   {
-    "question": "What does the Sprint Goal provide for the Sprint, according to the text?",
+    "question": "What does the Sprint Goal provide for the Sprint?",
     "answers": [
       "A detailed schedule for all events.",
       "The objective for the Sprint.",
@@ -145,13 +145,13 @@
     "quote": "The Sprint Goal provides the objective for the Sprint and frames many of the events during the Sprint."
   },
   {
-    "question": "According to the text, the Sprint Goal should indicate why the Sprint will bring value to the stakeholders, including customers and users.",
+    "question": "The Sprint Goal should indicate why the Sprint will bring value to the stakeholders, including customers and users.",
     "answers": ["True", "False"],
     "correctIndex": 0,
     "quote": "Objective: The Sprint Goal should indicate why this Sprint will bring value to the stakeholders, including customers and users."
   },
   {
-    "question": "During which event is the Sprint Goal created, according to the text?",
+    "question": "During which event is the Sprint Goal created?",
     "answers": [
       "Daily Scrum",
       "Sprint Review",
@@ -162,7 +162,7 @@
     "quote": "The Sprint Goal is created by the entire Scrum Team during Sprint Planning."
   },
   {
-    "question": "Who creates the Sprint Goal, according to the text?",
+    "question": "Who creates the Sprint Goal?",
     "answers": [
       "The Product Owner alone.",
       "The Developers during the Daily Scrum.",
@@ -173,7 +173,7 @@
     "quote": "The Sprint Goal is created by the entire Scrum Team during Sprint Planning."
   },
   {
-    "question": "According to the text, the Product Backlog Items (PBIs) selected for the Sprint are intended to help the team reach the Sprint Goal.",
+    "question": "The Product Backlog Items (PBIs) selected for the Sprint are intended to help the team reach the Sprint Goal.",
     "answers": ["True", "False"],
     "correctIndex": 0,
     "quote": "The PBIs selected for the Sprint during Sprint Planning are intended to help the team reach the Sprint Goal."
@@ -190,13 +190,13 @@
     "quote": "During the Daily Scrum, the Developers assess whether they are making progress toward the Sprint Goal and adapt their plans accordingly."
   },
   {
-    "question": "According to the text, during the Daily Scrum, the Developers may adjust the scope of their work and are also allowed to make changes to the Sprint Goal.",
+    "question": "During the Daily Scrum, the Developers may adjust the scope of their work and are also allowed to make changes to the Sprint Goal.",
     "answers": ["True", "False"],
     "correctIndex": 1,
     "quote": "They may adjust the scope of the work they intend to do, but they must not make changes to the Sprint Goal."
   },
   {
-    "question": "According to the text, what is discussed during the Sprint Review regarding goals?",
+    "question": "What is discussed during the Sprint Review regarding goals?",
     "answers": [
       "The progress made toward the Sprint Goal.",
       "The progress made toward the Product Goal.",
@@ -207,14 +207,14 @@
     "quote": "Sprint Review: The Scrum Team and stakeholders discuss the progress made toward the Product Goal."
   },
   {
-    "question": "The text states that the Sprint Goal is a commitment for the Product Backlog.",
+    "question": "The Sprint Goal is a commitment for the Product Backlog.",
     "answers": ["True", "False"],
     "correctIndex": 1,
     "quote": "The Sprint Goal is a 'commitment' for the Sprint Backlog..."
   },
 
   {
-    "question": "Who creates the Sprint Backlog, according to the text?",
+    "question": "Who creates the Sprint Backlog?",
     "answers": [
       "The Product Owner.",
       "The Scrum Master.",
@@ -225,7 +225,7 @@
     "quote": "The Sprint Backlog is created by the Developers during the Sprint Planning Event."
   },
   {
-    "question": "According to the text, the Sprint Backlog represents what the stakeholders expect to be accomplished during the Sprint.",
+    "question": "The Sprint Backlog represents what the stakeholders expect to be accomplished during the Sprint.",
     "answers": ["True", "False"],
     "correctIndex": 1,
     "quote": "The Sprint Backlog represents what the Developers plan to accomplish during the Sprint."
@@ -242,7 +242,7 @@
     "quote": "The Sprint Backlog is created by the Developers during the Sprint Planning Event."
   },
   {
-    "question": "What are the three components the Sprint Backlog consists of, according to the text?",
+    "question": "What are the three components the Sprint Backlog consists of?",
     "answers": [
       "The Product Goal, a set of tasks, and a budget.",
       "The Sprint Goal, a set of Product Backlog Items (PBIs), and an actionable plan.",
@@ -824,7 +824,229 @@
     ],
     "correctIndex": 3,
     "quote": "The Scrum Master coaches the team on time-boxing but does not lead or manage the meeting content."
+  },
+  {
+    "question": "Which of the following are roles on a Scrum Team? (Choose all that apply.)",
+    "answers": [
+      "Users",
+      "Scrum Master",
+      "Product Owner",
+      "Development Team",
+      "Customers"
+    ],
+    "correctIndex": [1, 2, 3],
+    "quote": "Scrum has three roles: Product Owner, Scrum Master, and Development Team. Users and customers are stakeholders."
+  },
+  {
+    "question": "Which Scrum Values are exhibited by not building Product Backlog items that have low business value? (Choose three.)",
+    "answers": [
+      "Economic Value Added.",
+      "Respect.",
+      "Focus.",
+      "Earned Value.",
+      "Courage."
+    ],
+    "correctIndex": [1, 2, 4],
+    "quote": "Focusing on high-value items shows respect for stakeholders' time, focus on what matters, and courage to say no to low-value work."
+  },
+  {
+    "question": "Who is responsible for clearly expressing Product Backlog items?",
+    "answers": [
+      "The Scrum Master, or the Scrum Master may have the Development Team do it.",
+      "The Scrum Master.",
+      "The Product Owner.",
+      "The business analyst who represents the Product Owner in the Development Team."
+    ],
+    "correctIndex": 2,
+    "quote": "The Product Owner is responsible for clear Product Backlog items, though they may get help from others."
+  },
+  {
+    "question": "What activities would a Product Owner typically undertake in the phase between the end of the current Sprint and the start of the next Sprint?",
+    "answers": [
+      "There are no such activities. The next Sprint starts immediately after the current Sprint.",
+      "Refine the Product Backlog.",
+      "Work with the Quality Assurance departments on the Increment of the current Sprint.",
+      "Update the project plan with stakeholders."
+    ],
+    "correctIndex": 0,
+    "quote": "Sprints follow immediately without gaps - Product Backlog refinement occurs throughout the Sprint."
+  },
+  {
+    "question": "The purpose of a Sprint is to produce a done Increment of product.",
+    "answers": [
+      "True",
+      "False"
+    ],
+    "correctIndex": 0,
+    "quote": "The primary purpose of each Sprint is to produce a potentially releasable increment of value."
+  },
+  {
+    "question": "The length of a Sprint should be:",
+    "answers": [
+      "Short enough to keep the business risk acceptable to the Product Owner.",
+      "Short enough to be able to synchronize the development work with other business events.",
+      "No more than one calendar month.",
+      "All of these answers are correct."
+    ],
+    "correctIndex": 3,
+    "quote": "Sprint length balances risk management, feedback frequency, and business synchronization needs."
+  },
+  {
+    "question": "When is the Sprint Backlog created?",
+    "answers": [
+      "At the beginning of the project.",
+      "During the Sprint Planning meeting.",
+      "Prior to the Sprint Planning meeting.",
+      "During the Sprint."
+    ],
+    "correctIndex": 1,
+    "quote": "The Sprint Backlog is created by the Development Team during Sprint Planning."
+  },
+  {
+    "question": "During the Sprint Retrospective a Scrum Team has identified several high priority process improvements. Which of the following statements is most accurate?",
+    "answers": [
+      "The Scrum Team may add items to the Sprint Backlog for the next Sprint.",
+      "The Scrum Team should choose at least one high priority process improvement to place in the Product Backlog.",
+      "The Scrum Team should decline to add a process improvement to the Sprint Backlog when things are running smoothly.",
+      "The Scrum Master selects the most important process improvement and places it in the Sprint Backlog."
+    ],
+    "correctIndex": 0,
+    "quote": "Process improvements identified in retrospectives can be added to the next Sprint Backlog for implementation."
+  },
+  {
+    "question": "What is the key concern when multiple Development Teams are working from the same Product Backlog?",
+    "answers": [
+      "Minimizing dependencies between teams.",
+      "Clear definition of requirements.",
+      "Meeting original scope projections.",
+      "Making sure there's enough work for everyone on every team.",
+      "Maximizing velocity."
+    ],
+    "correctIndex": 0,
+    "quote": "Minimizing dependencies allows teams to work independently and deliver value more predictably."
+  },
+  {
+    "question": "When should a Sprint Goal be created?",
+    "answers": [
+      "It should have been created in the previous Sprint during Product Backlog refinement.",
+      "It must be established before Sprint Planning in order to begin planning.",
+      "A Sprint Goal is not mandatory in Scrum.",
+      "At any time during the Sprint.",
+      "During Sprint Planning."
+    ],
+    "correctIndex": 4,
+    "quote": "The Sprint Goal is created during Sprint Planning as part of defining the Sprint's objective."
+  },
+  {
+    "question": "When a Development Team determines that it will not be able to finish the complete forecast, who has to be present when reviewing and adjusting the Sprint work selected?",
+    "answers": [
+      "The Development Team.",
+      "The Product Owner and all stakeholders.",
+      "The Product Owner and the Development Team.",
+      "The Scrum Master, project manager and Development Team."
+    ],
+    "correctIndex": 2,
+    "quote": "The Development Team and Product Owner collaborate to adjust scope while preserving the Sprint Goal."
+  },
+  {
+    "question": "In accordance with Scrum theory, how should a group of 100 people be divided into multiple Development Teams?",
+    "answers": [
+      "Understanding the product, the product vision and the rules of the Scrum framework, the group divides itself into teams.",
+      "It doesn't really matter because you can rotate the teams every Sprint to spread knowledge.",
+      "Check with the allocation department to see who has worked together before and make these the first teams.",
+      "Create a matrix of skills, seniority, and level of experience to assign people to teams."
+    ],
+    "correctIndex": 0,
+    "quote": "Self-organization applies to team formation - the group should organize itself based on the product needs."
+  },
+  {
+    "question": "During a Sprint Retrospective, the Development Team proposes moving the Daily Scrum to only occur on Tuesdays and Thursdays. Which two are the most appropriate responses for the Scrum Master? (Choose two.)",
+    "answers": [
+      "Consider the request and decide on which days the Daily Scrum should occur.",
+      "Coach the team on why the Daily Scrum is important as an opportunity to update the plan.",
+      "Have the developers vote.",
+      "Learn why the Development Team wants this and work with them to improve the outcome of the Daily Scrum.",
+      "Acknowledge and support the self-organizing team's decision."
+    ],
+    "correctIndex": [1, 3],
+    "quote": "The Scrum Master coaches on Scrum principles while understanding the team's perspective to find the best solution."
+  },
+  {
+    "question": "Which statement best describes the Sprint Backlog as outcome of the Sprint Planning?",
+    "answers": [
+      "It is a complete list of all work to be done in a Sprint.",
+      "Every item has a designated owner.",
+      "Each task is estimated in hours.",
+      "It is the Development Team's plan for the Sprint."
+    ],
+    "correctIndex": 3,
+    "quote": "The Sprint Backlog is the Development Team's plan for achieving the Sprint Goal, not just a task list."
+  },
+  {
+    "question": "Who determines when it is appropriate to update the Sprint Backlog during a Sprint?",
+    "answers": [
+      "The Project Manager.",
+      "The Development Team.",
+      "The Scrum Team.",
+      "The Product Owner."
+    ],
+    "correctIndex": 1,
+    "quote": "The Development Team manages and updates the Sprint Backlog throughout the Sprint as they learn more."
+  },
+  {
+    "question": "Who has the final decision about the order of items in the Product Backlog?",
+    "answers": [
+      "The Stakeholders.",
+      "The Product Owner.",
+      "The Scrum Team.",
+      "The Scrum Master.",
+      "The Developers."
+    ],
+    "correctIndex": 1,
+    "quote": "The Product Owner has final accountability for ordering the Product Backlog to maximize value."
+  },
+  {
+    "question": "When many Development Teams are working on a single product, what best describes the definition of 'Done'?",
+    "answers": [
+      "Each Development Team defines and uses its own. The differences are discussed and reconciled during a hardening Sprint.",
+      "It depends.",
+      "Each Development Team uses its own but must make their definition clear to all other teams so the differences are known.",
+      "All Development Teams must have a definition of 'Done' that makes their combined work potentially releasable."
+    ],
+    "correctIndex": 3,
+    "quote": "A shared Definition of Done ensures that integrated work from multiple teams is potentially releasable."
+  },
+  {
+    "question": "What is the recommended size for a Scrum Team?",
+    "answers": [
+      "At least 7.",
+      "9",
+      "10 or fewer.",
+      "7 plus or minus 3."
+    ],
+    "correctIndex": 2,
+    "quote": "Scrum Teams are typically 10 or fewer people to maintain effectiveness and communication."
+  },
+  {
+    "question": "Every Scrum Team must have a Product Owner and Scrum Master.",
+    "answers": [
+      "True. Outcomes affected by their participation and availability.",
+      "False. A Product Owner can be replaced by a subject matter expert in the Scrum Team.",
+      "False. A Scrum Master is only required when asked for by the Scrum Team.",
+      "True. Each must be 100% dedicated to the Scrum Team."
+    ],
+    "correctIndex": 0,
+    "quote": "Both roles are essential, though their level of involvement may vary based on team maturity and context."
+  },
+  {
+    "question": "Who is accountable for clearly expressing Product Backlog items?",
+    "answers": [
+      "The business analyst who represents the Product Owner.",
+      "The Product Owner.",
+      "The Scrum Master, or the Scrum Master may have the Developers do it.",
+      "The Scrum Master."
+    ],
+    "correctIndex": 1,
+    "quote": "The Product Owner is accountable for clear Product Backlog items, though they may get assistance from others."
   }
-  
-
 ]
