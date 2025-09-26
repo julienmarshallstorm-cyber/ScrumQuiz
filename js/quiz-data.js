@@ -39,11 +39,29 @@ class QuizData {
     getTotalQuestions() {
         return this.questions.length;
     }
-     isCorrectAnswer(questionIndex, selectedIndex) {
-            return this.questions[questionIndex].correctIndex === selectedIndex;
-        }
 
-        getQuote(questionIndex) {
+   isCorrectAnswer(questionIndex, selectedIndices) {
+       const question = this.questions[questionIndex];
+
+       // ✅ FÜR MEHRFACHAUSWAHL (correctIndex ist Array)
+       if (Array.isArray(question.correctIndex)) {
+           // Prüfe ob ausgewählte Indices genau den correctIndex entsprechen
+           if (selectedIndices.length !== question.correctIndex.length) {
+               return false; // Unterschiedliche Anzahl = falsch
+           }
+
+           // Vergleiche ob beide Arrays die gleichen Werte haben (sortiert)
+           const sortedSelected = selectedIndices.slice().sort().join(',');
+           const sortedCorrect = question.correctIndex.slice().sort().join(',');
+           return sortedSelected === sortedCorrect;
+       }
+       // ✅ FÜR EINFACHE ANTWORTEN (correctIndex ist Number)
+       else {
+           return question.correctIndex === selectedIndices[0];
+       }
+   }
+
+    getQuote(questionIndex) {
             return this.questions[questionIndex].quote;
         }
 }

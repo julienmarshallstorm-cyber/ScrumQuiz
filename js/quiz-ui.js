@@ -58,28 +58,49 @@ class QuizUI {
             ${question.question}
         `;
 
+        // ✅ PRÜFEN OB MEHRFACHAUSWAHL (Array bei correctIndex)
+        const isMultipleChoice = Array.isArray(question.correctIndex);
+
         question.answers.forEach((answer, index) => {
             const button = document.createElement('button');
             button.innerText = answer;
             button.classList.add('btn', 'answer-btn');
             button.dataset.index = index;
+
+            // ✅ FÜR MEHRFACHAUSWAHL: TOGGLE FUNKTIONALITÄT
+            if (isMultipleChoice) {
+                button.addEventListener('click', () => {
+                    button.classList.toggle('selected');
+                    if (button.classList.contains('selected')) {
+                        button.style.backgroundColor = '#d1ecf1';
+                        button.style.border = '2px solid #17a2b8';
+                    } else {
+                        button.style.backgroundColor = '';
+                        button.style.border = '';
+                    }
+                });
+            }
+
             this.answerButtonsElement.appendChild(button);
         });
 
+        // ✅ BESTÄTIGUNGS-BUTTON FÜR MEHRFACHAUSWAHL
+        if (isMultipleChoice) {
+            const confirmButton = document.createElement('button');
+            confirmButton.innerText = '✅ Antworten bestätigen';
+            confirmButton.classList.add('btn', 'confirm-btn');
+            confirmButton.style.marginTop = '10px';
+            confirmButton.style.backgroundColor = '#28a745';
+            this.answerButtonsElement.appendChild(confirmButton);
+        }
+
+        // Skip Button
         const skipButton = document.createElement('button');
         skipButton.innerText = '⏭️ Frage überspringen';
         skipButton.classList.add('btn', 'skip-btn');
         skipButton.style.marginTop = '10px';
         skipButton.style.backgroundColor = '#6c757d';
         this.answerButtonsElement.appendChild(skipButton);
-    }
-
-    resetState() {
-        this.nextButton.classList.add('hidden');
-        this.feedbackContainer.classList.add('hidden');
-        while (this.answerButtonsElement.firstChild) {
-            this.answerButtonsElement.removeChild(this.answerButtonsElement.firstChild);
-        }
     }
 
     showFeedback(selectedIndex, correctIndex, isCorrect) {
@@ -166,10 +187,20 @@ class QuizUI {
         this.answerButtonsElement.addEventListener('click', (event) => {
             if (event.target.classList.contains('answer-btn')) {
                 const selectedIndex = parseInt(event.target.dataset.index);
-                callback(selectedIndex, false);
+
+                // ✅ FÜR EINFACHE ANTWORTEN: SOFORT CALLBACK
+                if (!event.target.classList.contains('selected')) {
+                    callback([selectedIndex], false); // Als Array übergeben
+                }
             }
-            if (event.target.classList.contains('skip-btn')) {
-                callback(-1, true);
+            else if (event.target.classList.contains('confirm-btn')) {
+                // ✅ FÜR MEHRFACHAUSWAHL: ALLE AUSGEWÄHLTEN ANTWORTEN SAMMELN
+                const selectedButtons = this.answerButtonsElement.querySelectorAll('.answer-btn.selected');
+                const selectedIndices = Array.from(selectedButtons).map(btn => parseInt(btn.dataset.index));
+                callback(selectedIndices, false);
+            }
+            else if (event.target.classList.contains('skip-btn')) {
+                callback([-1], true); // Als Array für Konsistenz
             }
         });
     }
