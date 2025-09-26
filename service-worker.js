@@ -1,4 +1,4 @@
-const CACHE_NAME = 'scrum-quiz-v4'; // Version erhöhen
+const CACHE_NAME = 'scrum-quiz-v5'; // Version erhöhen
 const urlsToCache = [
   './',
   './index.html',
@@ -12,6 +12,7 @@ const urlsToCache = [
   './quiz-data/scrum-quiz.json'
 ];
 
+// Install: Dateien cachen
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -19,26 +20,27 @@ self.addEventListener('install', event => {
   );
 });
 
+// Fetch: Cache first, dann Update im Hintergrund
 self.addEventListener('fetch', event => {
-  event.respondWith(caches.match(event.request)
-      .then(cachedResponse => {
-        const fetchRequest = fetch(event.request).then(networkResponse => {
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, networkResponse.clone());
-          });
-          return networkResponse;
-        })
-        .cache(error => {
-        console.log('Netzwerk fehlgeschlagen, bleibe bei cache:', error);
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      const fetchPromise = fetch(event.request).then(networkResponse => {
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, networkResponse.clone());
         });
+        return networkResponse;
+      }).catch(error => {
+        console.log('Netzwerk fehlgeschlagen, bleibe bei Cache:', error);
+        return cachedResponse;
+      });
 
-        // Fallback: Cache wenn Netzwerk fehlschlägt
-        return cachedResponse || fetchPromise;
-      })
+      // Sofort Cache liefern, während Netzwerk läuft
+      return cachedResponse || fetchPromise;
+    })
   );
 });
 
-// Cache bei Aktivierung löschen
+// Alte Caches löschen
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
