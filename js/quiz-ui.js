@@ -98,7 +98,7 @@ class QuizUI {
                 console.log('Auto-Weiter zur nächsten Frage');
                 this.nextButtonCallback();
             }
-        }, 500);
+        });
     }
 
     showScore(score, totalQuestions, wrongAnswers) {
