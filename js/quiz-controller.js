@@ -36,25 +36,24 @@ class QuizController {
     }
 
     handleAnswerClick(selectedIndex) {
-try {
-        const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndex);
-        const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
+        try {
+            const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndex);
+            const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
-        if (isCorrect) {
-            this.score++;
-        } else {
-            // Zitat NUR für falsche Antworten speichern
-            const quote = this.quizData.getQuote(this.currentQuestionIndex);
-            this.wrongAnswers.push({
-                question: this.quizData.getQuestion(this.currentQuestionIndex).question,
-                selectedAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[selectedIndex],
-                correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
-                quote: quote
-            });
-        }
-
-        // NUR isCorrect übergeben, kein quote mehr!
-        this.quizUI.showFeedback(isCorrect, correctIndex, selectedIndex);
+            if (isCorrect) {
+                this.score++;
+            } else {
+                const quote = this.quizData.getQuote(this.currentQuestionIndex);
+                this.wrongAnswers.push({
+                    question: this.quizData.getQuestion(this.currentQuestionIndex).question,
+                    selectedAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[selectedIndex],
+                    correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
+                    quote: quote
+                });
+            }
+    
+            // Nur visuelles Feedback, keine Text-Rückmeldung
+            this.quizUI.showFeedback(correctIndex, selectedIndex);
         } catch (error) {
             console.error('Fehler bei der Antwortverarbeitung:', error);
         }

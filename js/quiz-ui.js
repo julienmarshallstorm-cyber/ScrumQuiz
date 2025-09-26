@@ -38,33 +38,27 @@ class QuizUI {
         }
     }
 
-    showFeedback(correctIndex, selectedIndex, isCorrect) {
-        const resultMessage = isCorrect ? '✓ Richtig!': '✗ Falsch!';
-        this.scrumGuideQuoteElement.innerHTML = resultMessage;
+   showFeedback(correctIndex, selectedIndex) {
+       this.feedbackContainer.classList.add('hidden'); // Feedback ausblenden
 
-        this.feedbackContainer.classList.remove('hidden');
+       const allButtons = this.answerButtonsElement.querySelectorAll('button');
+       allButtons.forEach(button => {
+           button.disabled = true;
+           const buttonIndex = parseInt(button.dataset.index);
 
-        const allButtons = this.answerButtonsElement.querySelectorAll('button');
-        allButtons.forEach(button => {
-            button.disabled = true;
-            const buttonIndex = parseInt(button.dataset.index);
+           // Nur visuelles Feedback (ohne Text)
+           if (buttonIndex === correctIndex) {
+               button.classList.add('correct');
+           } else if (buttonIndex === selectedIndex) {
+               button.classList.add('incorrect');
+           } else {
+               button.style.backgroundColor = '#e9ecef';
+               button.style.color = '#6c757d';
+           }
+       });
 
-            // NUR NOCH: Richtige Antwort grün, falsche Auswahl rot
-            if (buttonIndex === correctIndex) {
-                button.classList.add('correct');
-                button.innerHTML = '✓ ' + button.textContent;
-            } else if (buttonIndex === selectedIndex && !isCorrect) {
-                button.classList.add('incorrect');
-                button.innerHTML = '✗ ' + button.textContent;
-            } else {
-                // Alle anderen Buttons grau und deaktiviert
-                button.style.backgroundColor = '#e9ecef';
-                button.style.color = '#6c757d';
-            }
-        });
-
-        this.nextButton.classList.remove('hidden');
-    }
+       this.nextButton.classList.remove('hidden');
+   }
 
     showScore(score, totalQuestions, wrongAnswers) {
          this.resetState();
