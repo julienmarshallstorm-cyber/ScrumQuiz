@@ -376,5 +376,228 @@
     ],
     "correctIndex": 2,
     "quote": "Participants: Scrum Team"
+  },
+  {
+    "question": "For the purpose of transparency, when does Scrum say a new increment of working software must be available?",
+    "answers": [
+      "After the acceptance testing phase.",
+      "Before the release Sprint.",
+      "Every 3 Sprints.",
+      "At the end of every Sprint.",
+      "When the Product Owner asks to create one."
+    ],
+    "correctIndex": 3,
+    "quote": "Scrum requires a 'Done' increment at the end of each Sprint to ensure continuous progress and transparency."
+  },
+  {
+    "question": "What happens if the Development Team cannot complete its work by the end of the Sprint?",
+    "answers": [
+      "The Sprint is extended and future Sprints use this new duration.",
+      "The Sprint length holds and the Development Team continuously learns what is actually possible to do within a Sprint of this length.",
+      "The Sprint is extended temporarily. Lessons are taken to ensure it doesn't happen again."
+    ],
+    "correctIndex": 1,
+    "quote": "Sprint length remains fixed to maintain rhythm and help the team learn what they can realistically accomplish."
+  },
+  {
+    "question": "Which two activities will a Product Owner engage in during a Sprint? (Choose two.)",
+    "answers": [
+      "Run the Daily Scrum.",
+      "Prioritize the Development Team's work on the Sprint Backlog.",
+      "Update management on what is being worked on.",
+      "Answer questions from the Development Team about items in the current Sprint.",
+      "All of the above"
+    ],
+    "correctIndex": [2, 3],
+    "quote": "The Product Owner clarifies requirements but does not manage the Development Team's daily work."
+  },
+  {
+    "question": "When is implementation of a Product Backlog item considered complete?",
+    "answers": [
+      "At the end of the Sprint.",
+      "When the item has no work remaining in order to be potentially released.",
+      "When QA reports that the item passes all acceptance criteria.",
+      "When all work in the Sprint Backlog related to the item is finished."
+    ],
+    "correctIndex": 1,
+    "quote": "Completion is defined by the Definition of Done, not by the Sprint end or individual testing phases."
+  },
+  {
+    "question": "A Development Team asks their Product Owner to re-order the Product Backlog. The team is waiting for an external supplier to deliver a specific software component. Without that component there won't be enough work in the next Sprint to occupy the full team. The Product Owner asks the Scrum Master for help. What would be good advice to give the Product Owner?",
+    "answers": [
+      "Remind the Product Owner that his primary concern is the flow of value reflected in the ordering of the Product Backlog.",
+      "Tell the Product Owner to re-order the Product Backlog so the work involving the external component can be planned in a separate sprint.",
+      "Tell the Product Owner that the Product Backlog should be ordered to maximize utilization of the Development Team."
+    ],
+    "correctIndex": 0,
+    "quote": "The Product Backlog should be ordered by value, not by team utilization or external dependencies."
+  },
+  {
+    "question": "How much work must a Development Team do to a Product Backlog item it selects for a Sprint?",
+    "answers": [
+      "A proportional amount of time on analysis, design, programming, testing, and documentation.",
+      "As much as it can fit into the Sprint. Any remaining work will be transferred to a subsequent Sprint.",
+      "All development work and at least some testing.",
+      "As much as it has told the Product Owner will be done for every Product Backlog item it selects in conformance with the definition of 'Done'."
+    ],
+    "correctIndex": 3,
+    "quote": "The team commits to delivering items that meet the Definition of Done, not to completing partial work."
+  },
+  {
+    "question": "For which is the Scrum Master responsible?",
+    "answers": [
+      "Managing the performance of the Scrum Team.",
+      "The meetings and the objectives that a Scrum Team sets for itself.",
+      "The Scrum framework being adopted and used properly.",
+      "Keeping track of resource allocation."
+    ],
+    "correctIndex": 2,
+    "quote": "The Scrum Master ensures Scrum is understood and enacted, but doesn't manage people or performance."
+  },
+  {
+    "question": "Which of the following best describes an increment of working software?",
+    "answers": [
+      "A decomposition of all Product Backlog items into tasks for future Sprint Backlog lists.",
+      "Additional features in a usable state that complement those delivered in previous iterations.",
+      "A new user interface design for functionality delivered in previous iterations.",
+      "An automated test suite to verify functionality delivered in previous iterations.",
+      "UML diagrams that describe how to deliver functionality in future iterations."
+    ],
+    "correctIndex": 1,
+    "quote": "An increment is a step toward a vision that must be in usable condition regardless of whether it's released."
+  },
+  {
+    "question": "Which statement best describes a Product Owner's responsibility?",
+    "answers": [
+      "Optimizing the value of the work the Development Team does.",
+      "Managing the project and ensuring that the work meets the commitments to the stakeholders.",
+      "Directing the Development Team.",
+      "Keep stakeholders from distracting the Development Team."
+    ],
+    "correctIndex": 0,
+    "quote": "The Product Owner maximizes value by managing the Product Backlog, not by directing the team."
+  },
+  {
+    "question": "If two Scrum Teams are added to the development of a product that previously had only one Scrum Team, what will be the immediate impact on the productivity of the original Scrum Team?",
+    "answers": [
+      "Its productivity is likely to decrease.",
+      "Its productivity is likely to stay the same.",
+      "Its productivity is likely to increase."
+    ],
+    "correctIndex": 0,
+    "quote": "Adding teams initially reduces productivity due to coordination overhead and integration complexity."
+  },
+
+  {
+    "question": "When many Scrum Teams are working on a single product, what best describes the Definition of Done?",
+    "answers": [
+      "Each Scrum Team defines and uses its own. The differences are discussed and reconciled during a hardening Sprint.",
+      "The Scrum Masters from each Scrum Team define a common Definition of Done.",
+      "Each Scrum Team uses its own, but must make their definition clear to all other teams so the differences are known.",
+      "All Scrum Teams must have a Definition of Done that makes their combined work potentially releasable."
+    ],
+    "correctIndex": 3,
+    "quote": "Multiple teams working on one product need a shared Definition of Done to ensure integrated increments are potentially releasable."
+  },
+  {
+    "question": "How do you know that a Development Team is cross-functional?",
+    "answers": [
+      "Development Team has all the skills to create a potentially releasable increment by the end of every Sprint.",
+      "A few of the Development Team members pair program and do Test Driven Development.",
+      "There are no conflicts within the Development Team.",
+      "Every member of the Development Team is able to perform every task."
+    ],
+    "correctIndex": 0,
+    "quote": "Cross-functional means the team collectively has all skills needed to deliver done increments, not that every member can do everything."
+  },
+  {
+    "question": "The Sprint Goal is a result of Sprint Planning, as is the Sprint Backlog.",
+    "answers": [
+      "True",
+      "False"
+    ],
+    "correctIndex": 0,
+    "quote": "Both the Sprint Goal and Sprint Backlog are created during Sprint Planning to guide the Sprint."
+  },
+  {
+    "question": "How often should Development Team membership change?",
+    "answers": [
+      "As needed, while taking into account a short term reduction in productivity.",
+      "Never, because it reduces productivity.",
+      "As needed, with no special allowance for changes in productivity.",
+      "Every Sprint to promote shared learning."
+    ],
+    "correctIndex": 0,
+    "quote": "Teams should be stable but can change when necessary, acknowledging there will be a temporary productivity impact."
+  },
+  {
+    "question": "When many Scrum Teams are working on the same product, should all of their increments be integrated every Sprint?",
+    "answers": [
+      "Yes, but only for Scrum Teams whose work has dependencies.",
+      "Yes, otherwise the Product Owners (and stakeholders) may not be able to accurately inspect what is done.",
+      "No, each Scrum Team stands alone.",
+      "No, that is far too hard and must be done in a hardening Sprint."
+    ],
+    "correctIndex": 1,
+    "quote": "Regular integration ensures the product is always in a potentially shippable state and allows for accurate inspection."
+  },
+  {
+    "question": "User documentation is part of your definition of 'Done'. However, there aren't enough technical writers for all teams. Your Development Team doesn't have a technical writer. What should you do?",
+    "answers": [
+      "Form a separate team of technical writers that will work on an on-demand basis for the various Product Owners. Work order will be first in, first out.",
+      "Let the user documentation remain undone and accumulate until after the last development Sprint. It will then be done by any available technical writers.",
+      "Wait until you have a technical writer on your Development Team to take care of this.",
+      "Your Development Team is still responsible for creating user documentation. In this case, the Development Team members will write it."
+    ],
+    "correctIndex": 3,
+    "quote": "The Development Team is responsible for meeting the Definition of Done, which may require learning new skills or adapting."
+  },
+  {
+    "question": "A Scrum Team has been working on a product for nine Sprints. A new Product Owner comes in, understanding he is accountable for the Product Backlog. However, he is unsure about his responsibilities. Which two activities are part of the Product Owner role according to Scrum? (Choose two.)",
+    "answers": [
+      "Ensuring that the most valuable functionality is produced first, at all times.",
+      "Interacting with stakeholders.",
+      "Providing the Development Team with detailed specifications.",
+      "Describing features as Use Cases.",
+      "Creating detailed functional test cases."
+    ],
+    "correctIndex": [0, 1],
+    "quote": "The Product Owner maximizes value through backlog management and stakeholder collaboration, but doesn't create detailed specs."
+  },
+  {
+    "question": "Who is accountable for tracking the remaining work toward the Sprint Goal?",
+    "answers": [
+      "The Developers.",
+      "The Scrum Master.",
+      "The Product Owner.",
+      "The Project Manager."
+    ],
+    "correctIndex": 0,
+    "quote": "The Developers are responsible for tracking and managing their own work progress during the Sprint."
+  },
+  {
+    "question": "A Scrum Master is working with a Development Team that has members in different physical locations. The Development Team meets in a variety of meeting rooms and has much to do logistically (for example, set up conference calls) before the Daily Scrum. What action should the Scrum Master take?",
+    "answers": [
+      "Allow the Development Team to self-manage and determine for itself what to do.",
+      "Set up the meeting and tell the Development Team that is how it will be done.",
+      "Ask the Development Team members to alternate who is responsible for meeting setup.",
+      "Inform management and ask them to solve it."
+    ],
+    "correctIndex": 0,
+    "quote": "The Scrum Master coaches the team to self-manage and solve their own logistical challenges."
+  },
+  {
+    "question": "What are two good ways for a Scrum Team to ensure security concerns are satisfied? (Choose two.)",
+    "answers": [
+      "Postpone the work until a specialist can perform a security audit and create a list of security-related Product Backlog items.",
+      "Add security concerns to the definition of 'Done'.",
+      "Add a Sprint to specifically resolve all security concerns.",
+      "Delegate the work to the concerned department.",
+      "Have the Scrum Team create Product Backlog items for each concern."
+    ],
+    "correctIndex": [1, 4],
+    "quote": "Security should be built-in through the Definition of Done and explicit backlog items, not treated as an afterthought."
   }
+
+  
 ]
