@@ -92,22 +92,17 @@ class QuizUI {
             const buttonIndex = parseInt(button.dataset.index);
 
             // ✅ FARBLICHE MARKIERUNG:
-            if (buttonIndex === correctIndex) {
-                // Richtige Antwort GRÜN markieren
-                button.style.backgroundColor = '#d4edda';
-                button.style.border = '2px solid #28a745';
-                button.style.color = '#155724';
-            } else if (buttonIndex === selectedIndex && !isCorrect) {
-                // Falsche Auswahl ROT markieren
-                button.style.backgroundColor = '#f8d7da';
-                button.style.border = '2px solid #dc3545';
-                button.style.color = '#721c24';
-            } else {
-                // Andere Buttons grau
-                button.style.backgroundColor = '#e9ecef';
-                button.style.color = '#6c757d';
-            }
-        });
+           if (buttonIndex === selectedIndex) {
+                       // Angeklickte Antwort BLAU markieren
+                       button.style.backgroundColor = '#d1ecf1';
+                       button.style.border = '2px solid #17a2b8';
+                       button.style.color = '#0c5460';
+                   } else {
+                       // Andere Buttons grau
+                       button.style.backgroundColor = '#e9ecef';
+                       button.style.color = '#6c757d';
+                   }
+               });
 
         // Weiter Button anzeigen
         this.nextButton.classList.remove('hidden');

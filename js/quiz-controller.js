@@ -48,47 +48,44 @@ class QuizController {
         this.quizUI.showQuestion(question, this.currentQuestionIndex, this.totalQuestions);
     }
 
-    handleAnswerClick(selectedIndex, isSkip) {
-        try {
-            // ✅ CORRECTINDEX IMMER HOLEN (auch für Skip)
-            const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
-            let isCorrect = false;
+  handleAnswerClick(selectedIndex, isSkip) {
+      try {
+          if (isSkip) {
+              // Frage überspringen - als falsch zählen
+              const quote = this.quizData.getQuote(this.currentQuestionIndex);
+              const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
-            if (isSkip) {
-                // Frage überspringen - als falsch zählen
-                const quote = this.quizData.getQuote(this.currentQuestionIndex);
+              this.wrongAnswers.push({
+                  question: this.quizData.getQuestion(this.currentQuestionIndex).question,
+                  selectedAnswer: 'Übersprungen',
+                  correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
+                  quote: quote
+              });
+          } else {
+              // Normale Antwortverarbeitung
+              const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndex);
+              const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
-                this.wrongAnswers.push({
-                    question: this.quizData.getQuestion(this.currentQuestionIndex).question,
-                    selectedAnswer: 'Übersprungen',
-                    correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
-                    quote: quote
-                });
-                isCorrect = false; // Skip ist immer falsch
-            } else {
-                // Normale Antwortverarbeitung
-                isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndex);
+              if (isCorrect) {
+                  this.score++;
+              } else {
+                  const quote = this.quizData.getQuote(this.currentQuestionIndex);
+                  this.wrongAnswers.push({
+                      question: this.quizData.getQuestion(this.currentQuestionIndex).question,
+                      selectedAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[selectedIndex],
+                      correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
+                      quote: quote
+                  });
+              }
+          }
 
-                if (isCorrect) {
-                    this.score++;
-                } else {
-                    const quote = this.quizData.getQuote(this.currentQuestionIndex);
-                    this.wrongAnswers.push({
-                        question: this.quizData.getQuestion(this.currentQuestionIndex).question,
-                        selectedAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[selectedIndex],
-                        correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
-                        quote: quote
-                    });
-                }
-            }
+          // ✅ NUR SELECTEDINDEX MITGEBEN
+          this.quizUI.showFeedback(selectedIndex);
 
-            // ✅ MIT CORRECTINDEX UND ISCORRECT
-            this.quizUI.showFeedback(selectedIndex, correctIndex, isCorrect);
-
-        } catch (error) {
-            console.error('Fehler bei der Antwortverarbeitung:', error);
-        }
-    }
+      } catch (error) {
+          console.error('Fehler bei der Antwortverarbeitung:', error);
+      }
+  }
 
     handleNextButtonClick() {
         this.currentQuestionIndex++;
