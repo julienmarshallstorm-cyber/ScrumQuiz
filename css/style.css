@@ -3,12 +3,12 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 20px;
-    background-color: silver;
+    background-color: lightblue;
 }
 #quiz-container {
     max-width: 800px;
     margin: 0 auto;
-    background-color: white;
+    background-color: silver;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -18,7 +18,7 @@ h1 {
     text-align: center;
 }
 .btn {
-    background-color: #FFC0CB;
+    background-color: pink;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -31,7 +31,7 @@ h1 {
     border-radius: 4px;
 }
 .btn:hover {
-    background-color: #45a049;
+    background-color: purple;
 }
 .answer-btn {
     display: block;
@@ -41,7 +41,7 @@ h1 {
     padding: 10px;
 }
 .skip-btn {
-    background-color: #6c757d !important;
+    background-color: gray !important;
     width: auto !important;
     margin: 10px auto !important;
     display: block !important;
@@ -50,7 +50,7 @@ h1 {
     margin-top: 20px;
     padding: 15px;
     background-color: #f8f9fa;
-    border-left: 4px solid #007bff;
+    border-left: 4px solid blue;
     border-radius: 4px;
 }
 #score-container {
@@ -72,7 +72,7 @@ h1 {
     padding: 8px;
     margin: 0 10px;
     border-radius: 4px;
-    border: 1px solid #ddd;
+    border: 1px solid light gray;
     font-size: 16px;
 }
 
@@ -85,15 +85,15 @@ h1 {
 }
 /* NEU: Klassen für richtige/falsche Antworten */
 .correct {
-    background-color: #d4edda;
-    border: 2px solid #28a745;
+    background-color: light green;
+    border: 2px solid green;
 }
 .incorrect {
-    background-color: #f8d7da;
-    border: 2px solid #dc3545;
+    background-color: light coral;
+    border: 2px solid red;
 }
 .disabled-btn {
-    background-color: #e9ecef !important;
-    color: #6c757d !important;
+    background-color: light gray !important;
+    color: gray !important;
     cursor: not-allowed !important;
 }
