@@ -75,6 +75,11 @@ class QuizController {
                 }
             }
             this.quizUI.showFeedback(selectedIndex);
+
+        // ✅ AUTOMATISCH WEITER nach Feedback
+            setTimeout(() => {
+             this.handleNextButtonClick();
+            }, 1500);
         } catch (error) {
             console.error('Fehler bei der Antwortverarbeitung:', error);
         }

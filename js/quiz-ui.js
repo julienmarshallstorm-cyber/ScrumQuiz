@@ -13,7 +13,7 @@ class QuizUI {
         this.questionCountSelect = document.getElementById('question-count');
         this.startQuizButton = document.getElementById('start-quiz-btn');
         this.quizContainer = document.getElementById('quiz-container');
-
+        this.nextButtonCallback = null; // ✅ NEU: Callback speichern
 
              if (!this.quizSetupElement) console.error('quiz-setup nicht gefunden');
              if (!this.questionCountSelect) console.error('question-count nicht gefunden');
@@ -27,20 +27,24 @@ class QuizUI {
             }
         }
 
-        hideSetup() {
+    hideSetup() {
             if (this.quizSetupElement && this.quizContainer) {
                 this.quizSetupElement.classList.add('hidden');
                 this.quizContainer.classList.remove('hidden');
             }
         }
 
-      bindStartQuizClick(callback) {
+    bindStartQuizClick(callback) {
              if (this.startQuizButton) {
                  this.startQuizButton.addEventListener('click', () => {
                      const questionCount = parseInt(this.questionCountSelect.value);
                      callback(questionCount);
                  });
              }
+         }
+    bindNextButtonClick(callback) {
+             this.nextButtonCallback = callback; // ✅ Callback speichern für Auto-Weiter
+             this.nextButton.addEventListener('click', callback); // ✅ Trotzdem für manuellen Fall
          }
 
 
@@ -90,8 +94,13 @@ class QuizUI {
           button.style.backgroundColor = '#e9ecef';
           button.style.color = '#6c757d';
       });
-
-      this.nextButton.classList.remove('hidden');
+  setTimeout(() => {
+        if (this.nextButtonCallback) {
+            this.nextButtonCallback();
+        }
+    }, 1500); // 1.5 Sekunden Verzögerung
+}
+      //this.nextButton.classList.remove('hidden');
   }
 
     showScore(score, totalQuestions, wrongAnswers) {
