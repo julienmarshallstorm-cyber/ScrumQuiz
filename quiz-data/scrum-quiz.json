@@ -253,13 +253,13 @@
     "quote": "It consists of: The Sprint Goal which describes the objective for the Sprint. ... A set of Product Backlog items (PBIs) selected for the Sprint. ... An actionable plan for how the team will deliver the work and achieve the Sprint Goal."
   },
   {
-    "question": "The text states that the Sprint Backlog answers the question 'Why are we doing this Sprint?' through the Sprint Goal.",
+    "question": "The Sprint Backlog answers the question 'Why are we doing this Sprint?' through the Sprint Goal.",
     "answers": ["True", "False"],
     "correctIndex": 0,
     "quote": "It describes the why, what and how of the Sprint. It consists of: The Sprint Goal which describes the objective for the Sprint. Why are we doing this Sprint?"
   },
   {
-    "question": "According to the text, where should the Sprint Backlog be located?",
+    "question": "Where should the Sprint Backlog be located?",
     "answers": [
       "In a secure database only accessible to management.",
       "In a private location for the Developers only.",
@@ -270,13 +270,13 @@
     "quote": "Sprint Backlogs are highly-visible and located where anyone on the Scrum Team can see them."
   },
   {
-    "question": "The text states that the Sprint Backlog is updated only once, at the end of the Sprint, to reflect the final outcome.",
+    "question": "The Sprint Backlog is updated only once, at the end of the Sprint, to reflect the final outcome.",
     "answers": ["True", "False"],
     "correctIndex": 1,
     "quote": "They are also continually updated throughout the Sprint to provide a real-time picture of the work the Developers plan to accomplish."
   },
   {
-    "question": "According to the text, when does the plan for delivering the work (the 'how') often evolve?",
+    "question": "When does the plan for delivering the work (the 'how') often evolve?",
     "answers": [
       "During the Sprint Retrospective.",
       "During the Sprint Review.",
@@ -287,13 +287,13 @@
     "quote": "The selected set of PBIs and the plan to achieve them evolve over the course of the Sprint, often during the Daily Scrum."
   },
   {
-    "question": "The text states that, in contrast to the plan and the selected PBIs, the Sprint Goal remains the same for the entire Sprint.",
+    "question": "In contrast to the plan and the selected PBIs, the Sprint Goal remains the same for the entire Sprint.",
     "answers": ["True", "False"],
     "correctIndex": 0,
     "quote": "In contrast, the Sprint Goal remains the same for the entire Sprint."
   },
   {
-    "question": "According to the text, what may the Product Owner decide to do in the rare circumstance that the Sprint Goal becomes obsolete?",
+    "question": "What may the Product Owner decide to do in the rare circumstance that the Sprint Goal becomes obsolete?",
     "answers": [
       "Extend the Sprint duration.",
       "Change the Sprint Goal immediately.",
@@ -305,7 +305,7 @@
   },
 
   {
-    "question": "According to the text, when does Sprint Planning occur?",
+    "question": "When does Sprint Planning occur?",
     "answers": [
       "In the middle of the Sprint.",
       "At the end of the Sprint.",
@@ -316,13 +316,13 @@
     "quote": "Every Sprint starts with Sprint Planning..."
   },
   {
-    "question": "According to the text, the purpose of Sprint Planning is for the Scrum Team to determine what they plan to accomplish during the Sprint.",
+    "question": "The purpose of Sprint Planning is for the Scrum Team to determine what they plan to accomplish during the Sprint.",
     "answers": ["True", "False"],
     "correctIndex": 0,
     "quote": "...where the Scrum Team determines what they plan to accomplish during the course of the Sprint."
   },
   {
-    "question": "Which of the following does the Scrum Team focus on during Sprint Planning, according to the text? (Choose two)",
+    "question": "Which of the following does the Scrum Team focus on during Sprint Planning? (Choose two)",
     "answers": [
       "The budget for the Sprint.",
       "The value that can be created during the Sprint.",
@@ -333,13 +333,13 @@
     "quote": "During the meeting, the Scrum Team focuses on: The value that can be created during the Sprint | Choosing which Product Backlog Items will be addressed during the Sprint | Planning the work required to accomplish their goal | Planning to create an Increment that meets the Definition of Done."
   },
   {
-    "question": "According to the text, one of the focuses during Sprint Planning is planning the work required to accomplish the team's goal.",
+    "question": "One of the focuses during Sprint Planning is planning the work required to accomplish the team's goal.",
     "answers": ["True", "False"],
     "correctIndex": 0,
     "quote": "During the meeting, the Scrum Team focuses on: ... Planning the work required to accomplish their goal ..."
   },
   {
-    "question": "What does the text state is inspected during the Sprint Planning event?",
+    "question": "What is inspected during the Sprint Planning event?",
     "answers": [
       "The team's velocity from the last Sprint.",
       "The Product Backlog, Product Goal, and Definition of Done.",
@@ -350,7 +350,7 @@
     "quote": "Inspection: Product Backlog, Product Goal, Definition of Done"
   },
   {
-    "question": "According to the table in the text, what is the maximum timebox for a one-month Sprint Planning event?",
+    "question": "What is the maximum timebox for a one-month Sprint Planning event?",
     "answers": [
       "4 hours",
       "2 hours",
@@ -361,13 +361,13 @@
     "quote": "Timebox: 8 hours for a 1 month Sprint"
   },
   {
-    "question": "According to the text, the Scrum Team makes their plan transparent by creating a Sprint Backlog.",
+    "question": "The Scrum Team makes their plan transparent by creating a Sprint Backlog.",
     "answers": ["True", "False"],
     "correctIndex": 0,
     "quote": "The Scrum Team makes this transparent by creating a Sprint Backlog which includes the Sprint Goal, the selected Product Backlog Items and the Developers' plan for delivering the work."
   },
   {
-    "question": "According to the table, who are the participants in the Sprint Planning event?",
+    "question": "Who are the participants in the Sprint Planning event?",
     "answers": [
       "The Developers and the Product Owner only.",
       "The Developers and the Scrum Master only.",
