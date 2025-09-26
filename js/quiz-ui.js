@@ -38,9 +38,8 @@ class QuizUI {
         }
     }
 
-    showFeedback(quote, correctIndex, selectedIndex) {
-        const resultMessage = isCorrect
-            ? '✓ Richtig!': '✗ Falsch!';
+    showFeedback(correctIndex, selectedIndex, isCorrect) {
+        const resultMessage = isCorrect ? '✓ Richtig!': '✗ Falsch!';
         this.scrumGuideQuoteElement.innerHTML = resultMessage;
 
         this.feedbackContainer.classList.remove('hidden');
