@@ -48,7 +48,7 @@ class QuizController {
         this.quizUI.showQuestion(question, this.currentQuestionIndex, this.totalQuestions);
     }
 
-  handleAnswerClick(selectedIndices, isSkip) {
+  //handleAnswerClick(selectedIndices, isSkip) {
   handleAnswerClick(selectedIndices, isSkip) {
       try {
           const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
