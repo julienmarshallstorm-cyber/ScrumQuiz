@@ -113,18 +113,17 @@ class QuizUI {
             } else {
                 this.currentSelectedIndices.push(clickedIndex);
             }
-        } else {
-                  // Single-Choice: Nur eine Antwort möglich
-                  this.currentSelectedIndices = [clickedIndex];
+        } else {// Single-Choice: Nur eine Antwort möglich - aber KORRIGIERBAR
+                        // Wenn bereits diese Antwort ausgewählt ist, abwählen (Korrektur)
+                        if (this.currentSelectedIndices.includes(clickedIndex)) {
+                            this.currentSelectedIndices = []; // Antwort abwählen
+                        } else {
+                            this.currentSelectedIndices = [clickedIndex]; // Neue Antwort auswählen
+                        }
+                    }
 
-                  // ✅ SOFORT Callback aufrufen für Single-Choice
-                  if (this.answerChangeCallback) {
-                      this.answerChangeCallback(this.currentSelectedIndices);
-                  }
-              }
-
-              this.updateAnswerDisplay();
-    }
+                    this.updateAnswerDisplay();
+                }
 
     // ✅ NEU: Visuelle Darstellung aktualisieren
     updateAnswerDisplay() {
