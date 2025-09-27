@@ -126,8 +126,9 @@ class QuizUI {
                 }
 
     // ✅ NEU: Visuelle Darstellung aktualisieren
-    updateAnswerDisplay() {
+    /*updateAnswerDisplay() {
         const allButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
+
         allButtons.forEach(button => {
             const buttonIndex = parseInt(button.dataset.index);
 
@@ -143,8 +144,44 @@ class QuizUI {
                 button.classList.remove('selected');
             }
         });
-    }
+    }*/
+    // ✅ NEU: Visuelle Darstellung aktualisieren
+    updateAnswerDisplay() {
+        const allButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
+        allButtons.forEach(button => {
+            const buttonIndex = parseInt(button.dataset.index);
 
+            if (this.currentSelectedIndices.includes(buttonIndex)) {
+                // ✅ AUSGEWÄHLTE ANTWORT
+                button.style.backgroundColor = '#d1ecf1';
+                button.style.border = '2px solid #17a2b8';
+                button.style.color = '#0c5460';
+                button.classList.add('selected');
+            } else {
+                // ✅ NICHT AUSGEWÄHLTE ANTWORT
+                button.style.backgroundColor = '';
+                button.style.border = '';
+                button.style.color = '';
+                button.classList.remove('selected');
+            }
+        });
+
+        // ✅ VISUELLE RÜCKMELDUNG FÜR BESTÄTIGUNGS-BUTTON
+        const confirmButton = this.answerButtonsElement.querySelector('.confirm-btn');
+        if (confirmButton) {
+            if (this.currentSelectedIndices.length > 0) {
+                // ✅ ANTWORT AUSGEWÄHLT - Button aktiv
+                confirmButton.style.backgroundColor = '#28a745';
+                confirmButton.style.opacity = '1';
+                confirmButton.disabled = false;
+            } else {
+                // ✅ KEINE ANTWORT AUSGEWÄHLT - Button inaktiv
+                confirmButton.style.backgroundColor = '#6c757d';
+                confirmButton.style.opacity = '0.6';
+                confirmButton.disabled = true;
+            }
+        }
+    }
     showFeedback(selectedIndices) {
         this.feedbackContainer.classList.add('hidden');
 
