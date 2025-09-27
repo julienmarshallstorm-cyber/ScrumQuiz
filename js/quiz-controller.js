@@ -59,7 +59,7 @@ class QuizController {
         try {
             const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
-            if (isSkip) {
+           /* if (isSkip) {
                 // Frage überspringen - als falsch zählen
                 const quote = this.quizData.getQuote(this.currentQuestionIndex);
 
@@ -70,7 +70,7 @@ class QuizController {
                     quote: quote
                 });
             } else {
-                // Normale Antwortverarbeitung
+                // Normale Antwortverarbeitung*/
                 const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndices);
 
                 if (isCorrect) {
@@ -90,7 +90,7 @@ class QuizController {
                         quote: quote
                     });
                 }
-            }
+
 
             // Aktuelle Auswahl speichern für mögliche Änderungen
             this.currentSelectedIndices = selectedIndices;
@@ -123,6 +123,13 @@ class QuizController {
                     : this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
                 quote: quote
             });
+        }
+               this.currentSelectedIndices = selectedIndices;
+                this.quizUI.showFeedback(selectedIndices);
+
+            } catch (error) {
+                console.error('Fehler bei der Antwortverarbeitung:', error);
+            }
         }
     }
 

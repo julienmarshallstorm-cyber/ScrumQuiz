@@ -105,8 +105,8 @@ class QuizUI {
         }
 
         // Skip Button
-        const skipButton = document.createElement('button');
-        skipButton.innerText = '⏭️ Frage überspringen';
+        //const skipButton = document.createElement('button');
+        //skipButton.innerText = '⏭️ Frage überspringen';
         skipButton.classList.add('btn', 'skip-btn');
         skipButton.style.marginTop = '10px';
         skipButton.style.backgroundColor = '#6c757d';
