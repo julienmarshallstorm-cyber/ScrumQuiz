@@ -182,30 +182,31 @@ class QuizUI {
             }
         }
     }
-    showFeedback(selectedIndices) {
-        this.feedbackContainer.classList.add('hidden');
+showFeedback(selectedIndices) {
+    this.feedbackContainer.classList.add('hidden');
 
-        // ✅ BESTÄTIGUNGS-BUTTON ALS BESTÄTIGT MARKIEREN
-        const confirmButton = this.answerButtonsElement.querySelector('.confirm-btn');
-        if (confirmButton) {
-            confirmButton.style.backgroundColor = '#90EE90'; // Hellgrün
-            confirmButton.style.opacity = '0.8';
-            confirmButton.disabled = true;
-            confirmButton.innerText = '✅ Antwort bestätigt';
-        }
-
-        // Aktuelle Auswahl speichern
-        this.currentSelectedIndices = selectedIndices;
-        this.updateAnswerDisplay();
-
-        // Buttons deaktivieren NACH der visuellen Aktualisierung
-        const allButtons = this.answerButtonsElement.querySelectorAll('button');
-        allButtons.forEach(button => {
-            button.disabled = true; // Jetzt deaktivieren
-        });
-
-        this.nextButton.classList.remove('hidden');
+    // ✅ BESTÄTIGUNGS-BUTTON ALS BESTÄTIGT MARKIEREN
+    const confirmButton = this.answerButtonsElement.querySelector('.confirm-btn');
+    if (confirmButton) {
+        confirmButton.style.backgroundColor = '#6c757d'; // Grau
+        confirmButton.style.opacity = '0.6';
+        confirmButton.disabled = true;
+        confirmButton.innerText = '✅ Antwort bestätigt';
+        confirmButton.style.cursor = 'not-allowed';
     }
+
+    // Aktuelle Auswahl speichern
+    this.currentSelectedIndices = selectedIndices;
+    this.updateAnswerDisplay();
+
+    // Buttons deaktivieren NACH der visuellen Aktualisierung
+    const allButtons = this.answerButtonsElement.querySelectorAll('button');
+    allButtons.forEach(button => {
+        button.disabled = true; // Jetzt deaktivieren
+    });
+
+    this.nextButton.classList.remove('hidden');
+}
 
     showScore(score, totalQuestions, wrongAnswers) {
         this.resetState();
