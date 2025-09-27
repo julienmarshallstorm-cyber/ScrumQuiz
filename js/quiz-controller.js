@@ -19,10 +19,13 @@ class QuizController {
     }
 
     initializeEventListeners() {
-        this.quizUI.bindAnswerClick(this.handleAnswerClick.bind(this));
+     // ✅ NEU (verwende bindAnswerChange):
+        this.quizUI.bindAnswerChange(this.handleAnswerClick.bind(this));
+
         this.quizUI.bindNextButtonClick(this.handleNextButtonClick.bind(this));
         this.quizUI.bindRestartButtonClick(this.handleRestartButtonClick.bind(this));
         this.quizUI.bindStartQuizClick(this.handleStartQuizClick.bind(this));
+
     }
 
     showSetup() {
