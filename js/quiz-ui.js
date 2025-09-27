@@ -185,13 +185,13 @@ class QuizUI {
 showFeedback(selectedIndices) {
     this.feedbackContainer.classList.add('hidden');
 
-    // ✅ BESTÄTIGUNGS-BUTTON ALS BESTÄTIGT MARKIEREN
+    // ✅ BESTÄTIGUNGS-BUTTON DEAKTIVIEREN UND GRAU MACHEN
     const confirmButton = this.answerButtonsElement.querySelector('.confirm-btn');
     if (confirmButton) {
         confirmButton.style.backgroundColor = '#6c757d'; // Grau
         confirmButton.style.opacity = '0.6';
         confirmButton.disabled = true;
-        confirmButton.innerText = '✅ Antwort bestätigt';
+        confirmButton.innerText = '✅ Bestätigt';
         confirmButton.style.cursor = 'not-allowed';
     }
 
@@ -199,12 +199,14 @@ showFeedback(selectedIndices) {
     this.currentSelectedIndices = selectedIndices;
     this.updateAnswerDisplay();
 
-    // Buttons deaktivieren NACH der visuellen Aktualisierung
-    const allButtons = this.answerButtonsElement.querySelectorAll('button');
-    allButtons.forEach(button => {
-        button.disabled = true; // Jetzt deaktivieren
+    // Alle Antwort-Buttons deaktivieren
+    const answerButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
+    answerButtons.forEach(button => {
+        button.disabled = true;
+        button.style.cursor = 'not-allowed';
     });
 
+    // Weiter-Button anzeigen
     this.nextButton.classList.remove('hidden');
 }
 
