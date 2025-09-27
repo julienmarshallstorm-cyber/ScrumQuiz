@@ -107,13 +107,13 @@ class QuizUI {
         // Skip Button
         //const skipButton = document.createElement('button');
         //skipButton.innerText = '⏭️ Frage überspringen';
-        skipButton.classList.add('btn', 'skip-btn');
-        skipButton.style.marginTop = '10px';
-        skipButton.style.backgroundColor = '#6c757d';
-        skipButton.addEventListener('click', () => {
+        //skipButton.classList.add('btn', 'skip-btn');
+        //skipButton.style.marginTop = '10px';
+        //skipButton.style.backgroundColor = '#6c757d';
+        /*skipButton.addEventListener('click', () => {
             if (this.answerChangeCallback) {
                 this.answerChangeCallback([-1], true);
-            }
+            }*/
         });
         this.answerButtonsElement.appendChild(skipButton);
     }
