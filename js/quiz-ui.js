@@ -183,33 +183,30 @@ class QuizUI {
         }
     }
 showFeedback(selectedIndices) {
-    showFeedback(selectedIndices) {
-         this.feedbackContainer.classList.add('hidden');
+    this.feedbackContainer.classList.add('hidden');
 
-         // ✅ BESTÄTIGUNGS-BUTTON DEAKTIVIEREN UND GRAU MACHEN
-         const confirmButton = this.answerButtonsElement.querySelector('.confirm-btn');
-         if (confirmButton) {
-             confirmButton.style.backgroundColor = '#6c757d'; // Grau
-             confirmButton.style.opacity = '0.6';
-             confirmButton.disabled = true;
-             confirmButton.innerText = '✅ Bestätigt';
-             confirmButton.style.cursor = 'not-allowed';
-         }
+    // ✅ BESTÄTIGUNGS-BUTTON ALS BESTÄTIGT MARKIEREN
+    const confirmButton = this.answerButtonsElement.querySelector('.confirm-btn');
+    if (confirmButton) {
+        confirmButton.style.backgroundColor = '#6c757d'; // Grau
+        confirmButton.style.opacity = '0.6';
+        confirmButton.disabled = true;
+        confirmButton.innerText = '✅ Antwort bestätigt';
+        confirmButton.style.cursor = 'not-allowed';
+    }
 
-         // Aktuelle Auswahl speichern
-         this.currentSelectedIndices = selectedIndices;
-         this.updateAnswerDisplay();
+    // Aktuelle Auswahl speichern
+    this.currentSelectedIndices = selectedIndices;
+    this.updateAnswerDisplay();
 
-         // Alle Antwort-Buttons deaktivieren
-         const answerButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
-         answerButtons.forEach(button => {
-             button.disabled = true;
-             button.style.cursor = 'not-allowed';
-         });
+    // Buttons deaktivieren NACH der visuellen Aktualisierung
+    const allButtons = this.answerButtonsElement.querySelectorAll('button');
+    allButtons.forEach(button => {
+        button.disabled = true; // Jetzt deaktivieren
+    });
 
-         // Weiter-Button anzeigen
-         this.nextButton.classList.remove('hidden');
-     }
+    this.nextButton.classList.remove('hidden');
+}
 
     showScore(score, totalQuestions, wrongAnswers) {
         this.resetState();
