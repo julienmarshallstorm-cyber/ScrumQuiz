@@ -8,7 +8,7 @@ class QuizController {
         this.totalQuestions = 0;
         this.selectedQuestionCount = 0;
         this.currentSelectedIndices = []; // Für Multiple-Choice
-        this.quizUI.showFeedback(selectedIndices);
+        //this.quizUI.showFeedback(selectedIndices);
 
 
         this.init();
