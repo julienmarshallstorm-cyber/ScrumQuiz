@@ -120,6 +120,8 @@ class QuizUI {
 
     // ✅ NEU: Handle Antwort-Klicks (für Änderungen vor "Weiter")
     handleAnswerClick(clickedIndex, isMultipleChoice) {
+        console.log('✅ Antwort geklickt:', clickedIndex, 'MultipleChoice:', isMultipleChoice);
+
         if (isMultipleChoice) {
             // Multiple-Choice: Toggle Logik
             if (this.currentSelectedIndices.includes(clickedIndex)) {
