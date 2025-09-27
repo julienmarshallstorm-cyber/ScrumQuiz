@@ -98,7 +98,7 @@ class QuizUI {
             confirmButton.style.backgroundColor = '#28a745';
             confirmButton.addEventListener('click', () => {
                 if (this.answerChangeCallback) {
-                    this.answerChangeCallback(this.currentSelectedIndices, false);
+                    this.answerChangeCallback(this.currentSelectedIndices);
                 }
             });
             this.answerButtonsElement.appendChild(confirmButton);
@@ -114,8 +114,8 @@ class QuizUI {
             if (this.answerChangeCallback) {
                 this.answerChangeCallback([-1], true);
             }*/
-        });
-        this.answerButtonsElement.appendChild(skipButton);
+        //});
+        //this.answerButtonsElement.appendChild(skipButton);
     }
 
     // ✅ NEU: Handle Antwort-Klicks (für Änderungen vor "Weiter")
