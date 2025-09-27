@@ -130,11 +130,16 @@ class QuizUI {
                 this.currentSelectedIndices.push(clickedIndex);
             }
         } else {
-            // Single-Choice: Nur eine Antwort möglich
-            this.currentSelectedIndices = [clickedIndex];
-        }
+                  // Single-Choice: Nur eine Antwort möglich
+                  this.currentSelectedIndices = [clickedIndex];
 
-        this.updateAnswerDisplay();
+                  // ✅ SOFORT Callback aufrufen für Single-Choice
+                  if (this.answerChangeCallback) {
+                      this.answerChangeCallback(this.currentSelectedIndices);
+                  }
+              }
+
+              this.updateAnswerDisplay();
     }
 
     // ✅ NEU: Visuelle Darstellung aktualisieren
