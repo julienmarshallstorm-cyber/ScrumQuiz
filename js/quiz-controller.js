@@ -8,8 +8,6 @@ class QuizController {
         this.totalQuestions = 0;
         this.selectedQuestionCount = 0;
         this.currentSelectedIndices = []; // Für Multiple-Choice
-        //this.quizUI.showFeedback(selectedIndices);
-
 
         this.init();
     }
@@ -21,7 +19,7 @@ class QuizController {
     }
 
     initializeEventListeners() {
-     // ✅ NEU (verwende bindAnswerChange):
+        // ✅ NEU (verwende bindAnswerChange):
         this.quizUI.bindAnswerChange(this.handleAnswerClick.bind(this));
 
         this.quizUI.bindNextButtonClick(this.handleNextButtonClick.bind(this));
@@ -55,42 +53,30 @@ class QuizController {
         this.quizUI.showQuestion(question, this.currentQuestionIndex, this.totalQuestions);
     }
 
-    handleAnswerClick(selectedIndices, isSkip) {
+    handleAnswerClick(selectedIndices) { // ❌ isSkip Parameter entfernt
         try {
             const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
-           /* if (isSkip) {
-                // Frage überspringen - als falsch zählen
-                const quote = this.quizData.getQuote(this.currentQuestionIndex);
+            // ✅ NUR normale Antwortverarbeitung (keine Skip-Logik mehr)
+            const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndices);
 
+            if (isCorrect) {
+                this.score++;
+            } else {
+                const quote = this.quizData.getQuote(this.currentQuestionIndex);
                 this.wrongAnswers.push({
                     question: this.quizData.getQuestion(this.currentQuestionIndex).question,
-                    selectedAnswer: 'Übersprungen',
-                    correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
+                    selectedAnswer: selectedIndices.map(idx =>
+                        this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
+                    ).join(', '),
+                    correctAnswer: Array.isArray(correctIndex)
+                        ? correctIndex.map(idx =>
+                            this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
+                          ).join(', ')
+                        : this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
                     quote: quote
                 });
-            } else {
-                // Normale Antwortverarbeitung*/
-                const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndices);
-
-                if (isCorrect) {
-                    this.score++;
-                } else {
-                    const quote = this.quizData.getQuote(this.currentQuestionIndex);
-                    this.wrongAnswers.push({
-                        question: this.quizData.getQuestion(this.currentQuestionIndex).question,
-                        selectedAnswer: selectedIndices.map(idx =>
-                            this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
-                        ).join(', '),
-                        correctAnswer: Array.isArray(correctIndex)
-                            ? correctIndex.map(idx =>
-                                this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
-                              ).join(', ')
-                            : this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
-                        quote: quote
-                    });
-                }
-
+            }
 
             // Aktuelle Auswahl speichern für mögliche Änderungen
             this.currentSelectedIndices = selectedIndices;
@@ -123,13 +109,6 @@ class QuizController {
                     : this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
                 quote: quote
             });
-        }
-               this.currentSelectedIndices = selectedIndices;
-                this.quizUI.showFeedback(selectedIndices);
-
-            } catch (error) {
-                console.error('Fehler bei der Antwortverarbeitung:', error);
-            }
         }
     }
 
