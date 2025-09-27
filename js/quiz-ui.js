@@ -100,7 +100,7 @@ class QuizUI {
                 if (this.answerChangeCallback) {
                     this.answerChangeCallback(this.currentSelectedIndices, false);
                 }
-            };
+            });
             this.answerButtonsElement.appendChild(confirmButton);
         }
 
