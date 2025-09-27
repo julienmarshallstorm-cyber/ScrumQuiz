@@ -97,3 +97,45 @@ h1 {
     color: gray !important;
     cursor: not-allowed !important;
 }
+/* ✅ NEU: Styles für Antwort-Änderung und Multiple-Choice */
+.answer-btn.selected {
+    box-shadow: 0 0 8px rgba(23, 162, 184, 0.7);
+    font-weight: bold;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+}
+
+.answer-btn:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+/* ✅ Styles für bestätigte Antworten (nach "Weiter") */
+.answer-btn.confirmed {
+    background-color: #e9ecef !important;
+    color: #6c757d !important;
+    cursor: not-allowed;
+}
+
+/* ✅ Unterschiedliche Farben für Multiple-Choice Auswahl */
+.answer-btn.multiple-selected {
+    background-color: #d1ecf1;
+    border: 2px solid #17a2b8;
+    color: #0c5460;
+}
+
+/* ✅ Bestätigungs-Button für Multiple-Choice */
+.confirm-btn {
+    background-color: #28a745 !important;
+    font-weight: bold;
+    margin: 10px auto;
+    display: block;
+    width: auto !important;
+}
+
+.confirm-btn:hover {
+    background-color: #218838 !important;
+    transform: translateY(-1px);
+}

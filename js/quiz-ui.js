@@ -14,6 +14,8 @@ class QuizUI {
         this.questionCountSelect = document.getElementById('question-count');
         this.startQuizButton = document.getElementById('start-quiz-btn');
         this.quizContainer = document.getElementById('quiz-container');
+        this.currentSelectedIndices = []; // ✅ Array für Multiple-Choice
+
 
 
         if (!this.quizSetupElement) console.error('quiz-setup nicht gefunden');
@@ -117,23 +119,26 @@ class QuizUI {
 
         const allButtons = this.answerButtonsElement.querySelectorAll('button');
         allButtons.forEach(button => {
-            button.disabled = true;
-            const buttonIndex = parseInt(button.dataset.index);
+            button.disabled = fakse;
 
+            const buttonIndex = parseInt(button.dataset.index);
             // ✅ FARBLICHE MARKIERUNG:
-           if (buttonIndex === selectedIndex) {
+           if (buttonIndex.includes(buttonIndex)) {
                        // Angeklickte Antwort BLAU markieren
                        button.style.backgroundColor = '#d1ecf1';
                        button.style.border = '2px solid #17a2b8';
                        button.style.color = '#0c5460';
-                   } else {
-                       // Andere Buttons grau
-                       button.style.backgroundColor = '#e9ecef';
-                       button.style.color = '#6c757d';
-                   }
-               });
+                       button.classList.add('selected');
+                    } else {
+                          button.style.backgroundColor = '';
+                          button.style.border = '';
+                          button.style.color = '';
+                          button.classList.remove('selected');
+                       }
+                   });
 
         // Weiter Button anzeigen
+        this.bindAnswerChange(this.handleAnswerChange.bind(this));
         this.nextButton.classList.remove('hidden');
     }
 

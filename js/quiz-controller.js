@@ -47,6 +47,45 @@ class QuizController {
         const question = this.quizData.getQuestion(this.currentQuestionIndex);
         this.quizUI.showQuestion(question, this.currentQuestionIndex, this.totalQuestions);
     }
+    // ✅ NEUE METHODE: Handle Multiple-Choice Auswahl
+    handleAnswerChange(newSelectedIndex) {
+        const question = this.quizData.getQuestion(this.currentQuestionIndex);
+        const isMultipleChoice = Array.isArray(question.correctIndex);
+
+        if (isMultipleChoice) {
+            // ✅ TOGGLE LOGIC FÜR MULTIPLE CHOICE
+            if (this.currentSelectedIndices.includes(newSelectedIndex)) {
+                // Antwort abwählen
+                this.currentSelectedIndices = this.currentSelectedIndices.filter(idx => idx !== newSelectedIndex);
+            } else {
+                // Antwort auswählen
+                this.currentSelectedIndices.push(newSelectedIndex);
+            }
+        } else {
+            // ✅ SINGLE CHOICE: Nur eine Antwort möglich
+            this.currentSelectedIndices = [newSelectedIndex];
+        }
+
+        // Visuelle Aktualisierung
+        this.updateAnswerDisplay();
+    }
+
+    // ✅ NEUE METHODE: Visuelle Darstellung aktualisieren
+    updateAnswerDisplay() {
+        const allButtons = this.answerButtonsElement.querySelectorAll('button');
+        allButtons.forEach(button => {
+            const buttonIndex = parseInt(button.dataset.index);
+
+            if (this.currentSelectedIndices.includes(buttonIndex)) {
+                button.style.backgroundColor = '#d1ecf1';
+                button.style.border = '2px solid #17a2b8';
+                button.classList.add('selected');
+            } else {
+                button.style.backgroundColor = '';
+                button.style.border = '';
+                button.classList.remove('selected');
+            }
+        });
 
   //handleAnswerClick(selectedIndices, isSkip) {
   handleAnswerClick(selectedIndices, isSkip) {
@@ -95,12 +134,18 @@ class QuizController {
       }
   }
     handleNextButtonClick() {
-        this.currentQuestionIndex++;
-        if (this.currentQuestionIndex < this.totalQuestions) {
-            this.showCurrentQuestion();
-        } else {
-            this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
-        }
+      // ✅ MULTIPLE CHOICE: Übergib das Array der ausgewählten Indices
+      const finalSelectedIndices = this.quizUI.currentSelectedIndices;
+
+      // Verarbeite die finale Antwort
+      this.processAnswer(finalSelectedIndices);
+
+      this.currentQuestionIndex++;
+      if (this.currentQuestionIndex < this.totalQuestions) {
+          this.showCurrentQuestion();
+      } else {
+          this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
+      }
     }
 
     handleRestartButtonClick() {
