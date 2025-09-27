@@ -89,35 +89,19 @@ class QuizUI {
             this.answerButtonsElement.appendChild(button);
         });
 
-        // Bestätigungs-Button für Multiple-Choice
-        if (isMultipleChoice) {
-            const confirmButton = document.createElement('button');
-            confirmButton.innerText = '✅ Antworten bestätigen';
-            confirmButton.classList.add('btn', 'confirm-btn');
-            confirmButton.style.marginTop = '10px';
-            confirmButton.style.backgroundColor = '#28a745';
-            confirmButton.addEventListener('click', () => {
-                if (this.answerChangeCallback) {
-                    this.answerChangeCallback(this.currentSelectedIndices);
-                }
-            });
-            this.answerButtonsElement.appendChild(confirmButton);
-        }
-
-        // Skip Button
-        //const skipButton = document.createElement('button');
-        //skipButton.innerText = '⏭️ Frage überspringen';
-        //skipButton.classList.add('btn', 'skip-btn');
-        //skipButton.style.marginTop = '10px';
-        //skipButton.style.backgroundColor = '#6c757d';
-        /*skipButton.addEventListener('click', () => {
+        // ✅ BESTÄTIGUNGS-BUTTON FÜR ALLE FRAGENTYPEN (Single & Multiple Choice)
+        const confirmButton = document.createElement('button');
+        confirmButton.innerText = '✅ Antwort bestätigen';
+        confirmButton.classList.add('btn', 'confirm-btn');
+        confirmButton.style.marginTop = '10px';
+        confirmButton.style.backgroundColor = '#28a745';
+        confirmButton.addEventListener('click', () => {
             if (this.answerChangeCallback) {
-                this.answerChangeCallback([-1], true);
-            }*/
-        //});
-        //this.answerButtonsElement.appendChild(skipButton);
+                this.answerChangeCallback(this.currentSelectedIndices);
+            }
+        });
+        this.answerButtonsElement.appendChild(confirmButton);
     }
-
     // ✅ NEU: Handle Antwort-Klicks (für Änderungen vor "Weiter")
     handleAnswerClick(clickedIndex, isMultipleChoice) {
         console.log('✅ Antwort geklickt:', clickedIndex, 'MultipleChoice:', isMultipleChoice);
