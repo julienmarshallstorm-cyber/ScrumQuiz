@@ -185,6 +185,15 @@ class QuizUI {
     showFeedback(selectedIndices) {
         this.feedbackContainer.classList.add('hidden');
 
+        // ✅ BESTÄTIGUNGS-BUTTON ALS BESTÄTIGT MARKIEREN
+        const confirmButton = this.answerButtonsElement.querySelector('.confirm-btn');
+        if (confirmButton) {
+            confirmButton.style.backgroundColor = '#90EE90'; // Hellgrün
+            confirmButton.style.opacity = '0.8';
+            confirmButton.disabled = true;
+            confirmButton.innerText = '✅ Antwort bestätigt';
+        }
+
         // Aktuelle Auswahl speichern
         this.currentSelectedIndices = selectedIndices;
         this.updateAnswerDisplay();
