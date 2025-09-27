@@ -1,6 +1,5 @@
 class QuizUI {
     constructor() {
-
         this.questionTextElement = document.getElementById('question-text');
         this.answerButtonsElement = document.getElementById('answer-buttons');
         this.nextButton = document.getElementById('next-btn');
@@ -14,9 +13,8 @@ class QuizUI {
         this.questionCountSelect = document.getElementById('question-count');
         this.startQuizButton = document.getElementById('start-quiz-btn');
         this.quizContainer = document.getElementById('quiz-container');
-        this.currentSelectedIndices = []; // ✅ Array für Multiple-Choice
-
-
+        this.currentSelectedIndices = []; // Array für Multiple-Choice
+        this.answerChangeCallback = null; // Callback für Antwort-Änderungen
 
         if (!this.quizSetupElement) console.error('quiz-setup nicht gefunden');
         if (!this.questionCountSelect) console.error('question-count nicht gefunden');
@@ -37,9 +35,11 @@ class QuizUI {
             this.quizContainer.classList.remove('hidden');
         }
     }
+
     resetState() {
         this.nextButton.classList.add('hidden');
         this.feedbackContainer.classList.add('hidden');
+        this.currentSelectedIndices = []; // Auswahl zurücksetzen
         while (this.answerButtonsElement.firstChild) {
             this.answerButtonsElement.removeChild(this.answerButtonsElement.firstChild);
         }
@@ -58,6 +58,11 @@ class QuizUI {
         this.nextButton.addEventListener('click', callback);
     }
 
+    // ✅ NEU: Antwort-Änderungs-Callback binden
+    bindAnswerChange(callback) {
+        this.answerChangeCallback = callback;
+    }
+
     showQuestion(question, currentIndex, totalQuestions) {
         this.resetState();
 
@@ -68,7 +73,6 @@ class QuizUI {
             ${question.question}
         `;
 
-        // ✅ PRÜFEN OB MEHRFACHAUSWAHL (Array bei correctIndex)
         const isMultipleChoice = Array.isArray(question.correctIndex);
 
         question.answers.forEach((answer, index) => {
@@ -77,30 +81,26 @@ class QuizUI {
             button.classList.add('btn', 'answer-btn');
             button.dataset.index = index;
 
-            // ✅ FÜR MEHRFACHAUSWAHL: TOGGLE FUNKTIONALITÄT
-            if (isMultipleChoice) {
-                button.addEventListener('click', () => {
-                    button.classList.toggle('selected');
-                    if (button.classList.contains('selected')) {
-                        button.style.backgroundColor = '#d1ecf1';
-                        button.style.border = '2px solid #17a2b8';
-                    } else {
-                        button.style.backgroundColor = '';
-                        button.style.border = '';
-                    }
-                });
-            }
+            // ✅ VERBESSERT: Einheitliche Click-Handler
+            button.addEventListener('click', () => {
+                this.handleAnswerClick(index, isMultipleChoice);
+            });
 
             this.answerButtonsElement.appendChild(button);
         });
 
-        // ✅ BESTÄTIGUNGS-BUTTON FÜR MEHRFACHAUSWAHL
+        // Bestätigungs-Button für Multiple-Choice
         if (isMultipleChoice) {
             const confirmButton = document.createElement('button');
             confirmButton.innerText = '✅ Antworten bestätigen';
             confirmButton.classList.add('btn', 'confirm-btn');
             confirmButton.style.marginTop = '10px';
             confirmButton.style.backgroundColor = '#28a745';
+            confirmButton.addEventListener('click', () => {
+                if (this.answerChangeCallback) {
+                    this.answerChangeCallback(this.currentSelectedIndices, false);
+                }
+            });
             this.answerButtonsElement.appendChild(confirmButton);
         }
 
@@ -110,35 +110,64 @@ class QuizUI {
         skipButton.classList.add('btn', 'skip-btn');
         skipButton.style.marginTop = '10px';
         skipButton.style.backgroundColor = '#6c757d';
+        skipButton.addEventListener('click', () => {
+            if (this.answerChangeCallback) {
+                this.answerChangeCallback([-1], true);
+            }
+        });
         this.answerButtonsElement.appendChild(skipButton);
     }
 
-    showFeedback(selectedIndex, correctIndex, isCorrect) {
-        // KEIN Text-Feedback, nur Buttons deaktivieren
+    // ✅ NEU: Handle Antwort-Klicks (für Änderungen vor "Weiter")
+    handleAnswerClick(clickedIndex, isMultipleChoice) {
+        if (isMultipleChoice) {
+            // Multiple-Choice: Toggle Logik
+            if (this.currentSelectedIndices.includes(clickedIndex)) {
+                this.currentSelectedIndices = this.currentSelectedIndices.filter(idx => idx !== clickedIndex);
+            } else {
+                this.currentSelectedIndices.push(clickedIndex);
+            }
+        } else {
+            // Single-Choice: Nur eine Antwort möglich
+            this.currentSelectedIndices = [clickedIndex];
+        }
+
+        this.updateAnswerDisplay();
+    }
+
+    // ✅ NEU: Visuelle Darstellung aktualisieren
+    updateAnswerDisplay() {
+        const allButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
+        allButtons.forEach(button => {
+            const buttonIndex = parseInt(button.dataset.index);
+
+            if (this.currentSelectedIndices.includes(buttonIndex)) {
+                button.style.backgroundColor = '#d1ecf1';
+                button.style.border = '2px solid #17a2b8';
+                button.style.color = '#0c5460';
+                button.classList.add('selected');
+            } else {
+                button.style.backgroundColor = '';
+                button.style.border = '';
+                button.style.color = '';
+                button.classList.remove('selected');
+            }
+        });
+    }
+
+    showFeedback(selectedIndices) {
         this.feedbackContainer.classList.add('hidden');
 
+        // Aktuelle Auswahl speichern
+        this.currentSelectedIndices = selectedIndices;
+        this.updateAnswerDisplay();
+
+        // Buttons deaktivieren NACH der visuellen Aktualisierung
         const allButtons = this.answerButtonsElement.querySelectorAll('button');
         allButtons.forEach(button => {
-            button.disabled = fakse;
+            button.disabled = true; // Jetzt deaktivieren
+        });
 
-            const buttonIndex = parseInt(button.dataset.index);
-            // ✅ FARBLICHE MARKIERUNG:
-           if (buttonIndex.includes(buttonIndex)) {
-                       // Angeklickte Antwort BLAU markieren
-                       button.style.backgroundColor = '#d1ecf1';
-                       button.style.border = '2px solid #17a2b8';
-                       button.style.color = '#0c5460';
-                       button.classList.add('selected');
-                    } else {
-                          button.style.backgroundColor = '';
-                          button.style.border = '';
-                          button.style.color = '';
-                          button.classList.remove('selected');
-                       }
-                   });
-
-        // Weiter Button anzeigen
-        this.bindAnswerChange(this.handleAnswerChange.bind(this));
         this.nextButton.classList.remove('hidden');
     }
 
@@ -148,19 +177,18 @@ class QuizUI {
         const percentage = Math.round((score / totalQuestions) * 100);
         const wrongCount = totalQuestions - score;
 
-        let message = '';
-        if (percentage >= 80) {
-            message = 'Herzlichen Glückwunsch! Exzellentes Scrum-Wissen! 🎉';
-        } else if (percentage >= 60) {
-            message = 'Gut gemacht! Solide Scrum-Kenntnisse! 👍';
-        } else {
-            message = 'Weiter üben! Du schaffst das beim nächsten Mal! 💪';
-        }
+         let message = '';
+            if (percentage >= 84) {
+                message = 'Herzlichen Glückwunsch! Test bestanden! 🎉';
+            } else {
+                message = 'Test nicht bestanden. Weiter üben! 💪';
+            }
 
-        this.questionTextElement.innerHTML = `
-            <h2>Quiz abgeschlossen!</h2>
-            <p>${message}</p>
-        `;
+            this.questionTextElement.innerHTML = `
+                <h2>Quiz abgeschlossen!</h2>
+                <p><strong>Erreicht: ${percentage}%</strong> (${score} von ${totalQuestions} Fragen richtig)</p>
+                <p>${message}</p>
+            `;
 
         this.scoreElement.innerText = score;
         this.totalQuestionsElement.innerText = totalQuestions;
@@ -185,7 +213,7 @@ class QuizUI {
                     <strong>Frage ${index + 1}:</strong> ${wrong.question}<br>
                     <span style="color: red;">✗ Deine Antwort: ${wrong.selectedAnswer}</span><br>
                     <span style="color: green;">✓ Richtige Antwort: ${wrong.correctAnswer}</span><br>
-                    <em style="color: #666;">Scrum Guide: "${wrong.quote}"</em>
+                    <em style="color: #666;">${wrong.quote}</em>
                 `;
                 wrongQuestionsContainer.appendChild(listItem);
             });
@@ -196,30 +224,10 @@ class QuizUI {
         this.scoreContainer.classList.remove('hidden');
     }
 
-    bindAnswerClick(callback) {
-        this.answerButtonsElement.addEventListener('click', (event) => {
-            if (event.target.classList.contains('answer-btn')) {
-                const selectedIndex = parseInt(event.target.dataset.index);
-
-                // ✅ FÜR EINFACHE ANTWORTEN: SOFORT CALLBACK
-                if (!event.target.classList.contains('selected')) {
-                    callback([selectedIndex], false); // Als Array übergeben
-                }
-            }
-            else if (event.target.classList.contains('confirm-btn')) {
-                // ✅ FÜR MEHRFACHAUSWAHL: ALLE AUSGEWÄHLTEN ANTWORTEN SAMMELN
-                const selectedButtons = this.answerButtonsElement.querySelectorAll('.answer-btn.selected');
-                const selectedIndices = Array.from(selectedButtons).map(btn => parseInt(btn.dataset.index));
-                callback(selectedIndices, false);
-            }
-            else if (event.target.classList.contains('skip-btn')) {
-                callback([-1], true); // Als Array für Konsistenz
-            }
-        });
-    }
+    // ✅ ALTE METHODE ENTFERNEN (wird nicht mehr benötigt)
+    // bindAnswerClick() {} - ENTFERNT
 
     bindRestartButtonClick(callback) {
         this.restartButton.addEventListener('click', callback);
     }
-
 }

@@ -7,6 +7,7 @@ class QuizController {
         this.wrongAnswers = [];
         this.totalQuestions = 0;
         this.selectedQuestionCount = 0;
+        this.currentSelectedIndices = []; // Für Multiple-Choice
 
         this.init();
     }
@@ -40,6 +41,7 @@ class QuizController {
         this.score = 0;
         this.wrongAnswers = [];
         this.totalQuestions = this.selectedQuestionCount;
+        this.currentSelectedIndices = []; // Reset für neue Frage
         this.showCurrentQuestion();
     }
 
@@ -47,105 +49,88 @@ class QuizController {
         const question = this.quizData.getQuestion(this.currentQuestionIndex);
         this.quizUI.showQuestion(question, this.currentQuestionIndex, this.totalQuestions);
     }
-    // ✅ NEUE METHODE: Handle Multiple-Choice Auswahl
-    handleAnswerChange(newSelectedIndex) {
-        const question = this.quizData.getQuestion(this.currentQuestionIndex);
-        const isMultipleChoice = Array.isArray(question.correctIndex);
 
-        if (isMultipleChoice) {
-            // ✅ TOGGLE LOGIC FÜR MULTIPLE CHOICE
-            if (this.currentSelectedIndices.includes(newSelectedIndex)) {
-                // Antwort abwählen
-                this.currentSelectedIndices = this.currentSelectedIndices.filter(idx => idx !== newSelectedIndex);
+    handleAnswerClick(selectedIndices, isSkip) {
+        try {
+            const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
+
+            if (isSkip) {
+                // Frage überspringen - als falsch zählen
+                const quote = this.quizData.getQuote(this.currentQuestionIndex);
+
+                this.wrongAnswers.push({
+                    question: this.quizData.getQuestion(this.currentQuestionIndex).question,
+                    selectedAnswer: 'Übersprungen',
+                    correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
+                    quote: quote
+                });
             } else {
-                // Antwort auswählen
-                this.currentSelectedIndices.push(newSelectedIndex);
-            }
-        } else {
-            // ✅ SINGLE CHOICE: Nur eine Antwort möglich
-            this.currentSelectedIndices = [newSelectedIndex];
-        }
+                // Normale Antwortverarbeitung
+                const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndices);
 
-        // Visuelle Aktualisierung
-        this.updateAnswerDisplay();
+                if (isCorrect) {
+                    this.score++;
+                } else {
+                    const quote = this.quizData.getQuote(this.currentQuestionIndex);
+                    this.wrongAnswers.push({
+                        question: this.quizData.getQuestion(this.currentQuestionIndex).question,
+                        selectedAnswer: selectedIndices.map(idx =>
+                            this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
+                        ).join(', '),
+                        correctAnswer: Array.isArray(correctIndex)
+                            ? correctIndex.map(idx =>
+                                this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
+                              ).join(', ')
+                            : this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
+                        quote: quote
+                    });
+                }
+            }
+
+            // Aktuelle Auswahl speichern für mögliche Änderungen
+            this.currentSelectedIndices = selectedIndices;
+
+            // Feedback anzeigen
+            this.quizUI.showFeedback(selectedIndices);
+
+        } catch (error) {
+            console.error('Fehler bei der Antwortverarbeitung:', error);
+        }
     }
 
-    // ✅ NEUE METHODE: Visuelle Darstellung aktualisieren
-    updateAnswerDisplay() {
-        const allButtons = this.answerButtonsElement.querySelectorAll('button');
-        allButtons.forEach(button => {
-            const buttonIndex = parseInt(button.dataset.index);
+    processAnswer(selectedIndices) {
+        const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndices);
+        const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
-            if (this.currentSelectedIndices.includes(buttonIndex)) {
-                button.style.backgroundColor = '#d1ecf1';
-                button.style.border = '2px solid #17a2b8';
-                button.classList.add('selected');
-            } else {
-                button.style.backgroundColor = '';
-                button.style.border = '';
-                button.classList.remove('selected');
-            }
-        });
+        if (isCorrect) {
+            this.score++;
+        } else {
+            const quote = this.quizData.getQuote(this.currentQuestionIndex);
+            this.wrongAnswers.push({
+                question: this.quizData.getQuestion(this.currentQuestionIndex).question,
+                selectedAnswer: selectedIndices.map(idx =>
+                    this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
+                ).join(', '),
+                correctAnswer: Array.isArray(correctIndex)
+                    ? correctIndex.map(idx =>
+                        this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
+                      ).join(', ')
+                    : this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
+                quote: quote
+            });
+        }
+    }
 
-  //handleAnswerClick(selectedIndices, isSkip) {
-  handleAnswerClick(selectedIndices, isSkip) {
-      try {
-          const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
-
-          if (isSkip) {
-              // Frage überspringen - als falsch zählen
-              const quote = this.quizData.getQuote(this.currentQuestionIndex);
-
-              this.wrongAnswers.push({
-                  question: this.quizData.getQuestion(this.currentQuestionIndex).question,
-                  selectedAnswer: 'Übersprungen',
-                  correctAnswer: this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
-                  quote: quote
-              });
-          } else {
-              // Normale Antwortverarbeitung
-              const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndices);
-
-              if (isCorrect) {
-                  this.score++;
-              } else {
-                  const quote = this.quizData.getQuote(this.currentQuestionIndex);
-                  this.wrongAnswers.push({
-                      question: this.quizData.getQuestion(this.currentQuestionIndex).question,
-                      selectedAnswer: selectedIndices.map(idx =>
-                          this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
-                      ).join(', '),
-                      correctAnswer: Array.isArray(correctIndex)
-                          ? correctIndex.map(idx =>
-                              this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
-                            ).join(', ')
-                          : this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
-                      quote: quote
-                  });
-              }
-          }
-
-          // ✅ ERSTEN INDEX FÜR VISUELLES FEEDBACK
-          const firstSelectedIndex = selectedIndices.length > 0 ? selectedIndices[0] : -1;
-          this.quizUI.showFeedback(firstSelectedIndex);
-
-      } catch (error) {
-          console.error('Fehler bei der Antwortverarbeitung:', error);
-      }
-  }
     handleNextButtonClick() {
-      // ✅ MULTIPLE CHOICE: Übergib das Array der ausgewählten Indices
-      const finalSelectedIndices = this.quizUI.currentSelectedIndices;
+        // Finale Antwort mit aktueller Auswahl verarbeiten
+        this.processAnswer(this.currentSelectedIndices);
 
-      // Verarbeite die finale Antwort
-      this.processAnswer(finalSelectedIndices);
-
-      this.currentQuestionIndex++;
-      if (this.currentQuestionIndex < this.totalQuestions) {
-          this.showCurrentQuestion();
-      } else {
-          this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
-      }
+        this.currentQuestionIndex++;
+        if (this.currentQuestionIndex < this.totalQuestions) {
+            this.showCurrentQuestion();
+        } else {
+            this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
+        }
     }
 
     handleRestartButtonClick() {
