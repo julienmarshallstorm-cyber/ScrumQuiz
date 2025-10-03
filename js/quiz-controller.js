@@ -19,7 +19,7 @@ class QuizController {
     }
 
     initializeEventListeners() {
-        // ✅ NEU (verwende bindAnswerChange):
+        // NEU (verwende bindAnswerChange):
         this.quizUI.bindAnswerChange(this.handleAnswerClick.bind(this));
 
         this.quizUI.bindNextButtonClick(this.handleNextButtonClick.bind(this));
@@ -53,11 +53,11 @@ class QuizController {
         this.quizUI.showQuestion(question, this.currentQuestionIndex, this.totalQuestions);
     }
 
-    handleAnswerClick(selectedIndices) { // ❌ isSkip Parameter entfernt
+    handleAnswerClick(selectedIndices) { // isSkip Parameter entfernt
         try {
             const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
-            // ✅ NUR normale Antwortverarbeitung (keine Skip-Logik mehr)
+            // NUR normale Antwortverarbeitung (keine Skip-Logik mehr)
             const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndices);
 
             if (isCorrect) {
@@ -89,32 +89,10 @@ class QuizController {
         }
     }
 
-   /* processAnswer(selectedIndices) {
-        const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndices);
-        const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
-
-        if (isCorrect) {
-            this.score++;
-        } else {
-            const quote = this.quizData.getQuote(this.currentQuestionIndex);
-            this.wrongAnswers.push({
-                question: this.quizData.getQuestion(this.currentQuestionIndex).question,
-                selectedAnswer: selectedIndices.map(idx =>
-                    this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
-                ).join(', '),
-                correctAnswer: Array.isArray(correctIndex)
-                    ? correctIndex.map(idx =>
-                        this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
-                      ).join(', ')
-                    : this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
-                quote: quote
-            });
-        }
-    }*/
 
     handleNextButtonClick() {
         // Finale Antwort mit aktueller Auswahl verarbeiten
-        //this.processAnswer(this.currentSelectedIndices);
+
 
         this.currentQuestionIndex++;
         if (this.currentQuestionIndex < this.totalQuestions) {

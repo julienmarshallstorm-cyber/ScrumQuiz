@@ -58,7 +58,7 @@ class QuizUI {
         this.nextButton.addEventListener('click', callback);
     }
 
-    // ✅ NEU: Antwort-Änderungs-Callback binden
+    // NEU: Antwort-Änderungs-Callback binden
     bindAnswerChange(callback) {
         this.answerChangeCallback = callback;
     }
@@ -81,7 +81,7 @@ class QuizUI {
             button.classList.add('btn', 'answer-btn');
             button.dataset.index = index;
 
-            // ✅ VERBESSERT: Einheitliche Click-Handler
+            //  VERBESSERT: Einheitliche Click-Handler
             button.addEventListener('click', () => {
                 this.handleAnswerClick(index, isMultipleChoice);
             });
@@ -89,20 +89,21 @@ class QuizUI {
             this.answerButtonsElement.appendChild(button);
         });
 
-        // ✅ BESTÄTIGUNGS-BUTTON FÜR ALLE FRAGENTYPEN (Single & Multiple Choice)
+        // BESTÄTIGUNGS-BUTTON FÜR ALLE FRAGENTYPEN (Single & Multiple Choice)
         const confirmButton = document.createElement('button');
         confirmButton.innerText = '✅ Antwort bestätigen';
         confirmButton.classList.add('btn', 'confirm-btn');
         confirmButton.style.marginTop = '10px';
         confirmButton.style.backgroundColor = '#28a745';
         confirmButton.addEventListener('click', () => {
+            console.log('🔄 Confirm-Button geklickt', this.currentSelectedIndices);
             if (this.answerChangeCallback) {
                 this.answerChangeCallback(this.currentSelectedIndices);
             }
         });
         this.answerButtonsElement.appendChild(confirmButton);
     }
-    // ✅ NEU: Handle Antwort-Klicks (für Änderungen vor "Weiter")
+    // NEU: Handle Antwort-Klicks (für Änderungen vor "Weiter")
     handleAnswerClick(clickedIndex, isMultipleChoice) {
         console.log('✅ Antwort geklickt:', clickedIndex, 'MultipleChoice:', isMultipleChoice);
 
@@ -113,19 +114,18 @@ class QuizUI {
             } else {
                 this.currentSelectedIndices.push(clickedIndex);
             }
-        } else {// Single-Choice: Nur eine Antwort möglich - aber KORRIGIERBAR
-                        // Wenn bereits diese Antwort ausgewählt ist, abwählen (Korrektur)
-                        if (this.currentSelectedIndices.includes(clickedIndex)) {
-                            this.currentSelectedIndices = []; // Antwort abwählen
-                        } else {
-                            this.currentSelectedIndices = [clickedIndex]; // Neue Antwort auswählen
-                        }
-                    }
-
-                    this.updateAnswerDisplay();
+        } else
+                if (this.currentSelectedIndices.includes(clickedIndex)) {
+                    this.currentSelectedIndices = []; // Antwort abwählen
+                } else {
+                    this.currentSelectedIndices = [clickedIndex]; // Neue Antwort auswählen
                 }
+            }
 
-    // ✅ NEU: Visuelle Darstellung aktualisieren
+            this.updateAnswerDisplay();
+        }
+
+    // NEU: Visuelle Darstellung aktualisieren
     /*updateAnswerDisplay() {
         const allButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
 
@@ -145,7 +145,7 @@ class QuizUI {
             }
         });
     }*/
-    // ✅ NEU: Visuelle Darstellung aktualisieren
+    // NEU: Visuelle Darstellung aktualisieren
     updateAnswerDisplay() {
         const allButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
         allButtons.forEach(button => {
@@ -166,7 +166,7 @@ class QuizUI {
             }
         });
 
-        // ✅ VISUELLE RÜCKMELDUNG FÜR BESTÄTIGUNGS-BUTTON
+        // VISUELLE RÜCKMELDUNG FÜR BESTÄTIGUNGS-BUTTON
         const confirmButton = this.answerButtonsElement.querySelector('.confirm-btn');
         if (confirmButton) {
             if (this.currentSelectedIndices.length > 0) {
@@ -185,7 +185,7 @@ class QuizUI {
 showFeedback(selectedIndices) {
     this.feedbackContainer.classList.add('hidden');
 
-    // ✅ BESTÄTIGUNGS-BUTTON DEAKTIVIEREN UND GRAU MACHEN
+    // BESTÄTIGUNGS-BUTTON DEAKTIVIEREN UND GRAU MACHEN
     const confirmButton = this.answerButtonsElement.querySelector('.confirm-btn');
     if (confirmButton) {
         confirmButton.style.backgroundColor = '#6c757d'; // Grau
@@ -262,9 +262,6 @@ showFeedback(selectedIndices) {
 
         this.scoreContainer.classList.remove('hidden');
     }
-
-    // ✅ ALTE METHODE ENTFERNEN (wird nicht mehr benötigt)
-    // bindAnswerClick() {} - ENTFERNT
 
     bindRestartButtonClick(callback) {
         this.restartButton.addEventListener('click', callback);
