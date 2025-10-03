@@ -139,3 +139,62 @@ h1 {
     background-color: #218838 !important;
     transform: translateY(-1px);
 }
+/* Timer Styles */
+#timer-container {
+    margin: 20px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#timer-display {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#progress-bar-container {
+    flex: 1;
+    height: 12px;
+    background: #e9ecef;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    border-radius: 6px;
+    width: 100%;
+    transition: width 1s linear, background-color 0.3s;
+}
+
+#progress-bar.warning {
+    background: linear-gradient(90deg, #ff9800, #f57c00);
+}
+
+#progress-bar.danger {
+    background: linear-gradient(90deg, #f44336, #d32f2f);
+}
+
+#time-text {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #timer-display {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #time-text {
+        min-width: auto;
+    }
+}

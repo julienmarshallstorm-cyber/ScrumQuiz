@@ -15,12 +15,49 @@ class QuizUI {
         this.quizContainer = document.getElementById('quiz-container');
         this.currentSelectedIndices = []; // Array für Multiple-Choice
         this.answerChangeCallback = null; // Callback für Antwort-Änderungen
+        this.timerContainer = document.getElementById('timer-container');
+        this.progressBar = document.getElementById('progress-bar');
+        this.currentTimeElement = document.getElementById('current-time');
+        this.totalTimeElement = document.getElementById('total-time');
 
         if (!this.quizSetupElement) console.error('quiz-setup nicht gefunden');
         if (!this.questionCountSelect) console.error('question-count nicht gefunden');
         if (!this.startQuizButton) console.error('start-quiz-btn nicht gefunden');
     }
+    showTimer() {
+        if (this.timerContainer) {
+            this.timerContainer.classList.remove('hidden');
+        }
+    }
 
+    updateTimer(currentTime, totalTime) {
+        if (!this.progressBar || !this.currentTimeElement) return;
+
+        // Progress-Bar berechnen (0% - 100%)
+        const progress = (currentTime / totalTime) * 100;
+        this.progressBar.style.width = `${progress}%`;
+
+        // Farbwechsel bei wenig Zeit
+        if (progress <= 25) {
+            this.progressBar.classList.add('danger');
+            this.progressBar.classList.remove('warning');
+        } else if (progress <= 50) {
+            this.progressBar.classList.add('warning');
+            this.progressBar.classList.remove('danger');
+        } else {
+            this.progressBar.classList.remove('warning', 'danger');
+        }
+
+        // Zeit-Text formatieren (MM:SS)
+        const formatTime = (seconds) => {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        };
+
+        this.currentTimeElement.textContent = formatTime(currentTime);
+        this.totalTimeElement.textContent = formatTime(totalTime);
+    }
     showSetup() {
         if (this.quizSetupElement) {
             this.quizSetupElement.classList.remove('hidden');

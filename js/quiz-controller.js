@@ -9,6 +9,9 @@ class QuizController {
         this.totalQuestions = 0;
         this.selectedQuestionCount = 0;
         this.currentSelectedIndices = []; // Für Multiple-Choice
+        this.totalQuizTime = 0;
+        this.remainingTime = 0;
+        this.timerInterval = null;
 
         this.init();
     }
@@ -26,7 +29,6 @@ class QuizController {
         this.quizUI.bindNextButtonClick(this.handleNextButtonClick.bind(this));
         this.quizUI.bindRestartButtonClick(this.handleRestartButtonClick.bind(this));
         this.quizUI.bindStartQuizClick(this.handleStartQuizClick.bind(this));
-
     }
 
     showSetup() {
@@ -45,7 +47,13 @@ class QuizController {
         this.score = 0;
         this.wrongAnswers = [];
         this.totalQuestions = this.selectedQuestionCount;
-        this.currentSelectedIndices = []; // Reset für neue Frage
+        this.currentSelectedIndices = [];
+
+        // TIMER INITIALISIEREN
+        this.totalQuizTime = this.selectedQuestionCount * 45; // 45s pro Frage
+        this.remainingTime = this.totalQuizTime;
+        this.startTimer();
+
         this.showCurrentQuestion();
     }
 
@@ -54,8 +62,8 @@ class QuizController {
         this.quizUI.showQuestion(question, this.currentQuestionIndex, this.totalQuestions);
     }
 
-    handleAnswerClick(selectedIndices) { // isSkip Parameter entfernt
-            console.log('🎯 Controller handleAnswerClick aufgerufen', selectedIndices);
+    handleAnswerClick(selectedIndices) {
+        console.log('🎯 Controller handleAnswerClick aufgerufen', selectedIndices);
 
         try {
             const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
@@ -92,20 +100,72 @@ class QuizController {
         }
     }
 
+    startTimer() {
+        // Sicherstellen dass vorheriger Timer gestoppt ist
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+        }
+
+        // Timer-UI anzeigen
+        this.quizUI.showTimer();
+
+        // Timer starten
+        this.timerInterval = setInterval(() => {
+            try {
+                this.remainingTime--;
+                this.quizUI.updateTimer(this.remainingTime, this.totalQuizTime);
+
+                // Zeit abgelaufen
+                if (this.remainingTime <= 0) {
+                    this.handleTimeUp();
+                }
+            } catch (error) {
+                console.error('Timer-Fehler:', error);
+                clearInterval(this.timerInterval);
+            }
+        }, 1000);
+    }
+
+    handleTimeUp() {
+        // Timer stoppen
+        clearInterval(this.timerInterval);
+
+        // Alle restlichen Fragen als falsch markieren
+        for (let i = this.currentQuestionIndex; i < this.totalQuestions; i++) {
+            const question = this.quizData.getQuestion(i);
+            const correctIndex = question.correctIndex;
+
+            this.wrongAnswers.push({
+                question: question.question,
+                selectedAnswer: 'Nicht beantwortet (Zeit abgelaufen)',
+                correctAnswer: Array.isArray(correctIndex)
+                    ? correctIndex.map(idx => question.answers[idx]).join(', ')
+                    : question.answers[correctIndex],
+                quote: question.quote
+            });
+        }
+
+        // Zur Auswertung springen
+        this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
+    }
 
     handleNextButtonClick() {
-        // Finale Antwort mit aktueller Auswahl verarbeiten
-
-
         this.currentQuestionIndex++;
         if (this.currentQuestionIndex < this.totalQuestions) {
             this.showCurrentQuestion();
         } else {
+            // TIMER STOPPEN bei normalem Quiz-Ende
+            clearInterval(this.timerInterval);
             this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
         }
     }
 
     handleRestartButtonClick() {
+        // TIMER STOPPEN bei Neustart
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+            this.timerInterval = null;
+        }
         this.showSetup();
     }
 }
