@@ -1,5 +1,6 @@
 class QuizController {
     constructor() {
+        console.log('🔄 QuizController Constructor aufgerufen');
         this.quizData = new QuizData();
         this.quizUI = new QuizUI();
         this.currentQuestionIndex = 0;
