@@ -54,6 +54,8 @@ class QuizController {
     }
 
     handleAnswerClick(selectedIndices) { // isSkip Parameter entfernt
+            console.log('🎯 Controller handleAnswerClick aufgerufen', selectedIndices);
+
         try {
             const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
