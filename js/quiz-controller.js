@@ -8,7 +8,7 @@ class QuizController {
         this.wrongAnswers = [];
         this.totalQuestions = 0;
         this.selectedQuestionCount = 0;
-        this.currentSelectedIndices = []; // Für Multiple-Choice
+        this.currentSelectedIndices = [];
         this.totalQuizTime = 0;
         this.remainingTime = 0;
         this.timerInterval = null;
