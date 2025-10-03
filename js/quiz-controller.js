@@ -89,7 +89,7 @@ class QuizController {
         }
     }
 
-    processAnswer(selectedIndices) {
+   /* processAnswer(selectedIndices) {
         const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndices);
         const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
 
@@ -110,11 +110,11 @@ class QuizController {
                 quote: quote
             });
         }
-    }
+    }*/
 
     handleNextButtonClick() {
         // Finale Antwort mit aktueller Auswahl verarbeiten
-        this.processAnswer(this.currentSelectedIndices);
+        //this.processAnswer(this.currentSelectedIndices);
 
         this.currentQuestionIndex++;
         if (this.currentQuestionIndex < this.totalQuestions) {
