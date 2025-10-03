@@ -212,8 +212,9 @@ showFeedback(selectedIndices) {
 }
 
     showScore(score, totalQuestions, wrongAnswers) {
-        this.resetState();
+         console.log('🏆 showScore aufgerufen', wrongAnswers.length, 'falsche Antworten');
 
+        this.resetState();
         const percentage = Math.round((score / totalQuestions) * 100);
         const wrongCount = totalQuestions - score;
 
