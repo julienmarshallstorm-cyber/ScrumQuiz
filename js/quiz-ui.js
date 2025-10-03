@@ -114,7 +114,8 @@ class QuizUI {
             } else {
                 this.currentSelectedIndices.push(clickedIndex);
             }
-        } else
+        } else{
+        
                 if (this.currentSelectedIndices.includes(clickedIndex)) {
                     this.currentSelectedIndices = []; // Antwort abwählen
                 } else {
