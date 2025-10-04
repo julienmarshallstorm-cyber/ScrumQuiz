@@ -1048,5 +1048,93 @@
     ],
     "correctIndex": 1,
     "quote": "The Product Owner is accountable for clear Product Backlog items, though they may get assistance from others."
+  },
+  {
+    "question": "The Developers should not be interrupted during the Sprint and the Sprint Goal should remain intact. These are conditions that foster creativity, quality and productivity. (Which one of the following answers is FALSE?)",
+    "answers": [
+      "As a decomposition of the selected Product Backlog items, the Sprint Backlog changes and may grow as the work emerges.",
+      "The Product Owner can help clarify or optimize the Sprint when asked by the Developers.",
+      "The Developers may work with the Product Owner to add or remove work if they find themselves with more or less capacity than expected.",
+      "The Sprint Backlog is fully formulated in the Sprint Planning event and does not change during the Sprint."
+    ],
+    "correctIndex": 3,
+    "quote": "The Sprint Backlog makes visible all of the work that the Developers identify as necessary to meet the Sprint Goal. The Developers modify the Sprint Backlog throughout the Sprint, and the Sprint Backlog emerges during the Sprint."
+  },
+  {
+    "question": "What are two ways a Scrum Master serves to enable effective Scrum Teams?",
+    "answers": [
+      "By starting and ending the meetings at the proper time.",
+      "By facilitating Developer decision-making.",
+      "By keeping high value features high in the Product Backlog.",
+      "By removing impediments that hinder the Scrum Team."
+    ],
+    "correctIndex": [1, 3],
+    "quote": "The Scrum Master serves the Scrum Team in several ways. Facilitation and removing impediments are examples of ways a Scrum Master helps a team become more effective."
+  },
+  {
+    "question": "What does it mean to say that an event has a timebox?",
+    "answers": [
+      "The event can take no more than a maximum amount of time.",
+      "The event must happen at a set time.",
+      "The event must take at least a minimum amount of time.",
+      "The event must happen by a given time."
+    ],
+    "correctIndex": 0,
+    "quote": "Timeboxed events are events that have a maximum duration."
+  },
+  {
+    "question": "An organization has decided to adopt Scrum, but management wants to change the terminology to fit with terminology already used. What will likely happen if this is done?",
+    "answers": [
+      "Without a new vocabulary as a reminder of the change, very little change may actually happen.",
+      "The organization may not understand what has changed with Scrum and the benefits of Scrum may be lost.",
+      "Management may feel less anxious.",
+      "All of the above."
+    ],
+    "correctIndex": 3,
+    "quote": "Changing Scrum terminology undermines the framework's purpose and can lead to misunderstanding of Scrum principles and loss of benefits."
+  },
+  {
+    "question": "When does a Developer become accountable for the value of a Product Backlog item selected for the Sprint?",
+    "answers": [
+      "Whenever a team member can accommodate more work.",
+      "At the Sprint Planning Event.",
+      "During the Daily Scrum.",
+      "Never. The entire Scrum Team is accountable for creating value every Sprint."
+    ],
+    "correctIndex": 3,
+    "quote": "All members of the Scrum Team share in the accountability for creating value every Sprint."
+  },
+  {
+    "question": "The length of a Sprint should be:",
+    "answers": [
+      "Short enough to keep the business risk acceptable to the Product Owner.",
+      "Short enough to be able to synchronize the development work with other business events.",
+      "One month or less.",
+      "All of the above."
+    ],
+    "correctIndex": 3,
+    "quote": "All of these choices are appropriate considerations in determining the length of a Sprint."
+  },
+  {
+    "question": "The CEO asks the Developers to add a 'very important' item to a Sprint that is in progress. What should the Developers do?",
+    "answers": [
+      "Add the item to the Sprint Backlog for the next Sprint.",
+      "Add the item to the current Sprint Backlog and do whatever amount of work is necessary to meet the Sprint Goal while satisfying the CEO.",
+      "Discuss the item with the other members of the Scrum Team so the team can decide what to do.",
+      "Add the item to the current Sprint Backlog, drop an item of similar size, and reduce the Sprint Goal."
+    ],
+    "correctIndex": 2,
+    "quote": "The items selected for a Sprint have been selected as most valuable with the Product Owner during Sprint Planning. The items serve the Sprint's goal. No changes should be made that endanger the Sprint Goal. No one external to the Scrum Team can force changes on the Developers."
+  },
+  {
+    "question": "What should the Scrum Team do during the first Sprint?",
+    "answers": [
+      "Create the complete Product Backlog to be developed in subsequent Sprints.",
+      "Determine the complete architecture and infrastructure for the product.",
+      "Develop a plan for the rest of the release.",
+      "Create a valuable and useful Increment."
+    ],
+    "correctIndex": 3,
+    "quote": "The heart of Scrum is a Sprint, which is one month or less during which a done, usable, valuable product Increment is created. This applies to every Sprint."
   }
 ]
