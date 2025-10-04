@@ -324,3 +324,30 @@ h1 {
 #timer-container.hidden {
     display: none !important;
 }
+
+/*  TIMER SICHTBARKEITS-FIX - ÜBERSCHREIBT .hidden KLASSE */
+#timer-container {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#timer-container.hidden {
+    display: none !important;
+}
+
+/*  ABSOLUTE SICHERHEIT FÜR PROGRESS-BAR */
+#progress-bar {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: 20px !important;
+    min-height: 20px !important;
+}
+
+#progress-bar-container {
+    display: block !important;
+    visibility: visible !important;
+    height: 20px !important;
+    min-height: 20px !important;
+}
