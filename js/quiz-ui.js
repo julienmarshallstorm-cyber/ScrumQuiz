@@ -183,7 +183,7 @@ class QuizUI {
             this.quizSetupElement.classList.remove('hidden');
             this.quizContainer.classList.add('hidden');
             this.scoreContainer.classList.add('hidden');
-            
+
         }
     }
 
