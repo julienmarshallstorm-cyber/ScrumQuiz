@@ -141,7 +141,7 @@ class QuizUI {
             this.answerButtonsElement.appendChild(button);
         });
 
-        // ✅ KEIN BESTÄTIGUNGS-BUTTON MEHR - WURDE ENTFERNT
+        //  KEIN BESTÄTIGUNGS-BUTTON MEHR - WURDE ENTFERNT
     }
 
     // Handle Antwort-Klicks (für Änderungen vor "Weiter")
@@ -162,14 +162,22 @@ class QuizUI {
             } else {
                 this.currentSelectedIndices = [clickedIndex]; // Neue Antwort auswählen
             }
-
-            // ✅ SOFORT Callback für Single-Choice (da keine Bestätigung mehr)
-            if (this.answerChangeCallback) {
-                this.answerChangeCallback(this.currentSelectedIndices);
-            }
         }
 
         this.updateAnswerDisplay();
+
+        //  FÜR BEIDE FRAGENTYPEN: "Weiter"-Button sofort anzeigen
+        // User kann Antworten weiter anpassen, hat aber Option zu wechseln
+        if (this.currentSelectedIndices.length > 0) {
+            this.nextButton.classList.remove('hidden');
+        } else {
+            this.nextButton.classList.add('hidden');
+        }
+
+        // FÜR SINGLE-CHOICE: Sofort Callback (für sofortige Auswertung)
+        if (!isMultipleChoice && this.answerChangeCallback) {
+            this.answerChangeCallback(this.currentSelectedIndices);
+        }
     }
 
     // Visuelle Darstellung aktualisieren
@@ -193,13 +201,13 @@ class QuizUI {
             }
         });
 
-        // ✅ KEINE BESTÄTIGUNGS-BUTTON LOGIK MEHR - WURDE ENTFERNT
+        //  KEINE BESTÄTIGUNGS-BUTTON LOGIK MEHR - WURDE ENTFERNT
     }
 
     showFeedback(selectedIndices) {
         this.feedbackContainer.classList.add('hidden');
 
-        // ✅ KEINE BESTÄTIGUNGS-BUTTON BEARBEITUNG MEHR - WURDE ENTFERNT
+        // KEINE BESTÄTIGUNGS-BUTTON BEARBEITUNG MEHR - WURDE ENTFERNT
 
         // Aktuelle Auswahl speichern
         this.currentSelectedIndices = selectedIndices;
@@ -212,7 +220,7 @@ class QuizUI {
             button.style.cursor = 'not-allowed';
         });
 
-        // Weiter-Button anzeigen
+        // Weiter-Button anzeigen (falls noch nicht sichtbar)
         this.nextButton.classList.remove('hidden');
     }
 
