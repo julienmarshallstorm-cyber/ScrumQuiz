@@ -23,9 +23,7 @@ class QuizController {
     }
 
     initializeEventListeners() {
-        // NEU (verwende bindAnswerChange):
         this.quizUI.bindAnswerChange(this.handleAnswerClick.bind(this));
-
         this.quizUI.bindNextButtonClick(this.handleNextButtonClick.bind(this));
         this.quizUI.bindRestartButtonClick(this.handleRestartButtonClick.bind(this));
         this.quizUI.bindStartQuizClick(this.handleStartQuizClick.bind(this));
@@ -101,6 +99,28 @@ class QuizController {
     }
 
     startTimer() {
+        console.log('⏰ Timer starten...');
+
+        //  ERWEITERTES DEBUGGING FÜR PWA-APP
+        console.log('📱 Timer Container Element:', this.quizUI.timerContainer);
+        console.log('📱 Timer Container sichtbar?:', this.quizUI.timerContainer?.offsetParent !== null);
+        console.log('📱 Timer Container classes:', this.quizUI.timerContainer?.className);
+        console.log('📱 Progress Bar Element:', this.quizUI.progressBar);
+        console.log('📱 Current Time Element:', this.quizUI.currentTimeElement);
+        console.log('📱 Total Time Element:', this.quizUI.totalTimeElement);
+
+        // FORCE VISIBILITY FÜR PWA-APP
+        if (this.quizUI.timerContainer) {
+            this.quizUI.timerContainer.style.display = 'block';
+            this.quizUI.timerContainer.style.visibility = 'visible';
+            this.quizUI.timerContainer.style.opacity = '1';
+            this.quizUI.timerContainer.classList.remove('hidden');
+        }
+
+        if (this.quizUI.progressBar) {
+            this.quizUI.progressBar.style.display = 'block';
+        }
+
         // Sicherstellen dass vorheriger Timer gestoppt ist
         if (this.timerInterval) {
             clearInterval(this.timerInterval);
@@ -108,6 +128,9 @@ class QuizController {
 
         // Timer-UI anzeigen
         this.quizUI.showTimer();
+
+        //  SOFORTIGE VISUALISIERUNG TESTEN
+        this.quizUI.updateTimer(this.remainingTime, this.totalQuizTime);
 
         // Timer starten
         this.timerInterval = setInterval(() => {
@@ -124,9 +147,19 @@ class QuizController {
                 clearInterval(this.timerInterval);
             }
         }, 1000);
+
+        //  ZUSÄTZLICHER TEST: MANUELLE AKTUALISIERUNG NACH 1 SEKUNDE
+        setTimeout(() => {
+            console.log('⏱️ Timer-Test nach 1s - Funktioniert der Timer?');
+            if (this.quizUI.progressBar) {
+                console.log('📱 Progress Bar Width:', this.quizUI.progressBar.style.width);
+            }
+        }, 1000);
     }
 
     handleTimeUp() {
+        console.log('⏰ Zeit abgelaufen!');
+
         // Timer stoppen
         clearInterval(this.timerInterval);
 
@@ -155,6 +188,7 @@ class QuizController {
             this.showCurrentQuestion();
         } else {
             // TIMER STOPPEN bei normalem Quiz-Ende
+            console.log('⏰ Quiz beendet - Timer stoppen');
             clearInterval(this.timerInterval);
             this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
         }
@@ -162,6 +196,7 @@ class QuizController {
 
     handleRestartButtonClick() {
         // TIMER STOPPEN bei Neustart
+        console.log('⏰ Quiz neustarten - Timer stoppen');
         if (this.timerInterval) {
             clearInterval(this.timerInterval);
             this.timerInterval = null;

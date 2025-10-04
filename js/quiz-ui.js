@@ -23,15 +23,39 @@ class QuizUI {
         if (!this.quizSetupElement) console.error('quiz-setup nicht gefunden');
         if (!this.questionCountSelect) console.error('question-count nicht gefunden');
         if (!this.startQuizButton) console.error('start-quiz-btn nicht gefunden');
+
+        // ✅ TIMER-DEBUGGING IM CONSTRUCTOR
+        console.log('🔧 QuizUI Constructor - Timer Elemente:');
+        console.log('📱 Timer Container:', this.timerContainer);
+        console.log('📱 Progress Bar:', this.progressBar);
+        console.log('📱 Current Time:', this.currentTimeElement);
+        console.log('📱 Total Time:', this.totalTimeElement);
     }
 
     showTimer() {
+        console.log('🔧 showTimer() aufgerufen');
+
         if (this.timerContainer) {
+            console.log('📱 Timer Container vorher:', this.timerContainer.classList.contains('hidden'));
             this.timerContainer.classList.remove('hidden');
+            console.log('📱 Timer Container nachher:', this.timerContainer.classList.contains('hidden'));
+
+            // ✅ FORCE VISIBILITY FÜR PWA-APP
+            this.timerContainer.style.display = 'block';
+            this.timerContainer.style.visibility = 'visible';
+            this.timerContainer.style.opacity = '1';
+        } else {
+            console.error('❌ Timer Container nicht gefunden!');
+        }
+
+        if (this.progressBar) {
+            this.progressBar.style.display = 'block';
         }
     }
 
     hideTimer() {
+        console.log('🔧 hideTimer() aufgerufen');
+
         if (this.timerContainer) {
             this.timerContainer.classList.add('hidden');
         }
@@ -43,21 +67,35 @@ class QuizUI {
     }
 
     updateTimer(currentTime, totalTime) {
-        if (!this.progressBar || !this.currentTimeElement) return;
+        console.log('🔧 updateTimer() aufgerufen:', currentTime, 'von', totalTime);
+
+        if (!this.progressBar) {
+            console.error('❌ Progress Bar nicht gefunden!');
+            return;
+        }
+        if (!this.currentTimeElement) {
+            console.error('❌ Current Time Element nicht gefunden!');
+            return;
+        }
 
         // Progress-Bar berechnen (0% - 100%)
         const progress = (currentTime / totalTime) * 100;
+        console.log('📊 Progress:', progress + '%');
+
         this.progressBar.style.width = `${progress}%`;
 
         // Farbwechsel bei wenig Zeit
         if (progress <= 25) {
             this.progressBar.classList.add('danger');
             this.progressBar.classList.remove('warning');
+            console.log('🎨 Timer Farbe: ROT');
         } else if (progress <= 50) {
             this.progressBar.classList.add('warning');
             this.progressBar.classList.remove('danger');
+            console.log('🎨 Timer Farbe: GELB');
         } else {
             this.progressBar.classList.remove('warning', 'danger');
+            console.log('🎨 Timer Farbe: GRÜN');
         }
 
         // Zeit-Text formatieren (MM:SS)
@@ -67,8 +105,18 @@ class QuizUI {
             return `${mins}:${secs.toString().padStart(2, '0')}`;
         };
 
-        this.currentTimeElement.textContent = formatTime(currentTime);
-        this.totalTimeElement.textContent = formatTime(totalTime);
+        const currentFormatted = formatTime(currentTime);
+        const totalFormatted = formatTime(totalTime);
+
+        console.log('⏱️ Zeit-Update:', currentFormatted, '/', totalFormatted);
+
+        this.currentTimeElement.textContent = currentFormatted;
+        this.totalTimeElement.textContent = totalFormatted;
+
+        // ✅ VISUELLER TEST FÜR PWA-APP
+        if (currentTime === totalTime) {
+            console.log('🎯 Timer-Start erfolgreich!');
+        }
     }
 
     showSetup() {
@@ -141,7 +189,31 @@ class QuizUI {
             this.answerButtonsElement.appendChild(button);
         });
 
-        //  KEIN BESTÄTIGUNGS-BUTTON MEHR - WURDE ENTFERNT
+        // ✅ TEMPORÄRER DEBUG-BUTTON FÜR TIMER
+        const debugButton = document.createElement('button');
+        debugButton.innerText = '🔧 Timer Debug';
+        debugButton.classList.add('btn');
+        debugButton.style.backgroundColor = '#ff9800';
+        debugButton.style.marginTop = '10px';
+        debugButton.addEventListener('click', () => {
+            console.log('🔧 TIMER DEBUG MANUELL:');
+            console.log('Container:', this.timerContainer);
+            console.log('ProgressBar:', this.progressBar);
+            console.log('CurrentTime:', this.currentTimeElement);
+            console.log('TotalTime:', this.totalTimeElement);
+            console.log('Hidden?:', this.timerContainer?.classList.contains('hidden'));
+            console.log('Display:', this.timerContainer?.style.display);
+            console.log('Visibility:', this.timerContainer?.style.visibility);
+
+            // Timer manuell anzeigen und testen
+            this.showTimer();
+            if (this.progressBar) {
+                this.progressBar.style.width = '75%';
+                this.progressBar.style.backgroundColor = 'blue';
+                console.log('🎨 Manuelle Progress-Bar gesetzt');
+            }
+        });
+        this.answerButtonsElement.appendChild(debugButton);
     }
 
     // Handle Antwort-Klicks (für Änderungen vor "Weiter")
@@ -166,15 +238,14 @@ class QuizUI {
 
         this.updateAnswerDisplay();
 
-        //  FÜR BEIDE FRAGENTYPEN: "Weiter"-Button sofort anzeigen
-        // User kann Antworten weiter anpassen, hat aber Option zu wechseln
+        // ✅ FÜR BEIDE FRAGENTYPEN: "Weiter"-Button sofort anzeigen
         if (this.currentSelectedIndices.length > 0) {
             this.nextButton.classList.remove('hidden');
         } else {
             this.nextButton.classList.add('hidden');
         }
 
-        // FÜR SINGLE-CHOICE: Sofort Callback (für sofortige Auswertung)
+        // ✅ FÜR SINGLE-CHOICE: Sofort Callback (für sofortige Auswertung)
         if (!isMultipleChoice && this.answerChangeCallback) {
             this.answerChangeCallback(this.currentSelectedIndices);
         }
@@ -200,14 +271,10 @@ class QuizUI {
                 button.classList.remove('selected');
             }
         });
-
-        //  KEINE BESTÄTIGUNGS-BUTTON LOGIK MEHR - WURDE ENTFERNT
     }
 
     showFeedback(selectedIndices) {
         this.feedbackContainer.classList.add('hidden');
-
-        // KEINE BESTÄTIGUNGS-BUTTON BEARBEITUNG MEHR - WURDE ENTFERNT
 
         // Aktuelle Auswahl speichern
         this.currentSelectedIndices = selectedIndices;

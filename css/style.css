@@ -192,7 +192,7 @@ h1 {
     text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* ✅ VERBESSERTE MOBILE OPTIMIERUNG */
+/*  VERBESSERTE MOBILE OPTIMIERUNG */
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -276,4 +276,51 @@ h1 {
 
 #timer-container:not(.hidden) {
     display: flex !important;
+}
+@media all and (display-mode: standalone) {
+    #timer-container {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background: #ffffff !important;
+        border: 3px solid #4CAF50 !important;
+        margin: 10px 0 !important;
+        padding: 12px !important;
+    }
+
+    #progress-bar-container {
+        height: 20px !important;
+        background: #e9ecef !important;
+        display: block !important;
+    }
+
+    #progress-bar {
+        height: 100% !important;
+        display: block !important;
+        background: linear-gradient(90deg, #4CAF50, #45a049) !important;
+    }
+}
+
+/* Safe Area Support für iPhones mit Notch */
+@supports(padding: max(0px)) {
+    body {
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+        padding-top: max(10px, env(safe-area-inset-top));
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+}
+
+/*  EXTREME SICHTBARKEITS-GARANTIE */
+#timer-container {
+    /* Force visibility */
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1000 !important;
+}
+
+#timer-container.hidden {
+    display: none !important;
 }
