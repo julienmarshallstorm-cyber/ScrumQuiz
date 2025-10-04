@@ -13,48 +13,99 @@ class QuizUI {
         this.questionCountSelect = document.getElementById('question-count');
         this.startQuizButton = document.getElementById('start-quiz-btn');
         this.quizContainer = document.getElementById('quiz-container');
-        this.currentSelectedIndices = []; // Array für Multiple-Choice
-        this.answerChangeCallback = null; // Callback für Antwort-Änderungen
+        this.currentSelectedIndices = [];
+        this.answerChangeCallback = null;
+
+        // ✅ TIMER ELEMENTE MIT FALLBACK
         this.timerContainer = document.getElementById('timer-container');
         this.progressBar = document.getElementById('progress-bar');
         this.currentTimeElement = document.getElementById('current-time');
         this.totalTimeElement = document.getElementById('total-time');
 
-        if (!this.quizSetupElement) console.error('quiz-setup nicht gefunden');
-        if (!this.questionCountSelect) console.error('question-count nicht gefunden');
-        if (!this.startQuizButton) console.error('start-quiz-btn nicht gefunden');
+        console.log('🔧 QuizUI Constructor - Timer Status:');
+        console.log('📱 Timer Container gefunden:', !!this.timerContainer);
+        console.log('📱 Progress Bar gefunden:', !!this.progressBar);
 
-        // Timer-Debugging im Constructor
-        console.log('🔧 QuizUI Constructor - Timer Elemente:');
-        console.log('📱 Timer Container:', this.timerContainer);
-        console.log('📱 Progress Bar:', this.progressBar);
-        console.log('📱 Current Time:', this.currentTimeElement);
-        console.log('📱 Total Time:', this.totalTimeElement);
+        // ✅ NOTFALL: Timer Container manuell erstellen falls nicht vorhanden
+        if (!this.timerContainer) {
+            console.log('⚠️ Timer Container nicht gefunden - erstelle manuell...');
+            this.createTimerContainer();
+        }
+    }
+
+    // ✅ NOTFALL-METHODE: Timer Container manuell erstellen
+    createTimerContainer() {
+        console.log('🔧 Erstelle Timer Container manuell...');
+
+        // Timer Container erstellen
+        this.timerContainer = document.createElement('div');
+        this.timerContainer.id = 'timer-container';
+        this.timerContainer.innerHTML = `
+            <div id="timer-display">
+                <div id="progress-bar-container">
+                    <div id="progress-bar" style="width: 100%; height: 20px; background: red;"></div>
+                </div>
+                <div id="time-text">
+                    <span id="current-time">00:00</span> /
+                    <span id="total-time">00:00</span>
+                </div>
+            </div>
+        `;
+
+        // Timer in den Quiz Container einfügen (nach dem h1)
+        const quizContainer = document.getElementById('quiz-container');
+        const h1Element = quizContainer.querySelector('h1');
+        if (h1Element && h1Element.nextSibling) {
+            quizContainer.insertBefore(this.timerContainer, h1Element.nextSibling);
+        } else {
+            quizContainer.appendChild(this.timerContainer);
+        }
+
+        // Sub-Elemente neu zuweisen
+        this.progressBar = document.getElementById('progress-bar');
+        this.currentTimeElement = document.getElementById('current-time');
+        this.totalTimeElement = document.getElementById('total-time');
+
+        console.log('✅ Timer Container manuell erstellt:', this.timerContainer);
+        console.log('✅ Progress Bar manuell erstellt:', this.progressBar);
     }
 
     showTimer() {
         console.log('🔧 showTimer() aufgerufen');
 
         if (this.timerContainer) {
-            console.log('📱 Timer Container vorher:', this.timerContainer.classList.contains('hidden'));
-            this.timerContainer.classList.remove('hidden');
-            console.log('📱 Timer Container nachher:', this.timerContainer.classList.contains('hidden'));
-
-            // FORCE VISIBILITY FÜR PWA-APP
+            // ✅ ABSOLUTE SICHTBARKEIT ERZwingen
             this.timerContainer.style.display = 'block';
             this.timerContainer.style.visibility = 'visible';
             this.timerContainer.style.opacity = '1';
             this.timerContainer.style.height = 'auto';
-        } else {
-            console.error('❌ Timer Container nicht gefunden!');
+            this.timerContainer.style.minHeight = '60px';
+            this.timerContainer.style.background = '#ffffff';
+            this.timerContainer.style.border = '3px solid #4CAF50';
+            this.timerContainer.style.borderRadius = '10px';
+            this.timerContainer.style.padding = '10px';
+            this.timerContainer.style.margin = '10px 0';
+            this.timerContainer.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+
+            // Hidden Klasse entfernen
+            this.timerContainer.classList.remove('hidden');
+
+            console.log('✅ Timer Container sichtbar gemacht');
         }
 
         if (this.progressBar) {
+            // ✅ PROGRESS BAR ABSOLUT SICHTBAR MACHEN
             this.progressBar.style.display = 'block';
             this.progressBar.style.visibility = 'visible';
             this.progressBar.style.opacity = '1';
             this.progressBar.style.height = '20px';
             this.progressBar.style.minHeight = '20px';
+            this.progressBar.style.width = '100%';
+            this.progressBar.style.background = 'linear-gradient(90deg, #4CAF50, #45a049)';
+            this.progressBar.style.borderRadius = '10px';
+            this.progressBar.style.transition = 'width 1s linear';
+
+            console.log('✅ Progress Bar sichtbar gemacht');
         }
     }
 
@@ -64,70 +115,52 @@ class QuizUI {
         if (this.timerContainer) {
             this.timerContainer.classList.add('hidden');
         }
-        // Progress-Bar zurücksetzen
-        if (this.progressBar) {
-            this.progressBar.style.width = '100%';
-            this.progressBar.classList.remove('warning', 'danger');
-        }
     }
 
     updateTimer(currentTime, totalTime) {
         console.log('🔧 updateTimer() aufgerufen:', currentTime, 'von', totalTime);
 
+        // ✅ SOFORTIGE VISUALISIERUNG ERZwingen
         if (!this.progressBar) {
-            console.error('❌ Progress Bar nicht gefunden!');
-            return;
-        }
-        if (!this.currentTimeElement) {
-            console.error('❌ Current Time Element nicht gefunden!');
+            console.error('❌ Progress Bar immer noch nicht gefunden!');
             return;
         }
 
-        // Progress-Bar berechnen (0% - 100%)
-        const progress = Math.max(0, (currentTime / totalTime) * 100);
+        // Progress berechnen
+        const progress = Math.max(1, (currentTime / totalTime) * 100); // Mindestens 1% für Sichtbarkeit
         console.log('📊 Progress:', progress + '%');
 
-        // ✅ ABSOLUTE SICHERHEIT FÜR DIE BREITE
+        // ✅ ABSOLUTE BREITEN-SICHERHEIT
         this.progressBar.style.width = `${progress}%`;
-        this.progressBar.style.minWidth = '0%';
-        this.progressBar.style.maxWidth = '100%';
+        this.progressBar.style.minWidth = '1%'; // Immer mindestens 1% sichtbar
+        this.progressBar.style.display = 'block';
+        this.progressBar.style.visibility = 'visible';
 
-        // Farbwechsel bei wenig Zeit
+        // Farbwechsel
         if (progress <= 25) {
-            this.progressBar.classList.add('danger');
-            this.progressBar.classList.remove('warning');
-            console.log('🎨 Timer Farbe: ROT');
+            this.progressBar.style.background = 'linear-gradient(90deg, #f44336, #d32f2f)';
         } else if (progress <= 50) {
-            this.progressBar.classList.add('warning');
-            this.progressBar.classList.remove('danger');
-            console.log('🎨 Timer Farbe: GELB');
+            this.progressBar.style.background = 'linear-gradient(90deg, #ff9800, #f57c00)';
         } else {
-            this.progressBar.classList.remove('warning', 'danger');
-            console.log('🎨 Timer Farbe: GRÜN');
+            this.progressBar.style.background = 'linear-gradient(90deg, #4CAF50, #45a049)';
         }
 
-        // Zeit-Text formatieren (MM:SS)
+        // Zeit formatieren
         const formatTime = (seconds) => {
             const mins = Math.floor(seconds / 60);
             const secs = seconds % 60;
             return `${mins}:${secs.toString().padStart(2, '0')}`;
         };
 
-        const currentFormatted = formatTime(currentTime);
-        const totalFormatted = formatTime(totalTime);
-
-        console.log('⏱️ Zeit-Update:', currentFormatted, '/', totalFormatted);
-
         if (this.currentTimeElement) {
-            this.currentTimeElement.textContent = currentFormatted;
+            this.currentTimeElement.textContent = formatTime(currentTime);
+            this.currentTimeElement.style.fontSize = '18px';
+            this.currentTimeElement.style.fontWeight = 'bold';
         }
         if (this.totalTimeElement) {
-            this.totalTimeElement.textContent = totalFormatted;
-        }
-
-        // VISUELLER TEST FÜR PWA-APP
-        if (currentTime === totalTime) {
-            console.log('🎯 Timer-Start erfolgreich!');
+            this.totalTimeElement.textContent = formatTime(totalTime);
+            this.totalTimeElement.style.fontSize = '18px';
+            this.totalTimeElement.style.fontWeight = 'bold';
         }
     }
 
@@ -136,7 +169,6 @@ class QuizUI {
             this.quizSetupElement.classList.remove('hidden');
             this.quizContainer.classList.add('hidden');
             this.scoreContainer.classList.add('hidden');
-            // Timer ausblenden
             this.hideTimer();
         }
     }
@@ -151,7 +183,7 @@ class QuizUI {
     resetState() {
         this.nextButton.classList.add('hidden');
         this.feedbackContainer.classList.add('hidden');
-        this.currentSelectedIndices = []; // Auswahl zurücksetzen
+        this.currentSelectedIndices = [];
         while (this.answerButtonsElement.firstChild) {
             this.answerButtonsElement.removeChild(this.answerButtonsElement.firstChild);
         }
@@ -170,7 +202,6 @@ class QuizUI {
         this.nextButton.addEventListener('click', callback);
     }
 
-    // Antwort-Änderungs-Callback binden
     bindAnswerChange(callback) {
         this.answerChangeCallback = callback;
     }
@@ -193,7 +224,6 @@ class QuizUI {
             button.classList.add('btn', 'answer-btn');
             button.dataset.index = index;
 
-            // Einheitliche Click-Handler
             button.addEventListener('click', () => {
                 this.handleAnswerClick(index, isMultipleChoice);
             });
@@ -201,124 +231,98 @@ class QuizUI {
             this.answerButtonsElement.appendChild(button);
         });
 
-        // ERWEITERTER DEBUG-BUTTON FÜR DETAILIERTE DIAGNOSE
+        // ✅ ULTIMATIVER DEBUG-BUTTON
         const debugButton = document.createElement('button');
-        debugButton.innerText = '🔧 Timer Detailed Debug';
+        debugButton.innerText = '🔧 TIMER VISIBILITY TEST';
         debugButton.classList.add('btn');
-        debugButton.style.backgroundColor = '#ff9800';
+        debugButton.style.backgroundColor = '#ff0000';
+        debugButton.style.color = 'white';
         debugButton.style.marginTop = '10px';
+        debugButton.style.fontWeight = 'bold';
         debugButton.addEventListener('click', () => {
-            console.log('🔧 DETAILED TIMER DEBUG:');
-            console.log('=== ELEMENT CHECK ===');
-            console.log('Timer Container:', this.timerContainer);
-            console.log('Progress Bar:', this.progressBar);
-            console.log('Current Time Element:', this.currentTimeElement);
-            console.log('Total Time Element:', this.totalTimeElement);
+            console.log('🔧 ULTIMATIVE TIMER DIAGNOSE:');
 
-            console.log('=== VISIBILITY CHECK ===');
-            console.log('Container hidden?:', this.timerContainer?.classList.contains('hidden'));
-            console.log('Container display:', this.timerContainer?.style.display);
-            console.log('Container visibility:', this.timerContainer?.style.visibility);
-            console.log('Container opacity:', this.timerContainer?.style.opacity);
-
-            console.log('=== PROGRESS BAR STYLES ===');
+            // ✅ SOFORTIGER VISIBILITY-TEST
             if (this.progressBar) {
-                console.log('Progress Bar width:', this.progressBar.style.width);
-                console.log('Progress Bar display:', this.progressBar.style.display);
-                console.log('Progress Bar visibility:', this.progressBar.style.visibility);
-                console.log('Progress Bar background:', this.progressBar.style.background);
-                console.log('Progress Bar classes:', this.progressBar.className);
-
-                // MANUELLE VISUALISIERUNGSTESTS
-                console.log('🎨 MANUAL VISUALIZATION TESTS:');
-
-                // Test 1: Volle Breite setzen
+                // TEST 1: ROTER BALKEN (100%)
                 this.progressBar.style.width = '100%';
-                this.progressBar.style.backgroundColor = 'red';
-                this.progressBar.style.height = '20px';
-                this.progressBar.style.minHeight = '20px';
-                console.log('🔴 Test 1: Rote volle Breite gesetzt');
+                this.progressBar.style.height = '25px';
+                this.progressBar.style.background = 'red';
+                this.progressBar.style.border = '3px solid black';
+                console.log('🔴 TEST 1: DICKER ROTER BALKEN (100%)');
 
-                // Test 2: Nach 1 Sekunde auf Blau wechseln
+                // TEST 2: Nach 2 Sekunden - BLAUER BALKEN (50%)
                 setTimeout(() => {
                     this.progressBar.style.width = '50%';
-                    this.progressBar.style.backgroundColor = 'blue';
-                    console.log('🔵 Test 2: Blaue 50% Breite gesetzt');
+                    this.progressBar.style.background = 'blue';
+                    console.log('🔵 TEST 2: BLAUER BALKEN (50%)');
 
-                    // Test 3: Nach weiterer Sekunde auf Grün wechseln
+                    // TEST 3: Nach weiteren 2 Sekunden - GRÜNER BALKEN (25%)
                     setTimeout(() => {
                         this.progressBar.style.width = '25%';
-                        this.progressBar.style.backgroundColor = 'green';
-                        console.log('🟢 Test 3: Grüne 25% Breite gesetzt');
-                    }, 1000);
-                }, 1000);
-            } else {
-                console.error('❌ Progress Bar Element nicht gefunden!');
-            }
+                        this.progressBar.style.background = 'green';
+                        console.log('🟢 TEST 3: GRÜNER BALKEN (25%)');
 
-            console.log('=== CSS COMPUTED STYLES ===');
-            if (this.progressBar) {
-                const computedStyle = window.getComputedStyle(this.progressBar);
-                console.log('Computed width:', computedStyle.width);
-                console.log('Computed height:', computedStyle.height);
-                console.log('Computed display:', computedStyle.display);
-                console.log('Computed visibility:', computedStyle.visibility);
-                console.log('Computed background:', computedStyle.background);
-                console.log('Computed min-height:', computedStyle.minHeight);
+                        // TEST 4: Nach weiteren 2 Sekunden - GELBER BALKEN (10%)
+                        setTimeout(() => {
+                            this.progressBar.style.width = '10%';
+                            this.progressBar.style.background = 'yellow';
+                            this.progressBar.style.color = 'black';
+                            this.progressBar.style.textAlign = 'center';
+                            this.progressBar.style.lineHeight = '25px';
+                            this.progressBar.innerHTML = 'TIMER!';
+                            console.log('🟡 TEST 4: GELBER BALKEN MIT TEXT (10%)');
+                        }, 2000);
+                    }, 2000);
+                }, 2000);
+            } else {
+                console.error('❌ KRITISCH: Progress Bar existiert nicht!');
             }
         });
         this.answerButtonsElement.appendChild(debugButton);
     }
 
-    // Handle Antwort-Klicks (für Änderungen vor "Weiter")
     handleAnswerClick(clickedIndex, isMultipleChoice) {
         console.log('✅ Antwort geklickt:', clickedIndex, 'MultipleChoice:', isMultipleChoice);
 
         if (isMultipleChoice) {
-            // Multiple-Choice: Toggle Logik
             if (this.currentSelectedIndices.includes(clickedIndex)) {
                 this.currentSelectedIndices = this.currentSelectedIndices.filter(idx => idx !== clickedIndex);
             } else {
                 this.currentSelectedIndices.push(clickedIndex);
             }
         } else {
-            // Single-Choice: Nur eine Antwort möglich - aber KORRIGIERBAR
             if (this.currentSelectedIndices.includes(clickedIndex)) {
-                this.currentSelectedIndices = []; // Antwort abwählen
+                this.currentSelectedIndices = [];
             } else {
-                this.currentSelectedIndices = [clickedIndex]; // Neue Antwort auswählen
+                this.currentSelectedIndices = [clickedIndex];
             }
         }
 
         this.updateAnswerDisplay();
 
-        // FÜR BEIDE FRAGENTYPEN: "Weiter"-Button sofort anzeigen
         if (this.currentSelectedIndices.length > 0) {
             this.nextButton.classList.remove('hidden');
         } else {
             this.nextButton.classList.add('hidden');
         }
 
-        // FÜR SINGLE-CHOICE: Sofort Callback (für sofortige Auswertung)
         if (!isMultipleChoice && this.answerChangeCallback) {
             this.answerChangeCallback(this.currentSelectedIndices);
         }
     }
 
-    // Visuelle Darstellung aktualisieren
     updateAnswerDisplay() {
         const allButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
         allButtons.forEach(button => {
             const buttonIndex = parseInt(button.dataset.index);
 
             if (this.currentSelectedIndices.includes(buttonIndex)) {
-                // AUSGEWÄHLTE ANTWORT
                 button.style.backgroundColor = '#d1ecf1';
                 button.style.border = '2px solid #17a2b8';
                 button.style.color = '#0c5460';
                 button.classList.add('selected');
             } else {
-                // NICHT AUSGEWÄHLTE ANTWORT
                 button.style.backgroundColor = '';
                 button.style.border = '';
                 button.style.color = '';
@@ -329,19 +333,15 @@ class QuizUI {
 
     showFeedback(selectedIndices) {
         this.feedbackContainer.classList.add('hidden');
-
-        // Aktuelle Auswahl speichern
         this.currentSelectedIndices = selectedIndices;
         this.updateAnswerDisplay();
 
-        // Alle Antwort-Buttons deaktivieren
         const answerButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
         answerButtons.forEach(button => {
             button.disabled = true;
             button.style.cursor = 'not-allowed';
         });
 
-        // Weiter-Button anzeigen (falls noch nicht sichtbar)
         this.nextButton.classList.remove('hidden');
     }
 
