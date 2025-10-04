@@ -71,10 +71,10 @@ class QuizUI {
     }
 
     showTimer() {
-        console.log('🔧 showTimer() aufgerufen');
+        console.log('🔧 showTimer() AUFGERUFEN - TIMER AUTOMATISCH STARTEN');
 
         if (this.timerContainer) {
-            // ✅ ABSOLUTE SICHTBARKEIT ERZwingen
+            // ✅ ABSOLUTE SICHTBARKEIT ERZwingen - GENAU WIE BEIM DEBUG-BUTTON
             this.timerContainer.style.display = 'block';
             this.timerContainer.style.visibility = 'visible';
             this.timerContainer.style.opacity = '1';
@@ -90,11 +90,11 @@ class QuizUI {
             // Hidden Klasse entfernen
             this.timerContainer.classList.remove('hidden');
 
-            console.log('✅ Timer Container sichtbar gemacht');
+            console.log('✅ Timer Container AUTOMATISCH sichtbar gemacht');
         }
 
         if (this.progressBar) {
-            // ✅ PROGRESS BAR ABSOLUT SICHTBAR MACHEN
+            // ✅ PROGRESS BAR ABSOLUT SICHTBAR MACHEN - GENAU WIE BEIM DEBUG-BUTTON
             this.progressBar.style.display = 'block';
             this.progressBar.style.visibility = 'visible';
             this.progressBar.style.opacity = '1';
@@ -105,8 +105,17 @@ class QuizUI {
             this.progressBar.style.borderRadius = '10px';
             this.progressBar.style.transition = 'width 1s linear';
 
-            console.log('✅ Progress Bar sichtbar gemacht');
+            console.log('✅ Progress Bar AUTOMATISCH sichtbar gemacht');
         }
+
+        // ✅ SOFORTIGE VISUALISIERUNG ERZwingen
+        setTimeout(() => {
+            if (this.progressBar) {
+                this.progressBar.style.width = '100%';
+                this.progressBar.style.background = 'linear-gradient(90deg, #4CAF50, #45a049)';
+                console.log('🎯 Timer automatisch initialisiert und sichtbar!');
+            }
+        }, 100);
     }
 
     hideTimer() {
@@ -114,6 +123,11 @@ class QuizUI {
 
         if (this.timerContainer) {
             this.timerContainer.classList.add('hidden');
+        }
+        // Progress-Bar zurücksetzen
+        if (this.progressBar) {
+            this.progressBar.style.width = '100%';
+            this.progressBar.classList.remove('warning', 'danger');
         }
     }
 

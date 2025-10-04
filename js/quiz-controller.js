@@ -48,10 +48,24 @@ class QuizController {
         this.currentSelectedIndices = [];
 
         // TIMER INITIALISIEREN
-        this.totalQuizTime = this.selectedQuestionCount * 45; // 45s pro Frage
+        this.totalQuizTime = this.selectedQuestionCount * 45;
         this.remainingTime = this.totalQuizTime;
-        this.startTimer();
 
+        // ✅ NUCLEAR OPTION: Timer sofort und absolut erzwingen
+        console.log('🚀 NUCLEAR OPTION: Timer absolut erzwingen');
+        if (this.quizUI.timerContainer) {
+            this.quizUI.timerContainer.style.display = 'block';
+            this.quizUI.timerContainer.style.visibility = 'visible';
+            this.quizUI.timerContainer.style.opacity = '1';
+        }
+        if (this.quizUI.progressBar) {
+            this.quizUI.progressBar.style.display = 'block';
+            this.quizUI.progressBar.style.visibility = 'visible';
+            this.quizUI.progressBar.style.width = '100%';
+            this.quizUI.progressBar.style.background = 'linear-gradient(90deg, #4CAF50, #45a049)';
+        }
+
+        this.startTimer();
         this.showCurrentQuestion();
     }
 
@@ -99,9 +113,10 @@ class QuizController {
     }
 
     startTimer() {
+        console.log('🎯 CONTROLLER: startTimer() WIRD AUFGERUFEN');
         console.log('⏰ Timer starten...');
 
-        //  ERWEITERTES DEBUGGING FÜR PWA-APP
+        // ✅ ERWEITERTES DEBUGGING FÜR PWA-APP
         console.log('📱 Timer Container Element:', this.quizUI.timerContainer);
         console.log('📱 Timer Container sichtbar?:', this.quizUI.timerContainer?.offsetParent !== null);
         console.log('📱 Timer Container classes:', this.quizUI.timerContainer?.className);
@@ -109,7 +124,7 @@ class QuizController {
         console.log('📱 Current Time Element:', this.quizUI.currentTimeElement);
         console.log('📱 Total Time Element:', this.quizUI.totalTimeElement);
 
-        // FORCE VISIBILITY FÜR PWA-APP
+        // ✅ FORCE VISIBILITY FÜR PWA-APP
         if (this.quizUI.timerContainer) {
             this.quizUI.timerContainer.style.display = 'block';
             this.quizUI.timerContainer.style.visibility = 'visible';
@@ -129,7 +144,7 @@ class QuizController {
         // Timer-UI anzeigen
         this.quizUI.showTimer();
 
-        //  SOFORTIGE VISUALISIERUNG TESTEN
+        // ✅ SOFORTIGE VISUALISIERUNG TESTEN
         this.quizUI.updateTimer(this.remainingTime, this.totalQuizTime);
 
         // Timer starten
@@ -148,7 +163,7 @@ class QuizController {
             }
         }, 1000);
 
-        //  ZUSÄTZLICHER TEST: MANUELLE AKTUALISIERUNG NACH 1 SEKUNDE
+        // ✅ ZUSÄTZLICHER TEST: MANUELLE AKTUALISIERUNG NACH 1 SEKUNDE
         setTimeout(() => {
             console.log('⏱️ Timer-Test nach 1s - Funktioniert der Timer?');
             if (this.quizUI.progressBar) {
