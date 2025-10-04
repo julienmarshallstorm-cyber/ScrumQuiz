@@ -57,7 +57,7 @@ h1 {
     text-align: center;
     margin-top: 20px;
 }
-/*  NEU: Quiz Setup Styles */
+/* ✅ NEU: Quiz Setup Styles (ans Ende einfügen) */
 #quiz-setup {
     max-width: 400px;
     margin: 50px auto;
@@ -72,7 +72,7 @@ h1 {
     padding: 8px;
     margin: 0 10px;
     border-radius: 4px;
-    border: 1px solid lightgray;
+    border: 1px solid light gray;
     font-size: 16px;
 }
 
@@ -83,21 +83,21 @@ h1 {
 .hidden {
     display: none;
 }
-/* Klassen für richtige/falsche Antworten */
+/* NEU: Klassen für richtige/falsche Antworten */
 .correct {
-    background-color: lightgreen;
+    background-color: light green;
     border: 2px solid green;
 }
 .incorrect {
-    background-color: lightcoral;
+    background-color: light coral;
     border: 2px solid red;
 }
 .disabled-btn {
-    background-color: lightgray !important;
+    background-color: light gray !important;
     color: gray !important;
     cursor: not-allowed !important;
 }
-/*  Styles für Antwort-Änderung und Multiple-Choice */
+/* ✅ NEU: Styles für Antwort-Änderung und Multiple-Choice */
 .answer-btn.selected {
     box-shadow: 0 0 8px rgba(23, 162, 184, 0.7);
     font-weight: bold;
@@ -112,35 +112,40 @@ h1 {
     transition: all 0.2s ease;
 }
 
-/*  Styles für bestätigte Antworten (nach "Weiter") */
+/* ✅ Styles für bestätigte Antworten (nach "Weiter") */
 .answer-btn.confirmed {
     background-color: #e9ecef !important;
     color: #6c757d !important;
     cursor: not-allowed;
 }
 
-/*  Unterschiedliche Farben für Multiple-Choice Auswahl */
+/* ✅ Unterschiedliche Farben für Multiple-Choice Auswahl */
 .answer-btn.multiple-selected {
     background-color: #d1ecf1;
     border: 2px solid #17a2b8;
     color: #0c5460;
 }
 
-/* Timer Styles - VERBESSERT FÜR MOBILE */
-#timer-container {
-    margin: 15px 0;
-    padding: 12px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    border: 2px solid #4CAF50;
+/* ✅ Bestätigungs-Button für Multiple-Choice */
+.confirm-btn {
+    background-color: #28a745 !important;
+    font-weight: bold;
+    margin: 10px auto;
+    display: block;
+    width: auto !important;
 }
 
-/* Sicherstellen dass Timer immer sichtbar ist wenn nicht hidden */
-#timer-container:not(.hidden) {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+.confirm-btn:hover {
+    background-color: #218838 !important;
+    transform: translateY(-1px);
+}
+/* Timer Styles */
+#timer-container {
+    margin: 20px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 #timer-display {
@@ -151,20 +156,18 @@ h1 {
 
 #progress-bar-container {
     flex: 1;
-    height: 16px; /* Größer für bessere Sichtbarkeit */
+    height: 12px;
     background: #e9ecef;
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
 }
 
 #progress-bar {
     height: 100%;
     background: linear-gradient(90deg, #4CAF50, #45a049);
-    border-radius: 8px;
+    border-radius: 6px;
     width: 100%;
-    transition: width 1s linear, background-color 0.5s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: width 1s linear, background-color 0.3s;
 }
 
 #progress-bar.warning {
@@ -173,13 +176,6 @@ h1 {
 
 #progress-bar.danger {
     background: linear-gradient(90deg, #f44336, #d32f2f);
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.7; }
-    100% { opacity: 1; }
 }
 
 #time-text {
@@ -189,91 +185,16 @@ h1 {
     color: #333;
     min-width: 120px;
     text-align: center;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-/* ✅ VERBESSERTE MOBILE OPTIMIERUNG */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
-    #quiz-container {
-        padding: 15px;
-        margin: 10px auto;
-    }
-
-    #timer-container {
-        margin: 10px 0;
-        padding: 10px;
-        border-width: 3px; /* Dickerer Rand für Mobile */
-    }
-
+/* Responsive */
+@media (max-width: 600px) {
     #timer-display {
         flex-direction: column;
-        gap: 12px;
-    }
-
-    #progress-bar-container {
-        height: 20px; /* Extra groß für Mobile Touch */
-        width: 100%;
-        order: 1; /* Balken zuerst */
+        gap: 10px;
     }
 
     #time-text {
-        order: 2; /* Zeit-Text danach */
-        font-size: 20px; /* Größer für Mobile */
         min-width: auto;
-        width: 100%;
-        padding: 5px 0;
     }
-
-    .btn {
-        padding: 12px 20px; /* Größere Buttons für Mobile */
-        font-size: 16px;
-    }
-
-    .answer-btn {
-        padding: 12px 15px; /* Größere Antwort-Buttons */
-        margin: 8px 0;
-    }
-}
-
-/*  EXTRA KLEINE DISPLAYS (Smartphones) */
-@media (max-width: 480px) {
-    #timer-container {
-        padding: 8px;
-    }
-
-    #progress-bar-container {
-        height: 18px;
-    }
-
-    #time-text {
-        font-size: 18px;
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    #quiz-setup {
-        margin: 20px auto;
-        padding: 15px;
-    }
-}
-
-/*  SICHERSTELLEN DASS TIMER IMMER SICHTBAR */
-#timer-container {
-    position: relative;
-    z-index: 10;
-}
-
-/*  FALLBACK FÜN HIDDEN CLASS PROBLEME */
-#timer-container.hidden {
-    display: none !important;
-}
-
-#timer-container:not(.hidden) {
-    display: flex !important;
 }
