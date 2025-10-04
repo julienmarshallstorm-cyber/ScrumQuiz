@@ -24,21 +24,9 @@ class QuizUI {
         if (!this.questionCountSelect) console.error('question-count nicht gefunden');
         if (!this.startQuizButton) console.error('start-quiz-btn nicht gefunden');
     }
-
     showTimer() {
         if (this.timerContainer) {
             this.timerContainer.classList.remove('hidden');
-        }
-    }
-
-    hideTimer() {
-        if (this.timerContainer) {
-            this.timerContainer.classList.add('hidden');
-        }
-        // Progress-Bar zurücksetzen
-        if (this.progressBar) {
-            this.progressBar.style.width = '100%';
-            this.progressBar.classList.remove('warning', 'danger');
         }
     }
 
@@ -70,14 +58,11 @@ class QuizUI {
         this.currentTimeElement.textContent = formatTime(currentTime);
         this.totalTimeElement.textContent = formatTime(totalTime);
     }
-
     showSetup() {
         if (this.quizSetupElement) {
             this.quizSetupElement.classList.remove('hidden');
             this.quizContainer.classList.add('hidden');
             this.scoreContainer.classList.add('hidden');
-            // Timer ausblenden
-            this.hideTimer();
         }
     }
 
@@ -110,7 +95,7 @@ class QuizUI {
         this.nextButton.addEventListener('click', callback);
     }
 
-    // Antwort-Änderungs-Callback binden
+    // NEU: Antwort-Änderungs-Callback binden
     bindAnswerChange(callback) {
         this.answerChangeCallback = callback;
     }
@@ -133,7 +118,7 @@ class QuizUI {
             button.classList.add('btn', 'answer-btn');
             button.dataset.index = index;
 
-            // Einheitliche Click-Handler
+            //  VERBESSERT: Einheitliche Click-Handler
             button.addEventListener('click', () => {
                 this.handleAnswerClick(index, isMultipleChoice);
             });
@@ -141,10 +126,21 @@ class QuizUI {
             this.answerButtonsElement.appendChild(button);
         });
 
-        // ✅ KEIN BESTÄTIGUNGS-BUTTON MEHR - WURDE ENTFERNT
+        /*BESTÄTIGUNGS-BUTTON FÜR ALLE FRAGENTYPEN (Single & Multiple Choice)
+        const confirmButton = document.createElement('button');
+        confirmButton.innerText = '✅ Antwort bestätigen';
+        confirmButton.classList.add('btn', 'confirm-btn');
+        confirmButton.style.marginTop = '10px';
+        confirmButton.style.backgroundColor = '#28a745';
+        confirmButton.addEventListener('click', () => {
+            console.log('🔄 Confirm-Button geklickt', this.currentSelectedIndices);
+            if (this.answerChangeCallback) {
+                this.answerChangeCallback(this.currentSelectedIndices);
+            }
+        });
+        this.answerButtonsElement.appendChild(confirmButton);*/
     }
-
-    // Handle Antwort-Klicks (für Änderungen vor "Weiter")
+    // NEU: Handle Antwort-Klicks (für Änderungen vor "Weiter")
     handleAnswerClick(clickedIndex, isMultipleChoice) {
         console.log('✅ Antwort geklickt:', clickedIndex, 'MultipleChoice:', isMultipleChoice);
 
@@ -155,24 +151,19 @@ class QuizUI {
             } else {
                 this.currentSelectedIndices.push(clickedIndex);
             }
-        } else {
-            // Single-Choice: Nur eine Antwort möglich - aber KORRIGIERBAR
-            if (this.currentSelectedIndices.includes(clickedIndex)) {
-                this.currentSelectedIndices = []; // Antwort abwählen
-            } else {
-                this.currentSelectedIndices = [clickedIndex]; // Neue Antwort auswählen
+        } else{
+
+                if (this.currentSelectedIndices.includes(clickedIndex)) {
+                    this.currentSelectedIndices = []; // Antwort abwählen
+                } else {
+                    this.currentSelectedIndices = [clickedIndex]; // Neue Antwort auswählen
+                }
             }
 
-            // ✅ SOFORT Callback für Single-Choice (da keine Bestätigung mehr)
-            if (this.answerChangeCallback) {
-                this.answerChangeCallback(this.currentSelectedIndices);
-            }
+            this.updateAnswerDisplay();
         }
 
-        this.updateAnswerDisplay();
-    }
-
-    // Visuelle Darstellung aktualisieren
+    // NEU: Visuelle Darstellung aktualisieren
     updateAnswerDisplay() {
         const allButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
         allButtons.forEach(button => {
@@ -193,48 +184,69 @@ class QuizUI {
             }
         });
 
-        // ✅ KEINE BESTÄTIGUNGS-BUTTON LOGIK MEHR - WURDE ENTFERNT
+        // VISUELLE RÜCKMELDUNG FÜR BESTÄTIGUNGS-BUTTON
+        const confirmButton = this.answerButtonsElement.querySelector('.confirm-btn');
+        if (confirmButton) {
+            if (this.currentSelectedIndices.length > 0) {
+                // ANTWORT AUSGEWÄHLT - Button aktiv
+                confirmButton.style.backgroundColor = '#28a745';
+                confirmButton.style.opacity = '1';
+                confirmButton.disabled = false;
+            } else {
+                // KEINE ANTWORT AUSGEWÄHLT - Button inaktiv
+                confirmButton.style.backgroundColor = '#6c757d';
+                confirmButton.style.opacity = '0.6';
+                confirmButton.disabled = true;
+            }
+        }
+    }
+showFeedback(selectedIndices) {
+    this.feedbackContainer.classList.add('hidden');
+
+    // BESTÄTIGUNGS-BUTTON DEAKTIVIEREN UND GRAU MACHEN
+    const confirmButton = this.answerButtonsElement.querySelector('.confirm-btn');
+    if (confirmButton) {
+        confirmButton.style.backgroundColor = '#6c757d'; // Grau
+        confirmButton.style.opacity = '0.6';
+        confirmButton.disabled = true;
+        confirmButton.innerText = '✅ Bestätigt';
+        confirmButton.style.cursor = 'not-allowed';
     }
 
-    showFeedback(selectedIndices) {
-        this.feedbackContainer.classList.add('hidden');
+    // Aktuelle Auswahl speichern
+    this.currentSelectedIndices = selectedIndices;
+    this.updateAnswerDisplay();
 
-        // ✅ KEINE BESTÄTIGUNGS-BUTTON BEARBEITUNG MEHR - WURDE ENTFERNT
+    // Alle Antwort-Buttons deaktivieren
+    const answerButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
+    answerButtons.forEach(button => {
+        button.disabled = true;
+        button.style.cursor = 'not-allowed';
+    });
 
-        // Aktuelle Auswahl speichern
-        this.currentSelectedIndices = selectedIndices;
-        this.updateAnswerDisplay();
-
-        // Alle Antwort-Buttons deaktivieren
-        const answerButtons = this.answerButtonsElement.querySelectorAll('.answer-btn');
-        answerButtons.forEach(button => {
-            button.disabled = true;
-            button.style.cursor = 'not-allowed';
-        });
-
-        // Weiter-Button anzeigen
-        this.nextButton.classList.remove('hidden');
-    }
+    // Weiter-Button anzeigen
+    this.nextButton.classList.remove('hidden');
+}
 
     showScore(score, totalQuestions, wrongAnswers) {
-        console.log('🏆 showScore aufgerufen', wrongAnswers.length, 'falsche Antworten');
+         console.log('🏆 showScore aufgerufen', wrongAnswers.length, 'falsche Antworten');
 
         this.resetState();
         const percentage = Math.round((score / totalQuestions) * 100);
         const wrongCount = totalQuestions - score;
 
-        let message = '';
-        if (percentage >= 84) {
-            message = 'Herzlichen Glückwunsch! Test bestanden! 🎉';
-        } else {
-            message = 'Test nicht bestanden. Weiter üben! 💪';
-        }
+         let message = '';
+            if (percentage >= 84) {
+                message = 'Herzlichen Glückwunsch! Test bestanden! 🎉';
+            } else {
+                message = 'Test nicht bestanden. Weiter üben! 💪';
+            }
 
-        this.questionTextElement.innerHTML = `
-            <h2>Quiz abgeschlossen!</h2>
-            <p><strong>Erreicht: ${percentage}%</strong> (${score} von ${totalQuestions} Fragen richtig)</p>
-            <p>${message}</p>
-        `;
+            this.questionTextElement.innerHTML = `
+                <h2>Quiz abgeschlossen!</h2>
+                <p><strong>Erreicht: ${percentage}%</strong> (${score} von ${totalQuestions} Fragen richtig)</p>
+                <p>${message}</p>
+            `;
 
         this.scoreElement.innerText = score;
         this.totalQuestionsElement.innerText = totalQuestions;
