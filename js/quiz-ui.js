@@ -24,7 +24,7 @@ class QuizUI {
         if (!this.questionCountSelect) console.error('question-count nicht gefunden');
         if (!this.startQuizButton) console.error('start-quiz-btn nicht gefunden');
 
-        // ✅ TIMER-DEBUGGING IM CONSTRUCTOR
+        // Timer-Debugging im Constructor
         console.log('🔧 QuizUI Constructor - Timer Elemente:');
         console.log('📱 Timer Container:', this.timerContainer);
         console.log('📱 Progress Bar:', this.progressBar);
@@ -40,16 +40,21 @@ class QuizUI {
             this.timerContainer.classList.remove('hidden');
             console.log('📱 Timer Container nachher:', this.timerContainer.classList.contains('hidden'));
 
-            // ✅ FORCE VISIBILITY FÜR PWA-APP
+            // FORCE VISIBILITY FÜR PWA-APP
             this.timerContainer.style.display = 'block';
             this.timerContainer.style.visibility = 'visible';
             this.timerContainer.style.opacity = '1';
+            this.timerContainer.style.height = 'auto';
         } else {
             console.error('❌ Timer Container nicht gefunden!');
         }
 
         if (this.progressBar) {
             this.progressBar.style.display = 'block';
+            this.progressBar.style.visibility = 'visible';
+            this.progressBar.style.opacity = '1';
+            this.progressBar.style.height = '20px';
+            this.progressBar.style.minHeight = '20px';
         }
     }
 
@@ -79,10 +84,13 @@ class QuizUI {
         }
 
         // Progress-Bar berechnen (0% - 100%)
-        const progress = (currentTime / totalTime) * 100;
+        const progress = Math.max(0, (currentTime / totalTime) * 100);
         console.log('📊 Progress:', progress + '%');
 
+        // ✅ ABSOLUTE SICHERHEIT FÜR DIE BREITE
         this.progressBar.style.width = `${progress}%`;
+        this.progressBar.style.minWidth = '0%';
+        this.progressBar.style.maxWidth = '100%';
 
         // Farbwechsel bei wenig Zeit
         if (progress <= 25) {
@@ -110,10 +118,14 @@ class QuizUI {
 
         console.log('⏱️ Zeit-Update:', currentFormatted, '/', totalFormatted);
 
-        this.currentTimeElement.textContent = currentFormatted;
-        this.totalTimeElement.textContent = totalFormatted;
+        if (this.currentTimeElement) {
+            this.currentTimeElement.textContent = currentFormatted;
+        }
+        if (this.totalTimeElement) {
+            this.totalTimeElement.textContent = totalFormatted;
+        }
 
-        // ✅ VISUELLER TEST FÜR PWA-APP
+        // VISUELLER TEST FÜR PWA-APP
         if (currentTime === totalTime) {
             console.log('🎯 Timer-Start erfolgreich!');
         }
@@ -189,28 +201,70 @@ class QuizUI {
             this.answerButtonsElement.appendChild(button);
         });
 
-        // ✅ TEMPORÄRER DEBUG-BUTTON FÜR TIMER
+        // ERWEITERTER DEBUG-BUTTON FÜR DETAILIERTE DIAGNOSE
         const debugButton = document.createElement('button');
-        debugButton.innerText = '🔧 Timer Debug';
+        debugButton.innerText = '🔧 Timer Detailed Debug';
         debugButton.classList.add('btn');
         debugButton.style.backgroundColor = '#ff9800';
         debugButton.style.marginTop = '10px';
         debugButton.addEventListener('click', () => {
-            console.log('🔧 TIMER DEBUG MANUELL:');
-            console.log('Container:', this.timerContainer);
-            console.log('ProgressBar:', this.progressBar);
-            console.log('CurrentTime:', this.currentTimeElement);
-            console.log('TotalTime:', this.totalTimeElement);
-            console.log('Hidden?:', this.timerContainer?.classList.contains('hidden'));
-            console.log('Display:', this.timerContainer?.style.display);
-            console.log('Visibility:', this.timerContainer?.style.visibility);
+            console.log('🔧 DETAILED TIMER DEBUG:');
+            console.log('=== ELEMENT CHECK ===');
+            console.log('Timer Container:', this.timerContainer);
+            console.log('Progress Bar:', this.progressBar);
+            console.log('Current Time Element:', this.currentTimeElement);
+            console.log('Total Time Element:', this.totalTimeElement);
 
-            // Timer manuell anzeigen und testen
-            this.showTimer();
+            console.log('=== VISIBILITY CHECK ===');
+            console.log('Container hidden?:', this.timerContainer?.classList.contains('hidden'));
+            console.log('Container display:', this.timerContainer?.style.display);
+            console.log('Container visibility:', this.timerContainer?.style.visibility);
+            console.log('Container opacity:', this.timerContainer?.style.opacity);
+
+            console.log('=== PROGRESS BAR STYLES ===');
             if (this.progressBar) {
-                this.progressBar.style.width = '75%';
-                this.progressBar.style.backgroundColor = 'blue';
-                console.log('🎨 Manuelle Progress-Bar gesetzt');
+                console.log('Progress Bar width:', this.progressBar.style.width);
+                console.log('Progress Bar display:', this.progressBar.style.display);
+                console.log('Progress Bar visibility:', this.progressBar.style.visibility);
+                console.log('Progress Bar background:', this.progressBar.style.background);
+                console.log('Progress Bar classes:', this.progressBar.className);
+
+                // MANUELLE VISUALISIERUNGSTESTS
+                console.log('🎨 MANUAL VISUALIZATION TESTS:');
+
+                // Test 1: Volle Breite setzen
+                this.progressBar.style.width = '100%';
+                this.progressBar.style.backgroundColor = 'red';
+                this.progressBar.style.height = '20px';
+                this.progressBar.style.minHeight = '20px';
+                console.log('🔴 Test 1: Rote volle Breite gesetzt');
+
+                // Test 2: Nach 1 Sekunde auf Blau wechseln
+                setTimeout(() => {
+                    this.progressBar.style.width = '50%';
+                    this.progressBar.style.backgroundColor = 'blue';
+                    console.log('🔵 Test 2: Blaue 50% Breite gesetzt');
+
+                    // Test 3: Nach weiterer Sekunde auf Grün wechseln
+                    setTimeout(() => {
+                        this.progressBar.style.width = '25%';
+                        this.progressBar.style.backgroundColor = 'green';
+                        console.log('🟢 Test 3: Grüne 25% Breite gesetzt');
+                    }, 1000);
+                }, 1000);
+            } else {
+                console.error('❌ Progress Bar Element nicht gefunden!');
+            }
+
+            console.log('=== CSS COMPUTED STYLES ===');
+            if (this.progressBar) {
+                const computedStyle = window.getComputedStyle(this.progressBar);
+                console.log('Computed width:', computedStyle.width);
+                console.log('Computed height:', computedStyle.height);
+                console.log('Computed display:', computedStyle.display);
+                console.log('Computed visibility:', computedStyle.visibility);
+                console.log('Computed background:', computedStyle.background);
+                console.log('Computed min-height:', computedStyle.minHeight);
             }
         });
         this.answerButtonsElement.appendChild(debugButton);
@@ -238,14 +292,14 @@ class QuizUI {
 
         this.updateAnswerDisplay();
 
-        // ✅ FÜR BEIDE FRAGENTYPEN: "Weiter"-Button sofort anzeigen
+        // FÜR BEIDE FRAGENTYPEN: "Weiter"-Button sofort anzeigen
         if (this.currentSelectedIndices.length > 0) {
             this.nextButton.classList.remove('hidden');
         } else {
             this.nextButton.classList.add('hidden');
         }
 
-        // ✅ FÜR SINGLE-CHOICE: Sofort Callback (für sofortige Auswertung)
+        // FÜR SINGLE-CHOICE: Sofort Callback (für sofortige Auswertung)
         if (!isMultipleChoice && this.answerChangeCallback) {
             this.answerChangeCallback(this.currentSelectedIndices);
         }
