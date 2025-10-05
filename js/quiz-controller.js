@@ -51,25 +51,57 @@ class QuizController {
         this.totalQuizTime = this.selectedQuestionCount * 45;
         this.remainingTime = this.totalQuizTime;
 
+        // ✅ ZUERST: Quiz-Container sichtbar machen (ÜBERGEORDNETER CONTAINER)
         this.quizUI.hideSetup();
 
-       // DANACH: Timer sichtbar machen und starten
-           console.log('🚀 NUCLEAR OPTION: Timer absolut erzwingen');
-           if (this.quizUI.timerContainer) {
-               this.quizUI.timerContainer.style.display = 'block';
-               this.quizUI.timerContainer.style.visibility = 'visible';
-               this.quizUI.timerContainer.style.opacity = '1';
-               this.quizUI.timerContainer.classList.remove('hidden');
-           }
-           if (this.quizUI.progressBar) {
-               this.quizUI.progressBar.style.display = 'block';
-               this.quizUI.progressBar.style.visibility = 'visible';
-               this.quizUI.progressBar.style.width = '100%';
-               this.quizUI.progressBar.style.background = 'linear-gradient(90deg, #4CAF50, #45a049)';
-           }
+        // ✅ FORCE BROWSER RE-LAYOUT - KRITISCH FÜR PWA
+        setTimeout(() => {
+            console.log('🚀 TIMER VISIBILITY FORCE IN PWA');
 
-        this.startTimer();
-        this.showCurrentQuestion();
+            // ✅ ABSOLUTE SICHTBARKEIT FÜR PWA
+            if (this.quizUI.timerContainer) {
+                // NUCLEAR OPTION FÜR PWA
+                this.quizUI.timerContainer.style.cssText = `
+                    display: block !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    height: auto !important;
+                    min-height: 80px !important;
+                    background: #ffffff !important;
+                    border: 3px solid #4CAF50 !important;
+                    border-radius: 10px !important;
+                    padding: 12px !important;
+                    margin: 15px 0 !important;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+                    position: relative !important;
+                    z-index: 1000 !important;
+                `;
+
+                // KLASSE ENTFERNEN FÜR PWA
+                this.quizUI.timerContainer.classList.remove('hidden');
+                this.quizUI.timerContainer.className = 'timer-visible-force';
+            }
+
+            if (this.quizUI.progressBar) {
+                this.quizUI.progressBar.style.cssText = `
+                    display: block !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    height: 20px !important;
+                    min-height: 20px !important;
+                    width: 100% !important;
+                    background: linear-gradient(90deg, #4CAF50, #45a049) !important;
+                    border-radius: 10px !important;
+                    transition: width 1s linear !important;
+                `;
+            }
+
+            // ✅ JETZT ERST: Timer starten
+            this.startTimer();
+            this.showCurrentQuestion();
+
+            console.log('✅ PWA TIMER ABSOLUT SICHTBAR GEMACHT');
+        }, 100); // Längerer Delay für PWA
     }
 
     showCurrentQuestion() {

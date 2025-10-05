@@ -142,6 +142,21 @@ h1 {
     visibility: visible !important;
     opacity: 1 !important;
 }
+.timer-visible-force {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#timer-container.timer-visible-force {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #ffffff !important;
+    border: 3px solid #4CAF50 !important;
+    margin: 15px 0 !important;
+    padding: 12px !important;
+}
 
 #timer-display {
     display: flex;
