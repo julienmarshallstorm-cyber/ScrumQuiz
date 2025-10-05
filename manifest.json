@@ -1,7 +1,7 @@
 {
-  "name": "Scrum Quiz 2020",
-  "short_name": "ScrumQuiz",
-  "description": "Official Scrum Quiz PSM1",
+  "name": "Quiz 2020",
+  "short_name": "Quiz",
+  "description": "Quiz",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#4CAF50",
