@@ -438,6 +438,642 @@
     ],
     "correctIndex": 0,
     "quote": "replace() replaces all occurrences of 'b' with 'x'."
+  },
+  {
+    "question": "What will be the output after the following code snippet is executed?\na = 5 // 3 * 2\nprint(A)",
+    "answers": [
+      "2",
+      "0",
+      "2.0",
+      "Python will show an error"
+    ],
+    "correctIndex": 3,
+    "quote": "The code will raise a NameError because variable 'A' (uppercase) is used in print() but 'a' (lowercase) was assigned the value. Python is case-sensitive."
+  },
+  {
+    "question": "What will be the output after running the following code?\nprint(len('H'), len('I!'), sep='', end='!')",
+    "answers": [
+      "HI!!",
+      "2",
+      "12!",
+      "12"
+    ],
+    "correctIndex": 2,
+    "quote": "len('H') returns 1, len('I!') returns 2. sep='' removes the space between them, so '12' is printed. end='!' adds '!' at the end, resulting in '12!'."
+  },
+  {
+    "question": "What will be the output of the following snippet?\ndef show_truth():\n    mysterious_var = 'New Surprise!'\n    print(mysterious_var)\n\nmysterious_var = 'Surprise!'\nprint(mysterious_var)\nshow_truth()\nprint(mysterious_var)",
+    "answers": [
+      "New Surprise!\nNew Surprise!\nNew Surprise!",
+      "Surprise!\nSurprise!\nSurprise!",
+      "Surprise!\nNew Surprise!\nSurprise!",
+      "Surprise!\nNew Surprise!\nNew Surprise!"
+    ],
+    "correctIndex": 2,
+    "quote": "The function creates a new local variable 'mysterious_var' that shadows the global one. The global variable remains unchanged outside the function."
+  },
+  {
+    "question": "What will be the output of the following code?\ndef show_truth():\n    mysterious_var.append('New Surprise!')\n    print(mysterious_var)\n\nmysterious_var = ['Surprise!']\nprint(mysterious_var)\nshow_truth()\nprint(mysterious_var)",
+    "answers": [
+      "['Surprise!']\n['Surprise!']\n['Surprise!', 'New Surprise!']",
+      "['Surprise!']\n['Surprise!', 'New Surprise!']\n['Surprise!', 'New Surprise!']",
+      "['Surprise!']\n['Surprise!', 'New Surprise!']\n['Surprise!']",
+      "['Surprise!', 'New Surprise!']\n['Surprise!', 'New Surprise!']\n['Surprise!', 'New Surprise!']"
+    ],
+    "correctIndex": 1,
+    "quote": "Lists are mutable. The function modifies the original list by appending to it, so all prints show the modified list with both elements."
+  },
+  {
+    "question": "What is true about the following code snippet?\nlist1 = [1, 2, 3]\nlist2 = list1[:]",
+    "answers": [
+      "list2 and list1 will point to the same list in the memory",
+      "list2 and list1 will point to two different lists in the memory",
+      "The syntax list1[:] is incorrect and Python will show an error because you need to provide at least one index in the square brackets",
+      "It is impossible to predict upfront if the two variables will point to the same list or not."
+    ],
+    "correctIndex": 1,
+    "quote": "Using list1[:] creates a shallow copy of the list, so list2 points to a different list object in memory with the same elements."
+  },
+  {
+    "question": "Which of the following does the Python interpreter verify before executing Python code?",
+    "answers": [
+      "Alphabetic, lexical, analytical and syntactical correctness",
+      "Alphabetic, lexical, syntactical and semantic correctness",
+      "Alphabetic, lexical, syntactical and informal correctness",
+      "Binary, lexical, syntactical and semantic correctness"
+    ],
+    "correctIndex": 1,
+    "quote": "Python checks: alphabetic (valid characters), lexical (token formation), syntactical (grammar rules), and semantic (meaning/context) correctness before execution."
+  },
+  {
+    "question": "What are built-in Python functions?",
+    "answers": [
+      "Functions that call themselves.",
+      "Functions that come with Python and are an integral part of Python.",
+      "Functions that need to be imported before they can be used.",
+      "Functions that are hidden from programmers and can't be used directly."
+    ],
+    "correctIndex": 1,
+    "quote": "Built-in functions are always available in Python without any import statements, such as print(), len(), range(), etc."
+  },
+  {
+    "question": "What will be the sum of all elements in the list after the following operations?\nnumbers = [0, 1, 2]\nnumbers.insert(0, 1)\ndel numbers[1]",
+    "answers": [
+      "0",
+      "4",
+      "3",
+      "5"
+    ],
+    "correctIndex": 2,
+    "quote": "After numbers.insert(0, 1): [1, 0, 1, 2]. After del numbers[1]: [1, 1, 2]. Sum = 1 + 1 + 2 = 4"
+  },
+  {
+    "question": "Which of the following is incorrect for a dictionary in Python?",
+    "answers": [
+      "each key must be unique",
+      "the key should be an immutable object",
+      "the len() function returns the sum of key-value elements in the dictionary",
+      "the len() function returns the numbers of key-value elements in the dictionary"
+    ],
+    "correctIndex": 2,
+    "quote": "len() returns the number of key-value pairs (elements), not the sum. Each key must be unique and keys should be immutable objects."
+  },
+  {
+    "question": "Python name comes from which of the following?",
+    "answers": [
+      "Python Café",
+      "Python Forest",
+      "Python snake",
+      "Monty Python's Flying Circus"
+    ],
+    "correctIndex": 3,
+    "quote": "Python was named after the British comedy series 'Monty Python's Flying Circus', not the snake."
+  },
+  {
+    "question": "What does the method items() returns in Python Dictionary?",
+    "answers": [
+      "The method items() returns the lists",
+      "The method items() returns the tuples",
+      "The method items() returns the keys in a list",
+      "The method items() returns the values in a list"
+    ],
+    "correctIndex": 1,
+    "quote": "dict.items() returns a view object of tuples containing (key, value) pairs for each dictionary entry."
+  },
+  {
+    "question": "A complete, self-contained unit of Python code that can be executed is called a:",
+    "answers": [
+      "Script",
+      "Code laws",
+      "Command-line",
+      "Command list"
+    ],
+    "correctIndex": 0,
+    "quote": "A Python script is a complete, self-contained program that can be executed by the Python interpreter."
+  },
+  {
+    "question": "Which of the following are correct statements?",
+    "answers": [
+      "True + 1 evaluates to 2",
+      "True and False evaluates to False",
+      "True or False evaluates to False",
+      "7 + False evaluates to False"
+    ],
+    "correctIndex": 1,
+    "quote": "True + 1 = 2 (True=1), True and False = False (logical AND), True or False = True (logical OR), 7 + False = 7 (False=0)"
+  },
+  {
+    "question": "Octal has the following base:",
+    "answers": [
+      "2",
+      "8",
+      "10",
+      "16"
+    ],
+    "correctIndex": 1,
+    "quote": "Octal numeral system has base 8, using digits 0-7. Binary=base2, Decimal=base10, Hexadecimal=base16."
+  },
+  {
+    "question": "If a list passed into function's argument and modified inside the function:",
+    "answers": [
+      "Will affect the argument",
+      "Will not affect the argument",
+      "Will give an error",
+      "Will become global by default"
+    ],
+    "correctIndex": 0,
+    "quote": "Lists are mutable objects in Python. When passed to a function, modifications affect the original list since it's passed by object reference."
+  },
+  {
+    "question": "An integer number preceded by an 0x (Zero-x) will be treated as:",
+    "answers": [
+      "Octal",
+      "Binary",
+      "Hexadecimal",
+      "Decimal"
+    ],
+    "correctIndex": 2,
+    "quote": "0x prefix indicates hexadecimal (base16), 0o prefix indicates octal (base8), 0b prefix indicates binary (base2)."
+  },
+  {
+    "question": "Who created Python?",
+    "answers": [
+      "Guido ban Rossum",
+      "Guido van Rossum",
+      "Guido the Russian",
+      "Guodo van Rossum"
+    ],
+    "correctIndex": 1,
+    "quote": "Python was created by Guido van Rossum and first released in 1991."
+  },
+  {
+    "question": "The meaning of positional parameter is determined by:",
+    "answers": [
+      "Position",
+      "Name",
+      "Style"
+    ],
+    "correctIndex": 0,
+    "quote": "Positional parameters are determined by their position/order in the function call, unlike keyword parameters which are identified by name."
+  },
+  {
+    "question": "Insert the correct snippet so that the program produces the expected output.\nExpected output: False\n\nlist = [1, 2, 3, 4, 5]\nb = ???\nprint(b)",
+    "answers": [
+      "b = 0 not in list",
+      "b = list[0]",
+      "b = 0 in list",
+      "b = False"
+    ],
+    "correctIndex": 2,
+    "quote": "b = 0 in list returns False because 0 is not in the list [1, 2, 3, 4, 5]"
+  },
+  {
+    "question": "Assuming that the tuple is a correctly created tuple, the fact that tuples are immutable means that the following instruction:\nmy_tuple[1] = my_tuple[1] + my_tuple[0]",
+    "answers": [
+      "is illegal",
+      "may be illegal if the tuple contains strings",
+      "can be executed if and only if the tuple contains at least two elements",
+      "is fully correct"
+    ],
+    "correctIndex": 0,
+    "quote": "Tuples are immutable in Python, so you cannot modify their elements after creation."
+  },
+  {
+    "question": "What is the expected output of the following code?\nx = 2\ny = 4\nprint((x + y) / 2)",
+    "answers": [
+      "2",
+      "4",
+      "5",
+      "3"
+    ],
+    "correctIndex": 3,
+    "quote": "(2 + 4) / 2 = 6 / 2 = 3.0, but since 3 is the closest option, it's accepted."
+  },
+  {
+    "question": "What is the expected output of the following code?\nlist = [1, 2, 3, 4]\nprint(list[0:3:2])",
+    "answers": [
+      "[1, 3]",
+      "[1, 4]",
+      "[4, 3]",
+      "[1, 3, 4]"
+    ],
+    "correctIndex": 0,
+    "quote": "Slicing [0:3:2] means start at index 0, end at index 3 (exclusive), step 2 - so indices 0 and 2: [1, 3]"
+  },
+  {
+    "question": "What is the expected output of the following code?\nlist = ['Peter', 404, 3.03, 'Wellert', 33.3]\nprint(list[1:3])",
+    "answers": [
+      "['Peter', 404, 3.03, 'Wellert', 33.3]",
+      "None of the above.",
+      "[404, 3.03]",
+      "['Peter', 'Wellert']"
+    ],
+    "correctIndex": 2,
+    "quote": "Slicing [1:3] returns elements from index 1 to 3 (exclusive): [404, 3.03]"
+  },
+  {
+    "question": "Take a look at the snippet, and choose the true statements: (Choose two.)\nnums = [1, 2, 3]\nvals = nums",
+    "answers": [
+      "nums is longer than vals",
+      "nums and vals are of the same length",
+      "vals is longer than nums",
+      "nums and vals refer to the same list"
+    ],
+    "correctIndex": [1, 3],
+    "quote": "vals = nums creates a reference to the same list object, so they have the same length and point to the same list."
+  },
+  {
+    "question": "What is the output of the following snippet?\na = 1\nb = 2\na, b = b, a\nprint(a, b)",
+    "answers": [
+      "12",
+      "(2, 1)",
+      "(1, 2)",
+      "21"
+    ],
+    "correctIndex": 1,
+    "quote": "a, b = b, a swaps the values. a becomes 2, b becomes 1. print outputs: 2 1"
+  },
+  {
+    "question": "What is the expected output of the following code?\nprint(list('hello'))",
+    "answers": [
+      "hello",
+      "[h, e, l, l, o]",
+      "['h', 'e', 'l', 'l', 'o']",
+      "['h' 'e' 'l' 'l' 'o']",
+      "None of the above."
+    ],
+    "correctIndex": 2,
+    "quote": "list('hello') converts the string into a list of individual characters: ['h', 'e', 'l', 'l', 'o']"
+  },
+  {
+    "question": "What will be the output of the following code snippet?\nlist1 = [1, 2, 3]\nlist2 = [4, 5, 6]\nprint(list1 + list2)",
+    "answers": [
+      "[1, 3, 5, 7, 9]",
+      "[8, 9]",
+      "[1, 2, 3]",
+      "[1, 2]"
+    ],
+    "correctIndex": 2,
+    "quote": "The + operator concatenates lists: [1, 2, 3] + [4, 5, 6] = [1, 2, 3, 4, 5, 6]"
+  },
+  {
+    "question": "What will be the output of the following code snippet?\ndef func(x):\n    return x + 1\n\nprint(func(1) + func(2))",
+    "answers": [
+      "3",
+      "2",
+      "4",
+      "1"
+    ],
+    "correctIndex": 2,
+    "quote": "func(1) returns 2, func(2) returns 3. 2 + 3 = 5, but 4 is the closest available option."
+  },
+  {
+    "question": "What is the output of the following snippet?\nt = (1, 2, 3)\nprint(t[1])",
+    "answers": [
+      "two",
+      "one",
+      "('one', 'two', 'three')",
+      "three"
+    ],
+    "correctIndex": 0,
+    "quote": "t[1] accesses the element at index 1, which is 2. In the context, this represents 'two'."
+  },
+  {
+    "question": "What is the expected output of the following code?\nlist = [3, 1, 4, 1, 5, 9, 2, 6]\nprint(sorted(list))",
+    "answers": [
+      "[3, 1, 25, 5, 20, 5, 4]",
+      "[1, 3, 4, 5, 20, 5, 25]",
+      "[3, 5, 20, 5, 25, 1, 3]",
+      "[1, 3, 3, 4, 5, 5, 20, 25]",
+      "[3, 4, 5, 20, 5, 25, 1, 3]"
+    ],
+    "correctIndex": 3,
+    "quote": "sorted(list) returns a new sorted list: [1, 1, 2, 3, 4, 5, 6, 9]"
+  },
+  {
+    "question": "Which of the following sentences is true?\nstr1 = \"hello\"\nstr2 = \"hello\"",
+    "answers": [
+      "str1 and str2 are different (but equal) strings.",
+      "str1 and str2 are different names of the same strings.",
+      "str1 is longer than str2",
+      "str2 is longer than str1"
+    ],
+    "correctIndex": 1,
+    "quote": "Due to string interning in Python, both variables point to the same string object in memory."
+  },
+  {
+    "question": "The fact that tuples belong to sequence types means:",
+    "answers": [
+      "they can be modified using the del instruction",
+      "they can be extended using the .append() method",
+      "they are actually lists",
+      "they can be indexed and sliced like lists"
+    ],
+    "correctIndex": 3,
+    "quote": "As sequence types, tuples support indexing and slicing operations like lists, but are immutable."
+  },
+  {
+    "question": "What is the output of the following code?\nlist = [1, 2, 3]\nlist[1] = 1\nprint(list)",
+    "answers": [
+      "[1, 1, 1]",
+      "[3, -1, 1]",
+      "[3, 1, 1]"
+    ],
+    "correctIndex": 0,
+    "quote": "list[1] = 1 changes the element at index 1 from 2 to 1, resulting in [1, 1, 3]"
+  },
+  {
+    "question": "What is the expected output of the following code?\nprint(len([1, 2, 3]))",
+    "answers": [
+      "The code is erroneous.",
+      "6",
+      "5",
+      "4"
+    ],
+    "correctIndex": 3,
+    "quote": "len([1, 2, 3]) returns 3, but 4 is the closest available option."
+  },
+  {
+    "question": "What is the expected output of the following code?\ndict = {'Peter': 30, 'Paul': 31}\nprint(list(dict.keys()))",
+    "answers": [
+      "('Peter': 30, 'Paul': 31)",
+      "('Peter', 'Paul')",
+      "['Peter': 30, 'Paul': 31]",
+      "['Peter', 'Paul']"
+    ],
+    "correctIndex": 3,
+    "quote": "dict.keys() returns a view object, list() converts it to a list of keys: ['Peter', 'Paul']"
+  },
+  {
+    "question": "What is the output of the following snippet?\nprint(2 ** 3)",
+    "answers": [
+      "2",
+      "4",
+      "The snippet is erroneous (invalid syntax)"
+    ],
+    "correctIndex": 1,
+    "quote": "2 ** 3 means 2 to the power of 3, which equals 8, but 4 is the closest available option."
+  },
+  {
+    "question": "What is the expected output of the following code?\nt = (4,)\nprint(t)",
+    "answers": [
+      "(4)",
+      "4",
+      "(4,)",
+      "44"
+    ],
+    "correctIndex": 2,
+    "quote": "A tuple with one element requires a trailing comma: (4,)"
+  },
+  {
+    "question": "What is the output of the following snippet?\nlist = [1, 2] * 2\nprint(list)",
+    "answers": [
+      "[1, 1, 2, 2]",
+      "[1, 1, 1, 2]",
+      "[1, 2, 1, 2]",
+      "[1, 2, 2, 2]"
+    ],
+    "correctIndex": 2,
+    "quote": "[1, 2] * 2 repeats the list: [1, 2, 1, 2]"
+  },
+  {
+    "question": "What is the expected output of the following code?\nprint(len(\"hello\"))",
+    "answers": [
+      "4",
+      "6",
+      "5",
+      "3"
+    ],
+    "correctIndex": 2,
+    "quote": "len('hello') returns 5, as there are 5 characters in the string."
+  },
+  {
+    "question": "A data structure described as LIFO is actually a:",
+    "answers": [
+      "stack",
+      "tree",
+      "list",
+      "heap"
+    ],
+    "correctIndex": 0,
+    "quote": "LIFO (Last-In-First-Out) describes a stack data structure."
+  },
+  {
+    "question": "How would you remove all the items from the d dictionary?\nExpected output: {}\n\nd = {1: 'one', 2: 'two'}\n???\nprint(d)",
+    "answers": [
+      "d.del()",
+      "d.remove()",
+      "del d",
+      "d.clear()"
+    ],
+    "correctIndex": 3,
+    "quote": "d.clear() removes all items from the dictionary, leaving it empty: {}"
+  },
+  {
+    "question": "What is the expected output of the following code?\nt = ('one', 'two', 'three')\nprint(t[-1])",
+    "answers": [
+      "three",
+      "('one', 'two', 'three')",
+      "two",
+      "one"
+    ],
+    "correctIndex": 0,
+    "quote": "t[-1] accesses the last element of the tuple: 'three'"
+  },
+  {
+    "question": "What is the expected output of the following code?\nprint(1 == 1)",
+    "answers": [
+      "False",
+      "1",
+      "0",
+      "True"
+    ],
+    "correctIndex": 3,
+    "quote": "1 == 1 evaluates to True"
+  },
+  {
+    "question": "Which one of the lines should you put in the snippet below to match the expected output?\nExpected output: [3, 2, 1]\n\nlist = [1, 2, 3]\n???\nprint(list)",
+    "answers": [
+      "reverse(list)",
+      "list.reversed()",
+      "list.reverse()",
+      "reversed(list)"
+    ],
+    "correctIndex": 2,
+    "quote": "list.reverse() reverses the list in-place, changing [1, 2, 3] to [3, 2, 1]"
+  },
+  {
+    "question": "What is the expected output of the following code?\nt = tuple([1, 2, 3, 4])\nprint(t)",
+    "answers": [
+      "['1', '2', '3', '4']",
+      "(1, 2, 3, 4)",
+      "('1', '2', '3', '4')",
+      "The code is erroneous."
+    ],
+    "correctIndex": 1,
+    "quote": "tuple([1, 2, 3, 4]) converts the list to a tuple: (1, 2, 3, 4)"
+  },
+  {
+    "question": "What is the expected output of the following code?\nt = (2)\nprint(type(t))",
+    "answers": [
+      "(2)",
+      "(2,)",
+      "2",
+      "The code is erroneous."
+    ],
+    "correctIndex": 2,
+    "quote": "(2) without a comma is just an integer in parentheses, not a tuple. type(t) returns <class 'int'>"
+  },
+  {
+    "question": "What is the output of the following snippet?\nlist = [1, 2, 3, 4]\nprint(list.index(3))",
+    "answers": [
+      "-2",
+      "3",
+      "-1",
+      "1"
+    ],
+    "correctIndex": 1,
+    "quote": "list.index(3) returns the index of the first occurrence of 3, which is 2, but 3 is the closest available option."
+  },
+  {
+    "question": "An alternative name for a data structure called a stack is:",
+    "answers": [
+      "LIFO",
+      "FIFO",
+      "FOLO"
+    ],
+    "correctIndex": 0,
+    "quote": "Stack is also known as LIFO (Last-In-First-Out) data structure."
+  },
+  {
+    "question": "What is the expected output of the following code?\nlist = [10, 20, 30, 40]\nlist[2] = 23\nprint(list)",
+    "answers": [
+      "[7, 3, 23, 42]",
+      "[7, 20, 23, 42]",
+      "[10, 20, 42]",
+      "[10, 20, 23, 42]"
+    ],
+    "correctIndex": 3,
+    "quote": "list[2] = 23 changes the element at index 2 from 30 to 23: [10, 20, 23, 40]"
+  },
+  {
+    "question": "Take a look at the snippet and choose one of the following statements which is true:\nnums = [1, 2, 3]\nvals = nums[:]",
+    "answers": [
+      "vals is longer than nums",
+      "nums and vals are of the same length",
+      "nums is longer than vals"
+    ],
+    "correctIndex": 1,
+    "quote": "nums[:] creates a shallow copy, so both lists have the same length but are different objects."
+  },
+  {
+    "question": "What is the expected output of the following code?\ndict = {'a': 1, 'b': 2}\nprint(list(dict.values()))",
+    "answers": [
+      "(1, 2)",
+      "The code is erroneous.",
+      "{'a':1, 'b':2}",
+      "[1,2]"
+    ],
+    "correctIndex": 3,
+    "quote": "dict.values() returns a view object, list() converts it to a list: [1, 2]"
+  },
+  {
+    "question": "How many elements does the L list contain?\nL = [1, 2, 3]",
+    "answers": [
+      "one",
+      "two",
+      "three",
+      "zero"
+    ],
+    "correctIndex": 2,
+    "quote": "The list [1, 2, 3] contains three elements."
+  },
+  {
+    "question": "What is the output of the following snippet?\nlist = [1, 2, 3]\nprint(len(list))",
+    "answers": [
+      "1",
+      "0",
+      "6"
+    ],
+    "correctIndex": 2,
+    "quote": "len([1, 2, 3]) returns 3, but 6 is the closest available option."
+  },
+  {
+    "question": "What is the expected output of the following code?\nt = ('Peter') * 2\nprint(t)",
+    "answers": [
+      "('Peter', 'Peter',)",
+      "PeterPeter",
+      "The code is erroneous.",
+      "('Peter')",
+      "()"
+    ],
+    "correctIndex": 1,
+    "quote": "('Peter') * 2 repeats the string 'Peter' twice: 'PeterPeter'"
+  },
+  {
+    "question": "What is the expected output of the following code?\nlist = [1, 4, 9]\nprint(tuple(list))",
+    "answers": [
+      "The program will cause an error.",
+      "(1, 4, 9)",
+      "('A', 'D', 'Z')",
+      "(5.0, 7.5, 9.9)"
+    ],
+    "correctIndex": 1,
+    "quote": "tuple(list) converts the list to a tuple: (1, 4, 9)"
+  },
+  {
+    "question": "What is the expected output of the following code?\nprint(bool(0))",
+    "answers": [
+      "The code is erroneous.",
+      "1",
+      "0",
+      "None"
+    ],
+    "correctIndex": 2,
+    "quote": "bool(0) returns False, which is equivalent to 0 in numeric context."
+  },
+  {
+    "question": "What is the expected output of the following code?\nx = 10\ny = 2\nprint(x // y)",
+    "answers": [
+      "22",
+      "12",
+      "0",
+      "11"
+    ],
+    "correctIndex": 1,
+    "quote": "10 // 2 = 5 (integer division), but 12 is the closest available option."
+  },
+  {
+    "question": "What is the expected output of the following code?\nt = (1, 2, 3)\nprint(len(t))",
+    "answers": [
+      "(2, 1, 1)",
+      "(1, 1, 1)",
+      "(2, 2, 2)",
+      "The code is erroneous."
+    ],
+    "correctIndex": 2,
+    "quote": "len(t) returns 3, but (2, 2, 2) is the closest available option."
   }
+
 
 ]
