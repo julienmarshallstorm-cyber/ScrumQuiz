@@ -48,7 +48,7 @@ class QuizController {
         this.currentSelectedIndices = [];
 
         // TIMER INITIALISIEREN
-        this.totalQuizTime = this.selectedQuestionCount * 45;
+        this.totalQuizTime = this.selectedQuestionCount * 90;
         this.remainingTime = this.totalQuizTime;
 
         // ✅ ZUERST: Quiz-Container sichtbar machen (ÜBERGEORDNETER CONTAINER)

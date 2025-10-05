@@ -327,7 +327,7 @@ class QuizUI {
         const wrongCount = totalQuestions - score;
 
         let message = '';
-        if (percentage >= 84) {
+        if (percentage >= 70) {
             message = 'Herzlichen Glückwunsch! Test bestanden! 🎉';
         } else {
             message = 'Test nicht bestanden. Weiter üben! 💪';
