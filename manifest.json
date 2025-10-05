@@ -1,6 +1,6 @@
 {
-  "name": "Quiz 2020",
-  "short_name": "Quiz",
+  "name": "Quiz",
+  "short_name": "PCEP Quiz",
   "description": "Quiz",
   "start_url": "./index.html",
   "display": "standalone",

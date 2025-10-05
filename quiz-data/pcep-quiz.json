@@ -1,0 +1,443 @@
+[
+  {
+    "question": "What is the purpose of the print() function in Python?",
+    "answers": [
+      "Outputs data to the console",
+      "Stores data in a file",
+      "Reads user input",
+      "Performs calculations"
+    ],
+    "correctIndex": 0,
+    "quote": "print() is used to display information on the console."
+  },
+  {
+    "question": "Which of the following is a valid variable name in Python?",
+    "answers": [
+      "2nd_variable",
+      "second-variable",
+      "second_variable",
+      "second variable"
+    ],
+    "correctIndex": 2,
+    "quote": "Variable names must start with a letter or underscore, can contain numbers, and cannot include spaces or special characters like -."
+  },
+  {
+    "question": "What is the result of the following code?\n\nx = 5\ny = 2\nprint(x / y)",
+    "answers": [
+      "2.5",
+      "2",
+      "2.0",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "quote": "The / operator in Python 3 always performs floating-point division."
+  },
+  {
+    "question": "Which of the following data types is immutable?",
+    "answers": [
+      "List",
+      "Set",
+      "Dictionary",
+      "Tuple"
+    ],
+    "correctIndex": 3,
+    "quote": "Tuples cannot be changed after creation, unlike lists, sets, or dictionaries."
+  },
+  {
+    "question": "What is the result of this code?\n\nx = 10\ny = 3\nprint(x // y)",
+    "answers": [
+      "3.3333",
+      "3",
+      "3.0",
+      "Error"
+    ],
+    "correctIndex": 1,
+    "quote": "The // operator performs integer division, returning the integer part of the division."
+  },
+  {
+    "question": "What is the output of the following code?\n\nx = 5\nif x > 3:\n    print(\"Greater\")\nelse:\n    print(\"Smaller\")",
+    "answers": [
+      "Greater",
+      "Smaller",
+      "Error",
+      "No output"
+    ],
+    "correctIndex": 0,
+    "quote": "Since x is greater than 3, the if block executes."
+  },
+  {
+    "question": "Which loop is used to iterate over a list of elements?",
+    "answers": [
+      "for",
+      "while",
+      "do-while",
+      "repeat-until"
+    ],
+    "correctIndex": 0,
+    "quote": "for loops are used to iterate directly over sequences like lists."
+  },
+  {
+    "question": "What is the result of this code?\n\nx = 0\nwhile x < 3:\n    print(x)\n    x += 1",
+    "answers": [
+      "0 1 2",
+      "1 2 3",
+      "0 1 2 3",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "quote": "The loop prints 0, 1, 2. The loop stops when x reaches 3."
+  },
+  {
+    "question": "Which keyword can be used to exit a loop immediately?",
+    "answers": [
+      "stop",
+      "break",
+      "exit",
+      "continue"
+    ],
+    "correctIndex": 1,
+    "quote": "break stops the loop instantly. continue skips to the next iteration."
+  },
+  {
+    "question": "What does the range(5) function return?",
+    "answers": [
+      "[0, 1, 2, 3, 4]",
+      "[1, 2, 3, 4, 5]",
+      "[0, 1, 2, 3, 4, 5]",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "quote": "range(n) generates integers from 0 up to n-1."
+  },
+  {
+    "question": "What is the purpose of the print() function in Python?",
+    "answers": [
+      "Outputs data to the console",
+      "Stores data in a file",
+      "Reads user input",
+      "Performs calculations"
+    ],
+    "correctIndex": 0,
+    "quote": "print() is used to display information on the console."
+  },
+  {
+    "question": "Which of the following is a valid variable name in Python?",
+    "answers": [
+      "2nd_variable",
+      "second-variable",
+      "second_variable",
+      "second variable"
+    ],
+    "correctIndex": 2,
+    "quote": "Variable names must start with a letter or underscore, can contain numbers, and cannot include spaces or special characters like -."
+  },
+  {
+    "question": "What is the result of the following code?\n\nx = 5\ny = 2\nprint(x / y)",
+    "answers": [
+      "2.5",
+      "2",
+      "2.0",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "quote": "The / operator in Python 3 always performs floating-point division."
+  },
+  {
+    "question": "Which of the following data types is immutable?",
+    "answers": [
+      "List",
+      "Set",
+      "Dictionary",
+      "Tuple"
+    ],
+    "correctIndex": 3,
+    "quote": "Tuples cannot be changed after creation, unlike lists, sets, or dictionaries."
+  },
+  {
+    "question": "What is the result of this code?\n\nx = 10\ny = 3\nprint(x // y)",
+    "answers": [
+      "3.3333",
+      "3",
+      "3.0",
+      "Error"
+    ],
+    "correctIndex": 1,
+    "quote": "The // operator performs integer division, returning the integer part of the division."
+  },
+  {
+    "question": "What is the output of the following code?\n\nx = 5\nif x > 3:\n    print(\"Greater\")\nelse:\n    print(\"Smaller\")",
+    "answers": [
+      "Greater",
+      "Smaller",
+      "Error",
+      "No output"
+    ],
+    "correctIndex": 0,
+    "quote": "Since x is greater than 3, the if block executes."
+  },
+  {
+    "question": "Which loop is used to iterate over a list of elements?",
+    "answers": [
+      "for",
+      "while",
+      "do-while",
+      "repeat-until"
+    ],
+    "correctIndex": 0,
+    "quote": "for loops are used to iterate directly over sequences like lists."
+  },
+  {
+    "question": "What is the result of this code?\n\nx = 0\nwhile x < 3:\n    print(x)\n    x += 1",
+    "answers": [
+      "0 1 2",
+      "1 2 3",
+      "0 1 2 3",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "quote": "The loop prints 0, 1, 2. The loop stops when x reaches 3."
+  },
+  {
+    "question": "Which keyword can be used to exit a loop immediately?",
+    "answers": [
+      "stop",
+      "break",
+      "exit",
+      "continue"
+    ],
+    "correctIndex": 1,
+    "quote": "break stops the loop instantly. continue skips to the next iteration."
+  },
+  {
+    "question": "What does the range(5) function return?",
+    "answers": [
+      "[0, 1, 2, 3, 4]",
+      "[1, 2, 3, 4, 5]",
+      "[0, 1, 2, 3, 4, 5]",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "quote": "range(n) generates integers from 0 up to n-1."
+  },
+  {
+    "question": "How do you define a function in Python?",
+    "answers": [
+      "function my_func():",
+      "def my_func():",
+      "func my_func():",
+      "define my_func():"
+    ],
+    "correctIndex": 1,
+    "quote": "def is used to declare a function in Python."
+  },
+  {
+    "question": "What is the default return value of a function that doesn't explicitly return anything?",
+    "answers": [
+      "None",
+      "0",
+      "False",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "quote": "Functions return None if there is no return statement."
+  },
+  {
+    "question": "Which of these calls a function greet with the argument \"Alice\"?",
+    "answers": [
+      "greet[\"Alice\"]",
+      "greet(\"Alice\")",
+      "greet = \"Alice\"",
+      "greet{Alice}"
+    ],
+    "correctIndex": 1,
+    "quote": "Functions are called using parentheses with arguments inside."
+  },
+  {
+    "question": "What is a parameter in a function?",
+    "answers": [
+      "The value returned by a function",
+      "A variable used inside the function definition to receive input",
+      "The function name",
+      "A loop inside the function"
+    ],
+    "correctIndex": 1,
+    "quote": "Parameters are placeholders for arguments passed to a function."
+  },
+  {
+    "question": "What does this function call return?\n\ndef add(x, y=2):\n    return x + y\nadd(3)",
+    "answers": [
+      "5",
+      "3",
+      "2",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "quote": "The default parameter y=2 is used because no argument is provided for y."
+  },
+  {
+    "question": "Which of these creates an empty list?",
+    "answers": [
+      "[]",
+      "{}",
+      "()",
+      "list = None"
+    ],
+    "correctIndex": 0,
+    "quote": "Square brackets create a list. {} creates a dictionary; () creates a tuple."
+  },
+  {
+    "question": "How do you add an element \"a\" to a list my_list?",
+    "answers": [
+      "my_list.add(\"a\")",
+      "my_list.append(\"a\")",
+      "my_list.insert(\"a\")",
+      "my_list.put(\"a\")"
+    ],
+    "correctIndex": 1,
+    "quote": "append() adds a single element at the end of the list."
+  },
+  {
+    "question": "Which of these is a mutable data type?",
+    "answers": [
+      "Tuple",
+      "String",
+      "List",
+      "Integer"
+    ],
+    "correctIndex": 2,
+    "quote": "Lists can be modified after creation; tuples and strings are immutable."
+  },
+  {
+    "question": "How do you access the first element of a list my_list?",
+    "answers": [
+      "my_list(0)",
+      "my_list[0]",
+      "my_list.first()",
+      "my_list.get(0)"
+    ],
+    "correctIndex": 1,
+    "quote": "Indexing with [0] retrieves the first element."
+  },
+  {
+    "question": "Which of these methods removes and returns the last element of a list my_list?",
+    "answers": [
+      "pop()",
+      "remove()",
+      "delete()",
+      "discard()"
+    ],
+    "correctIndex": 0,
+    "quote": "pop() removes and returns the last element. remove() deletes a specified value."
+  },
+  {
+    "question": "How do you define a class in Python?",
+    "answers": [
+      "class MyClass:",
+      "def MyClass:",
+      "function MyClass:",
+      "object MyClass:"
+    ],
+    "correctIndex": 0,
+    "quote": "class is used to declare a class in Python."
+  },
+  {
+    "question": "Which method is called when creating a new instance of a class?",
+    "answers": [
+      "__start__",
+      "__init__",
+      "__new__",
+      "__create__"
+    ],
+    "correctIndex": 1,
+    "quote": "__init__ initializes instance attributes when a new object is created."
+  },
+  {
+    "question": "How do you create an instance of a class Person?",
+    "answers": [
+      "Person()",
+      "Person[]",
+      "Person{}",
+      "Person.create()"
+    ],
+    "correctIndex": 0,
+    "quote": "Calling the class name with parentheses creates a new instance."
+  },
+  {
+    "question": "Which keyword defines a method that belongs to the class instance?",
+    "answers": [
+      "self",
+      "this",
+      "cls",
+      "instance"
+    ],
+    "correctIndex": 0,
+    "quote": "self refers to the current instance and is required as the first parameter in instance methods."
+  },
+  {
+    "question": "Which symbol is used for inheritance in Python?",
+    "answers": [
+      "<",
+      ":",
+      "()",
+      "{}"
+    ],
+    "correctIndex": 2,
+    "quote": "Class inheritance is specified inside parentheses: class Child(Parent):"
+  },
+  {
+    "question": "Which method converts all characters in a string to uppercase?",
+    "answers": [
+      "upper()",
+      "capitalize()",
+      "title()",
+      "lower()"
+    ],
+    "correctIndex": 0,
+    "quote": "upper() returns a copy of the string with all letters in uppercase."
+  },
+  {
+    "question": "What is the output of 'Python'[0]?",
+    "answers": [
+      "'Python'",
+      "'P'",
+      "'y'",
+      "0"
+    ],
+    "correctIndex": 1,
+    "quote": "Indexing starts at 0, so the first character is 'P'."
+  },
+  {
+    "question": "How do you read user input as a string?",
+    "answers": [
+      "input()",
+      "read()",
+      "scanf()",
+      "get()"
+    ],
+    "correctIndex": 0,
+    "quote": "input() reads a line from the console as a string."
+  },
+  {
+    "question": "Which operator checks if a substring exists in a string?",
+    "answers": [
+      "in",
+      "==",
+      "contains()",
+      "has()"
+    ],
+    "correctIndex": 0,
+    "quote": "The in operator returns True if the substring is found."
+  },
+  {
+    "question": "What is the output of 'abc'.replace('b', 'x')?",
+    "answers": [
+      "'axc'",
+      "'abc'",
+      "'xbc'",
+      "'abx'"
+    ],
+    "correctIndex": 0,
+    "quote": "replace() replaces all occurrences of 'b' with 'x'."
+  }
+
+]
