@@ -16,7 +16,7 @@ class QuizUI {
         this.currentSelectedIndices = [];
         this.answerChangeCallback = null;
 
-        //  TIMER ELEMENTE MIT FALLBACK
+        // ✅ TIMER ELEMENTE MIT FALLBACK
         this.timerContainer = document.getElementById('timer-container');
         this.progressBar = document.getElementById('progress-bar');
         this.currentTimeElement = document.getElementById('current-time');
@@ -26,14 +26,14 @@ class QuizUI {
         console.log('📱 Timer Container gefunden:', !!this.timerContainer);
         console.log('📱 Progress Bar gefunden:', !!this.progressBar);
 
-        //  NOTFALL: Timer Container manuell erstellen falls nicht vorhanden
+        // ✅ NOTFALL: Timer Container manuell erstellen falls nicht vorhanden
         if (!this.timerContainer) {
             console.log('⚠️ Timer Container nicht gefunden - erstelle manuell...');
             this.createTimerContainer();
         }
     }
 
-    // NOTFALL-METHODE: Timer Container manuell erstellen
+    // ✅ NOTFALL-METHODE: Timer Container manuell erstellen
     createTimerContainer() {
         console.log('🔧 Erstelle Timer Container manuell...');
 
@@ -74,7 +74,7 @@ class QuizUI {
         console.log('🔧 showTimer() AUFGERUFEN - TIMER AUTOMATISCH STARTEN');
 
         if (this.timerContainer) {
-            //  ABSOLUTE SICHTBARKEIT ERZwingen - GENAU WIE BEIM DEBUG-BUTTON
+            // ✅ ABSOLUTE SICHTBARKEIT ERZwingen - GENAU WIE BEIM DEBUG-BUTTON
             this.timerContainer.style.display = 'block';
             this.timerContainer.style.visibility = 'visible';
             this.timerContainer.style.opacity = '1';
@@ -94,7 +94,7 @@ class QuizUI {
         }
 
         if (this.progressBar) {
-            //  PROGRESS BAR ABSOLUT SICHTBAR MACHEN - GENAU WIE BEIM DEBUG-BUTTON
+            // ✅ PROGRESS BAR ABSOLUT SICHTBAR MACHEN - GENAU WIE BEIM DEBUG-BUTTON
             this.progressBar.style.display = 'block';
             this.progressBar.style.visibility = 'visible';
             this.progressBar.style.opacity = '1';
@@ -108,7 +108,7 @@ class QuizUI {
             console.log('✅ Progress Bar AUTOMATISCH sichtbar gemacht');
         }
 
-        // SOFORTIGE VISUALISIERUNG ERZwingen
+        // ✅ SOFORTIGE VISUALISIERUNG ERZwingen
         setTimeout(() => {
             if (this.progressBar) {
                 this.progressBar.style.width = '100%';
@@ -134,7 +134,7 @@ class QuizUI {
     updateTimer(currentTime, totalTime) {
         console.log('🔧 updateTimer() aufgerufen:', currentTime, 'von', totalTime);
 
-        // SOFORTIGE VISUALISIERUNG ERZwingen
+        // ✅ SOFORTIGE VISUALISIERUNG ERZwingen
         if (!this.progressBar) {
             console.error('❌ Progress Bar immer noch nicht gefunden!');
             return;
@@ -144,7 +144,7 @@ class QuizUI {
         const progress = Math.max(1, (currentTime / totalTime) * 100); // Mindestens 1% für Sichtbarkeit
         console.log('📊 Progress:', progress + '%');
 
-        // ABSOLUTE BREITEN-SICHERHEIT
+        // ✅ ABSOLUTE BREITEN-SICHERHEIT
         this.progressBar.style.width = `${progress}%`;
         this.progressBar.style.minWidth = '1%'; // Immer mindestens 1% sichtbar
         this.progressBar.style.display = 'block';
@@ -245,7 +245,7 @@ class QuizUI {
             this.answerButtonsElement.appendChild(button);
         });
 
-        // Debug-Button wurde hier entfernt - Quiz ist jetzt professionell
+        // ✅ DEBUG-BUTTON WURDE ENTFERNT - QUIZ IST JETZT PROFESSIONELL
     }
 
     handleAnswerClick(clickedIndex, isMultipleChoice) {
