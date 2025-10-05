@@ -246,6 +246,7 @@ class QuizUI {
         });
 
         // ✅ DEBUG-BUTTON WURDE ENTFERNT - QUIZ IST JETZT PROFESSIONELL
+        // Hier war vorher der rote "TIMER VISIBILITY TEST" Button
     }
 
     handleAnswerClick(clickedIndex, isMultipleChoice) {
