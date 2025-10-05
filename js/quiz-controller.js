@@ -51,19 +51,22 @@ class QuizController {
         this.totalQuizTime = this.selectedQuestionCount * 45;
         this.remainingTime = this.totalQuizTime;
 
-        // ✅ NUCLEAR OPTION: Timer sofort und absolut erzwingen
-        console.log('🚀 NUCLEAR OPTION: Timer absolut erzwingen');
-        if (this.quizUI.timerContainer) {
-            this.quizUI.timerContainer.style.display = 'block';
-            this.quizUI.timerContainer.style.visibility = 'visible';
-            this.quizUI.timerContainer.style.opacity = '1';
-        }
-        if (this.quizUI.progressBar) {
-            this.quizUI.progressBar.style.display = 'block';
-            this.quizUI.progressBar.style.visibility = 'visible';
-            this.quizUI.progressBar.style.width = '100%';
-            this.quizUI.progressBar.style.background = 'linear-gradient(90deg, #4CAF50, #45a049)';
-        }
+        this.quizUI.hideSetup();
+
+       // DANACH: Timer sichtbar machen und starten
+           console.log('🚀 NUCLEAR OPTION: Timer absolut erzwingen');
+           if (this.quizUI.timerContainer) {
+               this.quizUI.timerContainer.style.display = 'block';
+               this.quizUI.timerContainer.style.visibility = 'visible';
+               this.quizUI.timerContainer.style.opacity = '1';
+               this.quizUI.timerContainer.classList.remove('hidden');
+           }
+           if (this.quizUI.progressBar) {
+               this.quizUI.progressBar.style.display = 'block';
+               this.quizUI.progressBar.style.visibility = 'visible';
+               this.quizUI.progressBar.style.width = '100%';
+               this.quizUI.progressBar.style.background = 'linear-gradient(90deg, #4CAF50, #45a049)';
+           }
 
         this.startTimer();
         this.showCurrentQuestion();
