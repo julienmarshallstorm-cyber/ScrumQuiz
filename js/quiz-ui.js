@@ -74,45 +74,52 @@ class QuizUI {
         console.log('🔧 showTimer() AUFGERUFEN - TIMER AUTOMATISCH STARTEN');
 
         if (this.timerContainer) {
-            // ✅ ABSOLUTE SICHTBARKEIT ERZwingen - GENAU WIE BEIM DEBUG-BUTTON
-            this.timerContainer.style.display = 'block';
-            this.timerContainer.style.visibility = 'visible';
-            this.timerContainer.style.opacity = '1';
-            this.timerContainer.style.height = 'auto';
-            this.timerContainer.style.minHeight = '60px';
-            this.timerContainer.style.background = '#ffffff';
-            this.timerContainer.style.border = '3px solid #4CAF50';
-            this.timerContainer.style.borderRadius = '10px';
-            this.timerContainer.style.padding = '10px';
-            this.timerContainer.style.margin = '10px 0';
-            this.timerContainer.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            // ✅ NUCLEAR OPTION: .hidden KLASSE KOMPLETT IGNORIEREN
+            // Entferne alle CSS-Klassen die Sichtbarkeit blockieren könnten
+            this.timerContainer.className = ''; // Alle Klassen entfernen
+            this.timerContainer.removeAttribute('class'); // Alternative: komplett ohne Klassen
 
-            // Hidden Klasse entfernen
-            this.timerContainer.classList.remove('hidden');
+            // ✅ ABSOLUTE SICHTBARKEIT ERZwingen
+            this.timerContainer.style.cssText = `
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                height: auto !important;
+                min-height: 80px !important;
+                background: #ffffff !important;
+                border: 3px solid #4CAF50 !important;
+                border-radius: 10px !important;
+                padding: 12px !important;
+                margin: 15px 0 !important;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+                position: relative !important;
+                z-index: 1000 !important;
+            `;
 
-            console.log('✅ Timer Container AUTOMATISCH sichtbar gemacht');
+            console.log('✅ Timer Container ABSOLUT sichtbar gemacht (ohne Klassen)');
         }
 
         if (this.progressBar) {
-            // ✅ PROGRESS BAR ABSOLUT SICHTBAR MACHEN - GENAU WIE BEIM DEBUG-BUTTON
-            this.progressBar.style.display = 'block';
-            this.progressBar.style.visibility = 'visible';
-            this.progressBar.style.opacity = '1';
-            this.progressBar.style.height = '20px';
-            this.progressBar.style.minHeight = '20px';
-            this.progressBar.style.width = '100%';
-            this.progressBar.style.background = 'linear-gradient(90deg, #4CAF50, #45a049)';
-            this.progressBar.style.borderRadius = '10px';
-            this.progressBar.style.transition = 'width 1s linear';
+            // ✅ PROGRESS BAR ABSOLUT SICHTBAR
+            this.progressBar.style.cssText = `
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                height: 20px !important;
+                min-height: 20px !important;
+                width: 100% !important;
+                background: linear-gradient(90deg, #4CAF50, #45a049) !important;
+                border-radius: 10px !important;
+                transition: width 1s linear !important;
+            `;
 
-            console.log('✅ Progress Bar AUTOMATISCH sichtbar gemacht');
+            console.log('✅ Progress Bar ABSOLUT sichtbar gemacht');
         }
 
         // ✅ SOFORTIGE VISUALISIERUNG ERZwingen
         setTimeout(() => {
             if (this.progressBar) {
                 this.progressBar.style.width = '100%';
-                this.progressBar.style.background = 'linear-gradient(90deg, #4CAF50, #45a049)';
                 console.log('🎯 Timer automatisch initialisiert und sichtbar!');
             }
         }, 100);
