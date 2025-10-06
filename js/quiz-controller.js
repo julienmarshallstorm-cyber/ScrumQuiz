@@ -27,6 +27,7 @@ class QuizController {
         this.quizUI.bindNextButtonClick(this.handleNextButtonClick.bind(this));
         this.quizUI.bindRestartButtonClick(this.handleRestartButtonClick.bind(this));
         this.quizUI.bindStartQuizClick(this.handleStartQuizClick.bind(this));
+        this.quizUI.bindEndQuizClick(this.handleEndQuizClick.bind(this));
     }
 
     showSetup() {
@@ -253,9 +254,33 @@ class QuizController {
         }
         this.showSetup();
     }
-}
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM ist bereit, starte Quiz...');
-    new QuizController();
-});
+    handleEndQuizClick() {
+        console.log('⏹️ Quiz manuell beendet');
+
+        // Timer stoppen
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+            this.timerInterval = null;
+        }
+
+        // Restliche Fragen als falsch markieren
+        for (let i = this.currentQuestionIndex; i < this.totalQuestions; i++) {
+            const question = this.quizData.getQuestion(i);
+            const correctIndex = question.correctIndex;
+
+            this.wrongAnswers.push({
+                question: question.question,
+                selectedAnswer: 'Nicht beantwortet (Quiz beendet)',
+                correctAnswer: Array.isArray(correctIndex)
+                    ? correctIndex.map(idx => question.answers[idx]).join(', ')
+                    : question.answers[correctIndex],
+                quote: question.quote
+            });
+        }
+
+        // Zur Auswertung springen
+        this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
+    }
+
+}

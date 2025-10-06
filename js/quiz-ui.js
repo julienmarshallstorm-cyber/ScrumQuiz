@@ -376,4 +376,10 @@ class QuizUI {
     bindRestartButtonClick(callback) {
         this.restartButton.addEventListener('click', callback);
     }
+
+    bindWndQuizClick(callback){
+    if(this.endQuizButton){
+    this.endQuizButton.addEventListener('click', callback);
+    }
+    }
 }
