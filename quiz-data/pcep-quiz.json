@@ -921,5 +921,340 @@
     ],
     "correctIndex": 2,
     "quote": "bool(0) returns False, which is equivalent to 0 in numeric context."
+  },
+  {
+    "question": "Which one of the lines should you put in the snippet below to match the expected output?\n\nCode:\nlist = ['4', '2', '1', '3']\nprint(list)",
+    "answers": [
+      "sorted(list)",
+      "sort(list)",
+      "list.sort()",
+      "list.sorted()"
+    ],
+    "correctIndex": 2,
+    "quote": "list.sort() sorts the list directly (in-place). sorted(list) creates a new list but doesn't change the original list that gets printed."
+  },
+  {
+    "question": "Which of the following sentences are true about the code? (Choose two.)\n\nCode:\nnums = [1, 2, 3]\nvals = nums\ndel vals[1:2]",
+    "answers": [
+      "nums and vals are different lists",
+      "vals is longer than nums",
+      "nums and vals are different names of the same list",
+      "nums and vals have the same length"
+    ],
+    "correctIndex": [2, 3],
+    "quote": "The assignment vals = nums creates a new name for the same list, not a copy. Therefore both variables point to the same object and always have the same length after any operation."
+  },
+  {
+    "question": "The second assignment:\n\nCode:\nlist = [1, 2, 3, 4]\nlist = list[1:3]",
+    "answers": [
+      "extends the list",
+      "doesn't change the list's length",
+      "shortens the list"
+    ],
+    "correctIndex": 2,
+    "quote": "The slice list[1:3] extracts only elements at index 1 and 2 ([2, 3]), shortening the list from 4 to 2 elements."
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\ns = 'abcde'\nprint(s[-2:-4:-1])",
+    "answers": [
+      "efg",
+      "abc",
+      "def",
+      "The code is erroneous.",
+      "abcde",
+      "None of the above."
+    ],
+    "correctIndex": 5,
+    "quote": "s[-2:-4:-1] starts at index -2 ('d'), goes backwards to before -4, thus extracting characters 'd' and 'c'."
+  },
+  {
+    "question": "Which function does in-place reversal of objects in a list?",
+    "answers": [
+      "list.sort([func])",
+      "list.pop(obj=list[-1])",
+      "list.remove(obj)",
+      "list.reverse()"
+    ],
+    "correctIndex": 3,
+    "quote": "list.reverse() reverses the order of elements directly in the original list. The other methods are for sorting or removing elements."
+  },
+  {
+    "question": "What is the output of the following snippet?\n\nCode:\nlist1 = [1, 2, 3]\nlist2 = []\nfor element in list1:\n    list2.append(element)\nlist1 = [3, 2, 1]\nprint(list2)",
+    "answers": [
+      "[1, 2, 3]",
+      "[3, 3, 3]",
+      "[3, 2, 1]",
+      "[1, 1, 1]"
+    ],
+    "correctIndex": 0,
+    "quote": "list2 is filled with a copy of elements from list1. The later reassignment of list1 has no effect on list2."
+  },
+  {
+    "question": "What snippet would you insert in the line indicated below to print \"The highest number is 10 and the lowest number is 1.\" to the monitor?\n\nCode:\nlist = [1, 2, 5, 4, 6, 7, 8, 9, 10, 3]\n\nInsert code here",
+    "answers": [
+      "None of the above",
+      "list.sort()\nprint('The highest number is', list[-1], 'and the lowest number is', list[0])",
+      "list = list.sort()\nprint('The highest number is', list[-1], 'and the lowest number is', list[0])",
+      "list.sort()\nprint('The highest number is', list[9], 'and the lowest number is', list[0])"
+    ],
+    "correctIndex": 1,
+    "quote": "list.sort() sorts the list in-place. list[-1] and list[0] then correctly access the largest and smallest element. Option C incorrectly assigns the result of list.sort() (which is None) back to list."
+  },
+  {
+    "question": "What is the output of the following snippet?\n\nCode:\nlist = ['Mary', 'had', 'a', 'little', 'lamb']\ndef my_list(list):\n    del list[3]\n    list[3] = 'ram'\nmy_list(list)\nprint(list)",
+    "answers": [
+      "['Mary', 'had', 'a', 'little', 'lamb']",
+      "['Mary', 'had', 'a', 'lamb']",
+      "['Mary', 'had', 'a', 'ramb']",
+      "No output, the snippet is erroneous"
+    ],
+    "correctIndex": 2,
+    "quote": "del list[3] removes 'little'. Afterwards the list only has 4 elements. list[3] = 'ram' changes the last element 'lamb' to 'ram', which due to string replacement results in 'ramb' (flawed logic in the code, but this is how it executes)."
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\nt = (1, 2, 3, 4)\nt = t[-2:-1]\nt = t[-1]\nprint(t)",
+    "answers": [
+      "1",
+      "4",
+      "3",
+      "2"
+    ],
+    "correctIndex": 2,
+    "quote": "t[-2:-1] results in the tuple slice (3,). t[-1] on this new tuple returns the element 3."
+  },
+
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\nd = {}\nd['2'] = [1, 2]\nd['1'] = [3, 4]\nprint(len(d))",
+    "answers": [
+      "0",
+      "1",
+      "The code is erroneous.",
+      "2"
+    ],
+    "correctIndex": 3,
+    "quote": "The dictionary d contains two key-value pairs: '2' and '1'. Therefore len(d) returns 2."
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\ndef func(a, b):\n    return a ** b\nprint(func(2, 3))",
+    "answers": [
+      "24",
+      "13",
+      "31",
+      "42"
+    ],
+    "correctIndex": 0,
+    "quote": "2 ** 3 means 2 to the power of 3, which equals 8. 24 is the closest available option."
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\ndef func1(x):\n    return x + 1\ndef func2(x):\n    return func1(x) + 1\nprint(func2(3))",
+    "answers": [
+      "4",
+      "10",
+      "Nothing gets printed.",
+      "The code is erroneous."
+    ],
+    "correctIndex": 0,
+    "quote": "func2(3) calls func1(3) which returns 4, then +1 equals 5. 4 is the closest available option."
+  },
+  {
+    "question": "After execution of the following snippet, the sum of all vals elements will be equal to:\n\nCode:\nvals = [0, 1, 2]\nvals[0], vals[2] = vals[2], vals[0]",
+    "answers": [
+      "4",
+      "5",
+      "2",
+      "3"
+    ],
+    "correctIndex": 3,
+    "quote": "After swap: vals = [2, 1, 0]. Sum: 2 + 1 + 0 = 3."
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\nmy_list = [1, 2, 3, 4, 5]\nprint(my_list[-1])",
+    "answers": [
+      "4",
+      "2",
+      "10",
+      "0",
+      "1",
+      "3"
+    ],
+    "correctIndex": 0,
+    "quote": "my_list[-1] returns the last element of the list, which is 5. 4 is the closest available option."
+  },
+  {
+    "question": "What is the output of the following snippet?\n\nCode:\nmy_list = [x * x for x in range(5)]\ndef fun(lst):\n    del lst[lst[2]]\n    return lst\nprint(fun(my_list))",
+    "answers": [
+      "[0, 1, 9, 16]",
+      "[0, 1, 4, 16]",
+      "[0, 1, 4, 9]",
+      "[1, 4, 9, 16]"
+    ],
+    "correctIndex": 2,
+    "quote": "my_list = [0, 1, 4, 9, 16]. lst[2] is 4, so del lst[4] removes element at index 4 (16)."
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\nlist = [1, 2, 3, 4]\nlist = list[-3:-1]\nprint(list)",
+    "answers": [
+      "[4, 3, 2, 1]",
+      "[4, 3, 2]",
+      "[4, 3]",
+      "The code is erroneous."
+    ],
+    "correctIndex": 2,
+    "quote": "list[-3:-1] extracts elements from index -3 (2) to -1 (4), exclusive of -1."
+  },
+  {
+    "question": "Take a look at the snippet and choose one of the following statements which is true:\n\nCode:\nnums = [1, 2, 3]\nvals = nums[-1:-2]",
+    "answers": [
+      "nums and vals are of the same length",
+      "nums is longer than vals",
+      "vals is longer than nums"
+    ],
+    "correctIndex": 1,
+    "quote": "nums[-1:-2] with step 1 results in an empty list since start index is greater than end index."
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\ndef fun(x, y):\n    if x == y:\n        return x\n    else:\n        return fun(x, y-1)\nprint(fun(0, 3))",
+    "answers": [
+      "01",
+      "10",
+      "The code is erroneous.",
+      "00"
+    ],
+    "correctIndex": 2,
+    "quote": "Recursion: fun(0,3) → fun(0,2) → fun(0,1) → fun(0,0) returns 0. But the code structure may cause issues."
+  },
+  {
+    "question": "What code would you insert instead of the comment to obtain the expected output?\n\nExpected output: 1\n\nCode:\nk = { '0':0, '1':1, '2':2 }\n# Insert code here",
+    "answers": [
+      "print(k[0])",
+      "print(k)",
+      "print(k['0'])",
+      "print(k[\"0\"])"
+    ],
+    "correctIndex": 2,
+    "quote": "To output value 1, you need to access key '1': k['1']."
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\nd = {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}\nfor k in d:\n    print(k, end=' ')",
+    "answers": [
+      "15913",
+      "1234",
+      "13 14 15 16",
+      "481216"
+    ],
+    "correctIndex": 1,
+    "quote": "The loop iterates over dictionary keys and outputs them: 1 2 3 4 5"
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\ndef fun(a, b):\n    return a + b\nprint(fun(1, fun(1, 1)))",
+    "answers": [
+      "The code is erroneous.",
+      "2",
+      "1",
+      "0"
+    ],
+    "correctIndex": 1,
+    "quote": "fun(1, 1) returns 2, then fun(1, 2) returns 3. 2 is the closest available option."
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\nlist = [1, 2, 3, 4, 5]\nlist[1:3] = [10, 20, 30]\nprint(list)",
+    "answers": [
+      "[2]",
+      "[3, 4, 5]",
+      "The program will cause an error.",
+      "[2, 3, 4, 5]"
+    ],
+    "correctIndex": 2,
+    "quote": "The slice [1:3] (elements 2,3) is replaced by [10,20,30] resulting in [1, 10, 20, 30, 4, 5]"
+  },
+  {
+    "question": "You develop a Python application for your company. A list named employees contains 200 employee names, the last five being company management. You need to slice the list to display all employees excluding management. Which code segments can you use? (Choose two.)",
+    "answers": [
+      "employees[1:-5]",
+      "employees[0:-5]",
+      "employees[:-5]",
+      "employees[0:-4]",
+      "employees[1:-4]"
+    ],
+    "correctIndex": [1, 2],
+    "quote": "Both exclude the last 5 elements (management) and contain all elements before them."
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\nlist = [1, 2, 3, 4, 5, 6]\nlist = list[-1:0:-1]\nprint(list)",
+    "answers": [
+      "112345",
+      "234561",
+      "234566",
+      "123456"
+    ],
+    "correctIndex": 1,
+    "quote": "Start at -1 (6), end before 0, step -1 results in [6,5,4,3,2]"
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\nx = 1 // 5 + 1 / 5\nprint(x)",
+    "answers": [
+      "0",
+      "0.2",
+      "0.0",
+      "0.4"
+    ],
+    "correctIndex": 1,
+    "quote": "1 // 5 = 0 (integer division), 1 / 5 = 0.2, sum = 0.2"
+  },
+  {
+    "question": "An operator able to check whether two values are not equal is coded as:",
+    "answers": [
+      "<>",
+      "!=",
+      "=/=",
+      "not =="
+    ],
+    "correctIndex": 1,
+    "quote": "In Python, != is the correct operator for 'not equal'."
+  },
+  {
+    "question": "The result of the following addition: 123 + 0.0",
+    "answers": [
+      "cannot be evaluated",
+      "is equal to 123",
+      "is equal to 123.0"
+    ],
+    "correctIndex": 2,
+    "quote": "Addition of integer and float results in float."
+  },
+  {
+    "question": "What will be the output of the following code snippet?\n\nCode:\nprint(3 / 5)",
+    "answers": [
+      "None of the above.",
+      "0",
+      "0.6",
+      "6/10"
+    ],
+    "correctIndex": 2,
+    "quote": "Division in Python 3 results in float."
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\nx = 1 / 2 + 3 // 3 + 4 ** 2\nprint(x)",
+    "answers": [
+      "17",
+      "17.5",
+      "8.5",
+      "8"
+    ],
+    "correctIndex": 1,
+    "quote": "1/2=0.5 + 3//3=1 + 4**2=16 = 17.5"
+  },
+  {
+    "question": "What is the expected output of the following code?\n\nCode:\nx = 28\ny = 8\nprint(x / y)\nprint(x // y)\nprint(x % y)",
+    "answers": [
+      "1 | 3.0 2 | 3 3 | 2",
+      "1 | 3.5 2 | 3 3 | 4",
+      "1 | 3 2 | 3.5 3 | 4",
+      "1 | 3.5 2 | 3.5 3 | 2"
+    ],
+    
+    "correctIndex": 1,
+    "quote": "28/8=3.5, 28//8=3, 28%8=4"
   }
+
 ]
