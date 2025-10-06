@@ -15,6 +15,7 @@ class QuizUI {
         this.quizContainer = document.getElementById('quiz-container');
         this.currentSelectedIndices = [];
         this.answerChangeCallback = null;
+        this.endQuizButton = document.getElementById('end-quiz-btn');
 
         // ✅ TIMER ELEMENTE MIT FALLBACK
         this.timerContainer = document.getElementById('timer-container');
@@ -22,9 +23,9 @@ class QuizUI {
         this.currentTimeElement = document.getElementById('current-time');
         this.totalTimeElement = document.getElementById('total-time');
 
-        console.log('🔧 QuizUI Constructor - Timer Status:');
+       /* console.log('🔧 QuizUI Constructor - Timer Status:');
         console.log('📱 Timer Container gefunden:', !!this.timerContainer);
-        console.log('📱 Progress Bar gefunden:', !!this.progressBar);
+        console.log('📱 Progress Bar gefunden:', !!this.progressBar);*/
 
         // ✅ NOTFALL: Timer Container manuell erstellen falls nicht vorhanden
         if (!this.timerContainer) {
@@ -377,9 +378,16 @@ class QuizUI {
         this.restartButton.addEventListener('click', callback);
     }
 
-    bindWndQuizClick(callback){
+    bindEndQuizClick(callback){
     if(this.endQuizButton){
-    this.endQuizButton.addEventListener('click', callback);
-    }
+        this.endQuizButton.addEventListener('click', () => {
+                    if (confirm('Möchtest du das Quiz wirklich beenden? Dein aktueller Fortschritt wird ausgewertet.')) {
+                        callback();
+                    }
+                });
+                console.log('✅ End Quiz Button Event Listener hinzugefügt');
+            } else {
+                console.error('❌ End Quiz Button nicht gefunden!');
+            }
     }
 }
