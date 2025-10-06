@@ -281,9 +281,9 @@ class QuizUI {
             this.nextButton.classList.add('hidden');
         }
 
-        if (!isMultipleChoice && this.answerChangeCallback) {
+        /*if (!isMultipleChoice && this.answerChangeCallback) {
             this.answerChangeCallback(this.currentSelectedIndices);
-        }
+        }*/
     }
 
     updateAnswerDisplay() {
