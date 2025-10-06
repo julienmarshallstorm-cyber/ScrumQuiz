@@ -69,7 +69,7 @@ class QuizData {
         console.log('   - Korrekt:', question.correctIndex);
         console.log('   - Frage:', question.question.substring(0, 30) + '...');
 
-        // FÜR MEHRFACHAUSWAHL (correctIndex ist Array)
+        // ✅ FÜR MEHRFACHAUSWAHL (correctIndex ist Array)
         if (Array.isArray(question.correctIndex)) {
             // Prüfe ob ausgewählte Indices genau den correctIndex entsprechen
             if (selectedIndices.length !== question.correctIndex.length) {
@@ -84,7 +84,7 @@ class QuizData {
             console.log('   - Ergebnis:', isCorrect ? '✅ RICHTIG' : '❌ FALSCH');
             return isCorrect;
         }
-        //FÜR EINFACHE ANTWORTEN (correctIndex ist Number)
+        // ✅ FÜR EINFACHE ANTWORTEN (correctIndex ist Number)
         else {
             const isCorrect = question.correctIndex === selectedIndices[0];
             console.log('   - Ergebnis:', isCorrect ? '✅ RICHTIG' : '❌ FALSCH');
