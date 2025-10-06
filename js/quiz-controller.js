@@ -36,6 +36,8 @@ class QuizController {
 
     handleStartQuizClick(questionCount) {
         this.selectedQuestionCount = Math.min(questionCount, this.quizData.getTotalQuestions());
+        this.quizData.selectedQuestionCount = this.selectedQuestionCount;
+
         this.quizData.shuffleQuestions();
         this.startQuiz();
         this.quizUI.hideSetup();
