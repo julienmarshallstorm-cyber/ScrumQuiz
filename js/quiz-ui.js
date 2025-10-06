@@ -390,4 +390,17 @@ class QuizUI {
                 console.error('❌ End Quiz Button nicht gefunden!');
             }
     }
+     showEndQuizButton() {
+            if (this.endQuizButton) {
+                this.endQuizButton.style.display = 'block';
+            }
+        }
+
+        hideEndQuizButton() {
+            if (this.endQuizButton) {
+                this.endQuizButton.style.display = 'none';
+            }
+        }
+
+
 }

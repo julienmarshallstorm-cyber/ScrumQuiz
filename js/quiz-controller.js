@@ -107,44 +107,81 @@ class QuizController {
 
     showCurrentQuestion() {
         const question = this.quizData.getQuestion(this.currentQuestionIndex);
+
+        // Vorherige Auswahl zurücksetzen
+        this.currentSelectedIndices = [];
+
+        // Frage anzeigen
         this.quizUI.showQuestion(question, this.currentQuestionIndex, this.totalQuestions);
+
+        // "Weiter" Button zunächst verstecken
+        this.quizUI.nextButton.classList.add('hidden');
     }
 
     handleAnswerClick(selectedIndices) {
-        console.log('🎯 Controller handleAnswerClick aufgerufen', selectedIndices);
+        console.log('🎯 Antwort ausgewählt (noch nicht ausgewertet):', selectedIndices);
 
+        // NUR die Auswahl speichern, aber noch nicht auswerten
+        this.currentSelectedIndices = selectedIndices;
+
+        // "Weiter" Button aktivieren
+        this.quizUI.nextButton.classList.remove('hidden');
+    }
+
+    handleNextButtonClick() {
+        console.log('➡️ Weiter geklickt - jetzt Antwort auswerten');
+
+        // JETZT erst die Antwort auswerten
+        if (this.currentSelectedIndices.length > 0) {
+            this.evaluateCurrentAnswer();
+        }
+
+        // Zur nächsten Frage gehen
+        this.currentQuestionIndex++;
+        if (this.currentQuestionIndex < this.totalQuestions) {
+            this.showCurrentQuestion();
+        } else {
+            // Quiz beenden
+            console.log('⏰ Quiz beendet - Timer stoppen');
+            clearInterval(this.timerInterval);
+            this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
+        }
+    }
+
+    // ✅ NEUE METHODE: Antwort beim "Weiter" Klick auswerten
+    evaluateCurrentAnswer() {
         try {
-            const correctIndex = this.quizData.getQuestion(this.currentQuestionIndex).correctIndex;
+            const question = this.quizData.getQuestion(this.currentQuestionIndex);
+            const correctIndex = question.correctIndex;
 
-            // NUR normale Antwortverarbeitung (keine Skip-Logik mehr)
-            const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, selectedIndices);
+            // Antwort überprüfen
+            const isCorrect = this.quizData.isCorrectAnswer(this.currentQuestionIndex, this.currentSelectedIndices);
 
             if (isCorrect) {
                 this.score++;
+                console.log('✅ Richtige Antwort! Score:', this.score);
             } else {
                 const quote = this.quizData.getQuote(this.currentQuestionIndex);
                 this.wrongAnswers.push({
-                    question: this.quizData.getQuestion(this.currentQuestionIndex).question,
-                    selectedAnswer: selectedIndices.map(idx =>
-                        this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
+                    question: question.question,
+                    selectedAnswer: this.currentSelectedIndices.map(idx =>
+                        question.answers[idx]
                     ).join(', '),
                     correctAnswer: Array.isArray(correctIndex)
-                        ? correctIndex.map(idx =>
-                            this.quizData.getQuestion(this.currentQuestionIndex).answers[idx]
-                          ).join(', ')
-                        : this.quizData.getQuestion(this.currentQuestionIndex).answers[correctIndex],
+                        ? correctIndex.map(idx => question.answers[idx]).join(', ')
+                        : question.answers[correctIndex],
                     quote: quote
                 });
+                console.log('❌ Falsche Antwort gespeichert');
             }
 
-            // Aktuelle Auswahl speichern für mögliche Änderungen
-            this.currentSelectedIndices = selectedIndices;
-
-            // Feedback anzeigen
-            this.quizUI.showFeedback(selectedIndices);
+            // Antwort in quizData speichern (falls benötigt)
+            if (this.quizData.setUserAnswer) {
+                this.quizData.setUserAnswer(this.currentQuestionIndex, this.currentSelectedIndices);
+            }
 
         } catch (error) {
-            console.error('Fehler bei der Antwortverarbeitung:', error);
+            console.error('Fehler bei der Antwortauswertung:', error);
         }
     }
 
@@ -214,8 +251,13 @@ class QuizController {
         // Timer stoppen
         clearInterval(this.timerInterval);
 
-        // Alle restlichen Fragen als falsch markieren
-        for (let i = this.currentQuestionIndex; i < this.totalQuestions; i++) {
+        // AKTUELLE FRAGE auswerten falls beantwortet
+        if (this.currentSelectedIndices.length > 0) {
+            this.evaluateCurrentAnswer();
+        }
+
+        // Restliche Fragen als falsch markieren (ab der NÄCHSTEN Frage)
+        for (let i = this.currentQuestionIndex + 1; i < this.totalQuestions; i++) {
             const question = this.quizData.getQuestion(i);
             const correctIndex = question.correctIndex;
 
@@ -233,28 +275,6 @@ class QuizController {
         this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
     }
 
-    handleNextButtonClick() {
-        this.currentQuestionIndex++;
-        if (this.currentQuestionIndex < this.totalQuestions) {
-            this.showCurrentQuestion();
-        } else {
-            // TIMER STOPPEN bei normalem Quiz-Ende
-            console.log('⏰ Quiz beendet - Timer stoppen');
-            clearInterval(this.timerInterval);
-            this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
-        }
-    }
-
-    handleRestartButtonClick() {
-        // TIMER STOPPEN bei Neustart
-        console.log('⏰ Quiz neustarten - Timer stoppen');
-        if (this.timerInterval) {
-            clearInterval(this.timerInterval);
-            this.timerInterval = null;
-        }
-        this.showSetup();
-    }
-
     handleEndQuizClick() {
         console.log('⏹️ Quiz manuell beendet');
 
@@ -264,8 +284,13 @@ class QuizController {
             this.timerInterval = null;
         }
 
-        // Restliche Fragen als falsch markieren
-        for (let i = this.currentQuestionIndex; i < this.totalQuestions; i++) {
+        // AKTUELLE FRAGE auswerten falls beantwortet
+        if (this.currentSelectedIndices.length > 0) {
+            this.evaluateCurrentAnswer();
+        }
+
+        // Restliche Fragen als falsch markieren (ab der NÄCHSTEN Frage)
+        for (let i = this.currentQuestionIndex + 1; i < this.totalQuestions; i++) {
             const question = this.quizData.getQuestion(i);
             const correctIndex = question.correctIndex;
 
@@ -282,5 +307,16 @@ class QuizController {
         // Zur Auswertung springen
         this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
     }
+
+    handleRestartButtonClick() {
+        // TIMER STOPPEN bei Neustart
+        console.log('⏰ Quiz neustarten - Timer stoppen');
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+            this.timerInterval = null;
+        }
+        this.showSetup();
+    }
 }
+
 new QuizController();
