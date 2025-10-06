@@ -370,6 +370,7 @@ class QuizUI {
         } else {
             wrongQuestionsList.style.display = 'none';
         }
+        this.hideEndQuizButton();
 
         this.scoreContainer.classList.remove('hidden');
     }
@@ -396,11 +397,11 @@ class QuizUI {
             }
         }
 
-        hideEndQuizButton() {
-            if (this.endQuizButton) {
-                this.endQuizButton.style.display = 'none';
-            }
+    hideEndQuizButton() {
+        if (this.endQuizButton) {
+            this.endQuizButton.style.display = 'none';
         }
+    }
 
 
 }
