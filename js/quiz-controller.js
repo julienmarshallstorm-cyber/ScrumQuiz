@@ -282,5 +282,6 @@ class QuizController {
         // Zur Auswertung springen
         this.quizUI.showScore(this.score, this.totalQuestions, this.wrongAnswers);
     }
+        new QuizController();
 
 }
